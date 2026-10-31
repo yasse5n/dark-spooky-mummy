@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "reset restores all active-mode defaults and ratio, clears preview, preserves other modes and cloud presets",
+    "reset and independent mode drafts survive reopening in same Photoshop session",
+    "WhatsApp exact invitation URL opens through CEP bridge, between hero and quick tools",
+    "social tab displays full example, source dates and execution; applying idea affects active mode only",
+    "red actions and page widths fit 320 and 450 pixels without horizontal page overflow",
+    "paid session locks at deadline within 6 seconds, preserves login for renewal and rejects cached access",
+    "renewal reopens same account and stale expiry timers do not lock renewed term"
+  ],
+  "ok": true,
+  "browser": "155.0.8059.84"
+}

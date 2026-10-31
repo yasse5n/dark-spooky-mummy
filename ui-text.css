@@ -1,0 +1,4 @@
+﻿/* Loaded after scale presets; explicit height leaves room for Arabic glyphs. */
+main input[type="text"], main input[type="search"] { height:46px; min-height:46px; padding:8px 11px; line-height:22px; flex-shrink:0; }
+main textarea.qayemLongText { display:block; box-sizing:border-box; flex-shrink:0; overflow-y:auto; overflow-x:hidden; white-space:pre-wrap; overflow-wrap:break-word; word-wrap:break-word; resize:vertical; max-height:none; }
+main .qayemField { flex-shrink:0; max-height:none; overflow:visible; }

@@ -1,0 +1,108 @@
+﻿// Camera perspective is independent of torso pose, head gaze and hand action.
+const CAMERA_PERSPECTIVES = [
+  ["مستوى العين — طبيعي", "EYE-LEVEL SHOT: Put the lens at the subject's eye height and aim horizontally. Show a straight, balanced eye-level view with a level shoulder line unless the selected body pose tilts it. This is the intentionally conventional option."],
+  ["من أسفل قليلًا", "VISIBLE LOW-ANGLE SHOT: Put the lens at the subject's upper-chest height, below the eyes, and aim upward about 10–15 degrees. Show a little of the underside of the jaw and a clear upward view of the shoulders; the upper torso appears slightly nearer than the head. The result must read as a camera below the subject, not an eye-level portrait with the chin raised."],
+  ["من أسفل بمنظور درامي", "STRONG LOW-ANGLE SHOT: Put the lens around the subject's waist to lower-chest height and aim upward about 20–25 degrees. Make the underside of the jaw, underside planes of the shoulders and upward recession toward the head clearly visible; the nearer torso has greater presence. Recompose to keep the complete head and waist crop. Use realistic anatomy and no fisheye effect. Do not simulate this merely by lifting the person's chin."],
+  ["من أعلى قليلًا", "VISIBLE HIGH-ANGLE SHOT: Put the lens above the subject's head height and aim downward about 10–15 degrees. Show some upper planes of the shoulders and top of the hair; the shoulder area appears closer to the lens and the waist recedes below it. It must look photographed from above, not like an eye-level camera with the person's head lowered."],
+  ["من أعلى بمنظور تحريري", "STRONG ELEVATED SHOT: Put the lens clearly above the subject, roughly a head-height above eye level, and aim downward about 25–30 degrees. Show obvious top planes of the hair, shoulders and garment collar, with the torso receding toward the lower edge. Preserve a visible face and the entire head-to-waist portrait crop; do not turn it into an overhead flat-lay or merely tilt the head down."],
+  ["الكاميرا ناحية يمين الكادر", "CAMERA ORBIT TO VIEWER'S RIGHT: Move the camera about 35–40 degrees around the subject toward the VIEWER'S RIGHT while keeping a similar camera height. Show distinct near/far shoulder depth and an off-axis view of the face and chest. Keep the separately requested torso pose and gaze; establish the new view through camera position, not by turning the person's body as a substitute."],
+  ["الكاميرا ناحية شمال الكادر", "CAMERA ORBIT TO VIEWER'S LEFT: Move the camera about 35–40 degrees around the subject toward the VIEWER'S LEFT while keeping a similar camera height. Show distinct near/far shoulder depth and an off-axis view of the face and chest. Keep the separately requested torso pose and gaze; establish the new view through camera position, not by turning the person's body as a substitute."],
+  ["قريب من العدسة بمنظور واقعي", "CLOSE CAMERA PERSPECTIVE: Move the camera physically nearer and use a moderate wide portrait view, around 40 mm full-frame equivalent; reframe to include the complete head down to just below the waist. Show visible near/far depth: whichever shoulder or hand is naturally closest looks moderately larger, while the far shoulder recedes. Keep the nose, facial features and fingers realistically proportioned; a simple crop of an eye-level telephoto image does not satisfy this viewpoint."],
+  ["من أسفل مع انحراف جانبي", "LOW OFF-AXIS CAMERA: Put the lens around lower-chest height, move it about 30 degrees toward the VIEWER'S LEFT of the subject and aim upward about 15–20 degrees. Both cues must be obvious together: see the underside of the jaw and one shoulder nearer than the other, with the far shoulder receding. Keep the selected torso orientation and head gaze as separate instructions."],
+  ["زاوية كاميرا قطرية واضحة", "VISIBLE DUTCH CAMERA ANGLE: Roll the entire camera about 12 degrees clockwise while keeping the subject's posture as selected. The subject's body axis and garment seams should run diagonally across the rectangular portrait frame; leave enough space around the full head and waist crop for the camera roll to register. This must be a visibly tilted photograph, not just a shoulder tilt or a changed body pose."]
+];
+
+// Body descriptions control the torso only. FACE_GAZES owns head/eye direction.
+const BODY_ANGLES = [
+  ["الجسم مواجه للكاميرا تمامًا", "Square the torso toward the camera, shoulders level and posture upright. This describes the body only; use the separate head-and-eye direction."],
+  ["الجسم مائل قليلًا ليمين الكادر", "Turn the torso about 15 degrees toward the viewer's right, keeping the shoulders natural."],
+  ["الجسم مائل قليلًا لشمال الكادر", "Turn the torso about 15 degrees toward the viewer's left, keeping the shoulders natural."],
+  ["ثلاثة أرباع ناحية يمين الكادر", "Turn the torso three quarters toward the viewer's right; keep a natural shoulder line and believable neck connection."],
+  ["ثلاثة أرباع ناحية شمال الكادر", "Turn the torso three quarters toward the viewer's left; keep a natural shoulder line and believable neck connection."],
+  ["الجسم جانبي خفيف ناحية اليمين", "Set the torso in a gentle side profile toward the viewer's right, without turning the whole body away from view."],
+  ["الجسم جانبي خفيف ناحية الشمال", "Set the torso in a gentle side profile toward the viewer's left, without turning the whole body away from view."],
+  ["الكتف اليمين أقرب للكاميرا", "Bring the person's right shoulder slightly closer to the lens than the left, with realistic upper-body proportions."],
+  ["الكتف الشمال أقرب للكاميرا", "Bring the person's left shoulder slightly closer to the lens than the right, with realistic upper-body proportions."],
+  ["ميل خفيف بالجسم للأمام", "Lean the upper body subtly toward the camera from the waist while keeping natural posture and perspective."],
+  ["ميل خفيف بالجسم للخلف", "Lean the upper body slightly backward from the waist, with natural balance and no exaggerated perspective."],
+  ["ميل بالجسم ناحية يمين الكادر", "Shift the upper torso subtly toward the viewer's right without unnatural shoulder rotation."],
+  ["ميل بالجسم ناحية شمال الكادر", "Shift the upper torso subtly toward the viewer's left without unnatural shoulder rotation."],
+  ["لفّة خفيفة بالوسط لليمين", "Rotate the waist gently toward the viewer's right while the chest stays partly open to the camera."],
+  ["لفّة خفيفة بالوسط للشمال", "Rotate the waist gently toward the viewer's left while the chest stays partly open to the camera."],
+  ["زاوية جسم ديناميكية لليمين", "Give the torso a subtle dynamic diagonal toward the viewer's right without distorting the neck or shoulders."],
+  ["زاوية جسم ديناميكية للشمال", "Give the torso a subtle dynamic diagonal toward the viewer's left without distorting the neck or shoulders."],
+  ["الكتفان بزاوية قطرية", "Set the shoulders on a natural diagonal while maintaining a believable waist-to-neck connection."]
+];
+
+const FACE_GAZES = [
+  ["الوجه والعينان للكاميرا", "Keep the head nearly front-facing and make natural eye contact with the camera. Do not change the body angle to achieve this."],
+  ["الوجه ليمين الشخص بنظرة تأملية", "Turn the head about 20–30 degrees toward the SUBJECT'S OWN RIGHT. Look farther to the subject's right into the distance with a calm, reflective gaze; avoid eye contact with the lens. Keep the face recognizable, not in full profile."],
+  ["الوجه لشمال الشخص بنظرة تأملية", "Turn the head about 20–30 degrees toward the SUBJECT'S OWN LEFT. Look farther to the subject's left into the distance with a calm, reflective gaze; avoid eye contact with the lens. Keep the face recognizable, not in full profile."],
+  ["الوجه مائل لليمين والعينان للكاميرا", "Turn the head only 15–20 degrees toward the SUBJECT'S OWN RIGHT, then direct the eyes naturally back toward the camera. Keep the head turn subtle and the neck anatomically plausible."],
+  ["الوجه مائل للشمال والعينان للكاميرا", "Turn the head only 15–20 degrees toward the SUBJECT'S OWN LEFT, then direct the eyes naturally back toward the camera. Keep the head turn subtle and the neck anatomically plausible."],
+  ["الوجه للكاميرا والعينان لليمين", "Keep the head and nose facing the camera; shift ONLY the eyes toward the SUBJECT'S OWN RIGHT. Do not rotate the head or make direct eye contact with the lens."],
+  ["الوجه للكاميرا والعينان للشمال", "Keep the head and nose facing the camera; shift ONLY the eyes toward the SUBJECT'S OWN LEFT. Do not rotate the head or make direct eye contact with the lens."],
+  ["الوجه للكاميرا والعينان لأسفل", "Keep the head mostly front-facing and lower only the gaze slightly, as if looking thoughtfully down in front of the person. Keep the face fully visible."],
+  ["الوجه مائل لليمين والعينان لأسفل", "Turn the head about 15–20 degrees toward the SUBJECT'S OWN RIGHT and lower the eyes gently toward that side, without hiding the face."],
+  ["الوجه مائل للشمال والعينان لأسفل", "Turn the head about 15–20 degrees toward the SUBJECT'S OWN LEFT and lower the eyes gently toward that side, without hiding the face."],
+  ["الرأس مرفوع قليلًا والنظرة للأفق", "Lift the chin just a little and direct the eyes above the camera toward a distant horizon, without tilting so far that facial identity is lost."],
+  ["الرأس منخفض قليلًا والعينان للكاميرا", "Lower the chin slightly while the eyes look naturally at the camera, preserving a clear view of the face and a realistic neck angle."]
+];
+
+const EXPRESSIONS = [
+  ["نفس تعبير الصورة الأصلية", "Preserve the exact natural facial expression from reference image 1; do not invent a new smile or emotion."],
+  ["تعبير حيادي", "A natural neutral expression with relaxed brows and mouth; keep the identity and facial proportions unchanged."],
+  ["ابتسامة خفيفة", "A subtle genuine smile, with only a slight lift at the mouth corners and natural eyes; do not reshape the face."],
+  ["ابتسامة واضحة", "A warm, clearly visible natural smile, without exaggerating teeth or changing the recognizable facial structure."],
+  ["تعبير جاد", "A composed serious expression with a relaxed jaw and natural brows, not angry or harsh."],
+  ["تعبير متأمل", "A quietly thoughtful expression with soft brows and relaxed lips; preserve the person's real facial features."],
+  ["تعبير واثق", "A calm confident expression with natural posture in the facial muscles and no artificial beautification."],
+  ["اندهاش خفيف", "A subtle surprised expression with slightly raised eyebrows and alert eyes, without cartoonish distortion."],
+  ["تعبير سعيد", "A naturally happy expression with bright eyes and a gentle smile, without changing age or facial identity."]
+];
+
+const HAND_POSES = [
+  ["الذراعان مرتاحان بجانب الجسم", "Both arms rest naturally by the sides; show whichever hands fall within the close crop."],
+  ["الذراعان متقاطعان على الصدر", "Cross both arms naturally over the chest; each hand and forearm connects correctly to its own arm."],
+  ["اليدان متشابكتان أمام البطن", "Gently clasp both hands in front of the lower torso, fully inside the frame."],
+  ["أطراف الأصابع متلامسة أمام الصدر", "Bring the fingertips of both hands lightly together in front of the chest in a relaxed professional gesture."],
+  ["اليدان مفتوحتان في وضع شرح", "Raise both hands around chest level with open palms in a natural explaining gesture, fully visible."],
+  ["يد واحدة مفتوحة في وضع شرح", "Raise one open hand gently at chest level as if explaining; let the other arm relax naturally."],
+  ["اليد اليمين على الصدر", "Rest the person's right hand lightly on the upper chest, left arm relaxed, with natural fingers."],
+  ["اليد الشمال على الصدر", "Rest the person's left hand lightly on the upper chest, right arm relaxed, with natural fingers."],
+  ["اليد اليمين على الخصر", "Rest the person's right hand at the waist with a natural bent elbow; leave the left arm relaxed."],
+  ["اليد الشمال على الخصر", "Rest the person's left hand at the waist with a natural bent elbow; leave the right arm relaxed."],
+  ["اليدان على الخصر", "Rest both hands naturally at the waist, with both elbows and hands visible within the portrait crop."],
+  ["اليد اليمين تلمس ياقة الملابس", "Use the person's right hand to lightly touch the garment collar or neckline, with the other hand relaxed."],
+  ["اليد الشمال تلمس ياقة الملابس", "Use the person's left hand to lightly touch the garment collar or neckline, with the other hand relaxed."],
+  ["اليد تضبط الكم", "Use one hand to adjust the opposite sleeve or cuff naturally; show both arms connected correctly."],
+  ["اليد تلمس الذقن بخفة", "Touch the chin lightly with one hand in a thoughtful pose without covering the person's identifying facial features."],
+  ["اليد تضبط النظارة إن وجدت", "If the person in reference image 1 wears glasses, adjust the frame gently with one hand; otherwise rest that hand near the temple without adding glasses."],
+  ["الإشارة إلى الكاميرا بإصبع", "Point one index finger gently toward the camera, keeping the entire hand natural and the face unobstructed, without fisheye distortion."],
+  ["الإشارة ناحية يمين الكادر", "Point one open hand toward the viewer's right at chest height while keeping the other hand relaxed and in frame."],
+  ["الإشارة ناحية يسار الكادر", "Point one open hand toward the viewer's left at chest height while keeping the other hand relaxed and in frame."],
+  ["رفع اليد بتحية خفيفة", "Raise one hand beside the shoulder in a small natural greeting; keep the palm and all fingers fully in frame."],
+  ["قبضة خفيفة أمام الصدر", "Hold one hand in a relaxed, lightly closed fist in front of the chest, with the other arm natural."],
+  ["اليدان متباعدتان قليلًا أمام الجسم", "Hold both hands slightly apart in front of the torso, palms angled inward in a balanced presentational pose."],
+  ["ذراع أمام الجسم والأخرى مرتاحة", "Bring one forearm gently across the lower chest, leaving the other arm relaxed at the side."],
+  ["كف واحد مرفوع للأعلى", "Hold one open palm facing upward near waist height as if presenting something, without adding any object or prop."]
+];
+
+const BACKGROUNDS = [
+  ["أبيض سادة (الإعداد الأصلي)", "Pure clean white seamless studio background, evenly bright. Keep neutral white highlights and NO colored background spill."],
+  ["بيج سادة", "Smooth solid warm beige studio background. Add only a faint warm beige bounce to the garment edges, without tinting the face."],
+  ["رمادي فاتح سادة", "Soft solid light-gray studio background, clean and minimal. Keep the light neutral, with only a subtle gray environmental reflection."],
+  ["كحلي سادة", "Deep solid navy studio background with clear separation from the subject. Add a restrained cool navy reflection to the outer garment contour, while the face remains naturally lit."],
+  ["برتقالي مع بيج", "A refined studio gradient blending warm burnt orange into soft beige, with smooth depth and no hard banding. Reflect a subtle warm orange glow onto the nearby shoulder and clothing folds, balanced by soft beige fill; keep skin tone natural."],
+  ["أزرق سماوي مع كحلي", "A smooth studio gradient from luminous sky blue to deep navy. Add a delicate cool blue edge reflection along the shoulder and garment nearest the blue, keeping the face neutral and bright."],
+  ["أزرق فاتح مع أبيض", "A clean airy gradient transitioning from pale blue to white. Add a very soft pale-blue ambient reflection to the clothing edges; avoid a blue color cast on skin."],
+  ["بنفسجي مع كحلي", "An elegant studio gradient from rich purple into dark navy, with cinematic but uncluttered depth. Reflect a faint violet-blue glow on the garment outline without darkening the face."],
+  ["تركواز مع بيج فاتح", "A polished turquoise-to-light-beige studio gradient. Add subtle turquoise bounce on one garment edge and soft warm beige fill on the other; preserve realistic skin color."],
+  ["أحمر مع أسود", "A controlled deep-red-to-charcoal-black studio gradient, keeping the person clearly separated. Add a restrained red edge reflection on the clothing; maintain a clean, sufficiently bright face."],
+  ["أخضر فاتح مع أخضر غامق", "A smooth gradient from fresh light green to deep forest green. Add a faint green bounce on garment edges only, with neutral facial highlights and natural skin."],
+  ["رملي مع كريمي", "A soft sand-to-cream studio gradient with warm refined depth. Reflect a subtle golden-beige warmth onto nearby garment folds while the face stays naturally white-lit."],
+  ["وردي هادئ مع بيج", "A muted blush-pink-to-beige studio gradient. Add a soft rosy-beige reflection on the garment edge, without making the skin pink."],
+  ["رمادي غامق مع أزرق", "A dark-slate-to-deep-blue studio gradient with clear subject separation. Add a controlled cool-blue reflection on the outer garment while preserving facial detail."]
+];
+
+if (typeof module !== "undefined") module.exports = { CAMERA_PERSPECTIVES, BODY_ANGLES, FACE_GAZES, EXPRESSIONS, HAND_POSES, BACKGROUNDS };

@@ -1,0 +1,9 @@
+﻿/* CEP embeds the supplied faces; UXP uses the installed family names. */
+@font-face { font-family:'QAYEM DIN Arabic'; src:url('fonts/DINNextArabic-Light.otf'); font-weight:300; font-style:normal; }
+@font-face { font-family:'QAYEM DIN Arabic'; src:url('fonts/DINNextArabic-Medium.ttf'); font-weight:400; font-style:normal; }
+@font-face { font-family:'QAYEM DIN Arabic'; src:url('fonts/DINNextArabic-Bold.otf'); font-weight:700; font-style:normal; }
+html, body, body * { font-family:'QAYEM DIN Arabic','DIN NEXT™ ARABIC MEDIUM','DIN Next LT W23',Arial; }
+body { font-weight:400; }
+h1, h2, h3, strong, b, label, .brand, .primary, .secondary, .dashboardHeading, .dashboardRoute, .contactLink, .ratioChoice, main .qayemField .qayemFieldLabel { font-family:'QAYEM DIN Arabic','DIN NEXT™ ARABIC BOLD','DIN Next LT W23',Arial; font-weight:700; }
+.hint, .dashboardVersion { font-family:'QAYEM DIN Arabic','DIN NEXT™ ARABIC LIGHT','DIN Next LT W23',Arial; font-weight:300; }
+input, textarea, select, button { font-family:'QAYEM DIN Arabic','DIN NEXT™ ARABIC MEDIUM','DIN Next LT W23',Arial; }

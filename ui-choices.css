@@ -1,0 +1,10 @@
+﻿/* Flex and pixel sizes also work in Photoshop's older UXP UI. */
+main .qayemChoiceGrid { display:flex; flex-direction:row; flex-wrap:wrap; width:100%; margin:2px 0 4px; padding:0; flex-shrink:0; }
+main .qayemChoiceSource { display:none; }
+main .qayemChoiceGrid .qayemChoice { box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; width:46%; flex-shrink:0; margin:4px 2%; padding:8px; border:2px solid #465264; border-radius:10px; background:#1b2532; color:#eef4ff; cursor:pointer; text-align:center; white-space:normal; overflow:visible; }
+main .qayemChoiceGrid .qayemChoice:hover { background:#26384c; border-color:#7596b8; }
+main .qayemChoiceGrid .qayemChoice.selected { border-color:#66c8ff; background:#153d58; color:#fff; }
+main .qayemChoiceGrid .qayemChoice:focus { outline:2px solid #f1cf79; outline-offset:1px; }
+main .qayemChoiceGrid .qayemChoice[aria-disabled="true"] { opacity:.55; cursor:default; }
+main .qayemChoiceGrid .qayemChoiceIcon { display:block; width:72px; height:54px; margin:0 0 5px; flex-shrink:0; }
+main .qayemChoiceGrid .qayemChoiceText { display:block; width:100%; margin:0; padding:0; white-space:normal; overflow-wrap:break-word; word-wrap:break-word; }

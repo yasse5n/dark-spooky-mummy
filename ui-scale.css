@@ -1,0 +1,575 @@
+﻿/* The toolbar remains usable at every scale and stays outside the scroll area. */
+body { display:flex; flex-direction:column; font-size:13px; font-family:Arial,sans-serif; }
+main { flex:1; height:0; min-height:0; }
+
+/* Generated size presets; keep style.css as the 100% baseline. */
+body.uiScale80{font-size:10.4px;}
+body.uiScale80 main{padding:7.2px 12px 10.4px;}
+body.uiScale80 main header{padding-bottom:4.8px;}
+body.uiScale80 main .brand{font-size:10.4px;letter-spacing:1.6px;}
+body.uiScale80 main h1{margin:1.6px 0 3.2px;font-size:18.4px;}
+body.uiScale80 main section{padding:5.6px 11.2px;margin:5.6px 0;border-radius:8px;}
+body.uiScale80 main label,body.uiScale80 main strong{margin:1.6px 0 3.2px;}
+body.uiScale80 main label:not(:first-child){margin-top:8px;}
+body.uiScale80 main input,body.uiScale80 main select,body.uiScale80 main button,body.uiScale80 main textarea{border-radius:5.6px;}
+body.uiScale80 main input,body.uiScale80 main select,body.uiScale80 main textarea{padding:8px;}
+body.uiScale80 main select{margin-bottom:3.2px;}
+body.uiScale80 main button{padding:8.8px;}
+body.uiScale80 main .hint{margin:2.4px 0 4px;}
+body.uiScale80 main .instructions p{margin:2.4px 0;}
+body.uiScale80 main .primary{padding:10.4px;}
+body.uiScale80 main .previewLabel{margin-top:7.2px;}
+body.uiScale80 main #preview{min-height:116px;}
+body.uiScale80 main #status{min-height:17.6px;}
+body.uiScale80 main .roomIdea{min-height:68.8px;}
+body.uiScale80 main .modeCard{margin-top:6.4px;padding:14.4px;}
+body.uiScale80 main .modeCard strong{font-size:13.6px;margin:0 0 2.4px;}
+body.uiScale80 main .backButton{padding:1.6px 0 5.6px;}
+body.uiScale80 main .suggestionBar{margin-top:8px;}
+body.uiScale80 main .cloneCard h2{margin:0 0 4.8px;font-size:12.8px;}
+body.uiScale80 main .cloneCard .fixedOutfit{padding:8px;border-radius:5.6px;}
+body.uiScale80 main .cloneCard .resetButton{margin-top:4.8px;}
+body.uiScale80 main .cloneCard .hint{margin-top:1.6px;}
+body.uiScale80 main #multiPreview{min-height:132px;}
+body.uiScale80 main #multiStatus{min-height:17.6px;}
+body.uiScale80 main .paletteSwatches{margin:1.6px 0 4px;}
+body.uiScale80 main .paletteSwatches span{height:14.4px;border-radius:4px;}
+body.uiScale80 main #surrealPreview{min-height:132px;}
+body.uiScale80 main #surrealStatus{min-height:17.6px;}
+body.uiScale80 main .dashboard{padding:3.2px 0 0;}
+body.uiScale80 main .dashboardHeader{padding:0 4.8px;}
+body.uiScale80 main .dashboardBrand{max-width:272px;margin:0 auto 6.4px;}
+body.uiScale80 main .ownershipNotice{font-size:10.4px;margin:0 auto 8px;}
+body.uiScale80 main .dashboardHeading{border-radius:24px;padding:8px 17.6px;font-size:13.6px;}
+body.uiScale80 main .dashboardDivider{height:0.8px;margin:10.4px 0;}
+body.uiScale80 main .dashboardRoutes{padding:0 6.4px;}
+body.uiScale80 main .dashboardRoute{min-height:49.6px;margin:0 0 8px;padding:13.6px 9.6px;border-radius:32px;font-size:16px;}
+body.uiScale80 main .dashboardVersion{margin:8.8px 0 0;font-size:8.8px;}
+body.uiScale80 main .ratioPicker{padding:4px;border-radius:9.6px;}
+body.uiScale80 main .ratioChoice{min-height:44px;padding:5.6px 0.8px;border-radius:7.2px;font-size:9.6px;}
+body.uiScale80 main .ratioIcon{border-radius:1.6px;margin:0 0 2.4px;}
+body.uiScale80 main .ratio916{width:7.2px;height:12.8px;}
+body.uiScale80 main .ratio34{width:9.6px;height:12.8px;}
+body.uiScale80 main .ratio11{width:12px;height:12px;}
+body.uiScale80 main .ratio43{width:14.4px;height:10.4px;}
+body.uiScale80 main .ratio169{width:16.8px;height:9.6px;}
+body.uiScale80 main .teacherIdea{min-height:120px;}
+body.uiScale80 main #teacherPreview{min-height:136px;}
+body.uiScale80 main #teacherStatus{min-height:17.6px;}
+body.uiScale80 main .teacherCharacterCard{margin-top:6.4px;padding:9.6px;border-radius:7.2px;}
+body.uiScale80 main .teacherCharacterCard h2{font-size:12px;margin:0 0 4.8px;}
+body.uiScale80 main .referenceRow{margin:3.2px 0;padding:4px 7.2px;border-radius:5.6px;}
+body.uiScale80 main .teacherModelNotice{margin:5.6px 0;padding:5.6px 10.4px;border-radius:7.2px;}
+body.uiScale80 main .teacherModelNotice strong{margin:0 0 3.2px;font-size:16px;}
+body.uiScale80 main .retouchDetails{margin-top:4px;padding:4.8px 9.6px;border-radius:7.2px;}
+body.uiScale80 main .retouchDetails p{margin:3.2px 0;}
+body.uiScale80 main .retouchCheck input{width:14.4px;height:14.4px;margin-left:7.2px;}
+body.uiScale80 main #retouchStatus{min-height:19.2px;}
+body.uiScale80 main .contactCard{margin:10.4px 6.4px 0;padding:7.2px 11.2px 4.8px;border-radius:12px;}
+body.uiScale80 main .contactCard h2{margin:0 0 2.4px;font-size:13.6px;}
+body.uiScale80 main .contactCaption{margin:0 0 6.4px;font-size:9.6px;}
+body.uiScale80 main .contactLink{min-height:35.2px;margin:4px 0;padding:9.6px;border-radius:7.2px;font-size:11.2px;}
+body.uiScale80 main .contactPhone{margin:7.2px 0 2.4px;font-size:16px;letter-spacing:0.8px;}
+body.uiScale80 main .contactCopy{padding:6.4px;border-radius:5.6px;font-size:9.6px;}
+body.uiScale80 main .contactStatus{min-height:14.4px;margin:3.2px 0 0;font-size:9.6px;}
+body.uiScale80 main .cinematicSection h2{margin:0 0 4px;font-size:13.6px;}
+body.uiScale80 main .startupError{padding:9.6px;border-radius:6.4px;}
+body.uiScale80 main .compatibilityNotice{margin:0 0 6.4px;padding:4.8px 9.6px;border-radius:8px;font-size:9.6px;}
+body.uiScale80 main p{margin:4.8px 0;}
+body.uiScale80 main h2{margin:0 0 4.8px;}
+body.uiScale80 main .startupError{padding:4.8px 9.6px;}
+body.uiScale80 main .cloneCard .fixedOutfit{padding:4px 8px;}
+body.uiScale90{font-size:11.7px;}
+body.uiScale90 main{padding:8.1px 13.5px 11.7px;}
+body.uiScale90 main header{padding-bottom:5.4px;}
+body.uiScale90 main .brand{font-size:11.7px;letter-spacing:1.8px;}
+body.uiScale90 main h1{margin:1.8px 0 3.6px;font-size:20.7px;}
+body.uiScale90 main section{padding:6.3px 12.6px;margin:6.3px 0;border-radius:9px;}
+body.uiScale90 main label,body.uiScale90 main strong{margin:1.8px 0 3.6px;}
+body.uiScale90 main label:not(:first-child){margin-top:9px;}
+body.uiScale90 main input,body.uiScale90 main select,body.uiScale90 main button,body.uiScale90 main textarea{border-radius:6.3px;}
+body.uiScale90 main input,body.uiScale90 main select,body.uiScale90 main textarea{padding:9px;}
+body.uiScale90 main select{margin-bottom:3.6px;}
+body.uiScale90 main button{padding:9.9px;}
+body.uiScale90 main .hint{margin:2.7px 0 4.5px;}
+body.uiScale90 main .instructions p{margin:2.7px 0;}
+body.uiScale90 main .primary{padding:11.7px;}
+body.uiScale90 main .previewLabel{margin-top:8.1px;}
+body.uiScale90 main #preview{min-height:130.5px;}
+body.uiScale90 main #status{min-height:19.8px;}
+body.uiScale90 main .roomIdea{min-height:77.4px;}
+body.uiScale90 main .modeCard{margin-top:7.2px;padding:16.2px;}
+body.uiScale90 main .modeCard strong{font-size:15.3px;margin:0 0 2.7px;}
+body.uiScale90 main .backButton{padding:1.8px 0 6.3px;}
+body.uiScale90 main .suggestionBar{margin-top:9px;}
+body.uiScale90 main .cloneCard h2{margin:0 0 5.4px;font-size:14.4px;}
+body.uiScale90 main .cloneCard .fixedOutfit{padding:9px;border-radius:6.3px;}
+body.uiScale90 main .cloneCard .resetButton{margin-top:5.4px;}
+body.uiScale90 main .cloneCard .hint{margin-top:1.8px;}
+body.uiScale90 main #multiPreview{min-height:148.5px;}
+body.uiScale90 main #multiStatus{min-height:19.8px;}
+body.uiScale90 main .paletteSwatches{margin:1.8px 0 4.5px;}
+body.uiScale90 main .paletteSwatches span{height:16.2px;border-radius:4.5px;}
+body.uiScale90 main #surrealPreview{min-height:148.5px;}
+body.uiScale90 main #surrealStatus{min-height:19.8px;}
+body.uiScale90 main .dashboard{padding:3.6px 0 0;}
+body.uiScale90 main .dashboardHeader{padding:0 5.4px;}
+body.uiScale90 main .dashboardBrand{max-width:306px;margin:0 auto 7.2px;}
+body.uiScale90 main .ownershipNotice{font-size:11.7px;margin:0 auto 9px;}
+body.uiScale90 main .dashboardHeading{border-radius:27px;padding:9px 19.8px;font-size:15.3px;}
+body.uiScale90 main .dashboardDivider{height:0.9px;margin:11.7px 0;}
+body.uiScale90 main .dashboardRoutes{padding:0 7.2px;}
+body.uiScale90 main .dashboardRoute{min-height:55.8px;margin:0 0 9px;padding:15.3px 10.8px;border-radius:36px;font-size:18px;}
+body.uiScale90 main .dashboardVersion{margin:9.9px 0 0;font-size:9.9px;}
+body.uiScale90 main .ratioPicker{padding:4.5px;border-radius:10.8px;}
+body.uiScale90 main .ratioChoice{min-height:49.5px;padding:6.3px 0.9px;border-radius:8.1px;font-size:10.8px;}
+body.uiScale90 main .ratioIcon{border-radius:1.8px;margin:0 0 2.7px;}
+body.uiScale90 main .ratio916{width:8.1px;height:14.4px;}
+body.uiScale90 main .ratio34{width:10.8px;height:14.4px;}
+body.uiScale90 main .ratio11{width:13.5px;height:13.5px;}
+body.uiScale90 main .ratio43{width:16.2px;height:11.7px;}
+body.uiScale90 main .ratio169{width:18.9px;height:10.8px;}
+body.uiScale90 main .teacherIdea{min-height:135px;}
+body.uiScale90 main #teacherPreview{min-height:153px;}
+body.uiScale90 main #teacherStatus{min-height:19.8px;}
+body.uiScale90 main .teacherCharacterCard{margin-top:7.2px;padding:10.8px;border-radius:8.1px;}
+body.uiScale90 main .teacherCharacterCard h2{font-size:13.5px;margin:0 0 5.4px;}
+body.uiScale90 main .referenceRow{margin:3.6px 0;padding:4.5px 8.1px;border-radius:6.3px;}
+body.uiScale90 main .teacherModelNotice{margin:6.3px 0;padding:6.3px 11.7px;border-radius:8.1px;}
+body.uiScale90 main .teacherModelNotice strong{margin:0 0 3.6px;font-size:18px;}
+body.uiScale90 main .retouchDetails{margin-top:4.5px;padding:5.4px 10.8px;border-radius:8.1px;}
+body.uiScale90 main .retouchDetails p{margin:3.6px 0;}
+body.uiScale90 main .retouchCheck input{width:16.2px;height:16.2px;margin-left:8.1px;}
+body.uiScale90 main #retouchStatus{min-height:21.6px;}
+body.uiScale90 main .contactCard{margin:11.7px 7.2px 0;padding:8.1px 12.6px 5.4px;border-radius:13.5px;}
+body.uiScale90 main .contactCard h2{margin:0 0 2.7px;font-size:15.3px;}
+body.uiScale90 main .contactCaption{margin:0 0 7.2px;font-size:10.8px;}
+body.uiScale90 main .contactLink{min-height:39.6px;margin:4.5px 0;padding:10.8px;border-radius:8.1px;font-size:12.6px;}
+body.uiScale90 main .contactPhone{margin:8.1px 0 2.7px;font-size:18px;letter-spacing:0.9px;}
+body.uiScale90 main .contactCopy{padding:7.2px;border-radius:6.3px;font-size:10.8px;}
+body.uiScale90 main .contactStatus{min-height:16.2px;margin:3.6px 0 0;font-size:10.8px;}
+body.uiScale90 main .cinematicSection h2{margin:0 0 4.5px;font-size:15.3px;}
+body.uiScale90 main .startupError{padding:10.8px;border-radius:7.2px;}
+body.uiScale90 main .compatibilityNotice{margin:0 0 7.2px;padding:5.4px 10.8px;border-radius:9px;font-size:10.8px;}
+body.uiScale90 main p{margin:5.4px 0;}
+body.uiScale90 main h2{margin:0 0 5.4px;}
+body.uiScale90 main .startupError{padding:5.4px 10.8px;}
+body.uiScale90 main .cloneCard .fixedOutfit{padding:4.5px 9px;}
+body.uiScale110{font-size:14.3px;}
+body.uiScale110 main{padding:9.9px 16.5px 14.3px;}
+body.uiScale110 main header{padding-bottom:6.6px;}
+body.uiScale110 main .brand{font-size:14.3px;letter-spacing:2.2px;}
+body.uiScale110 main h1{margin:2.2px 0 4.4px;font-size:25.3px;}
+body.uiScale110 main section{padding:7.7px 15.4px;margin:7.7px 0;border-radius:11px;}
+body.uiScale110 main label,body.uiScale110 main strong{margin:2.2px 0 4.4px;}
+body.uiScale110 main label:not(:first-child){margin-top:11px;}
+body.uiScale110 main input,body.uiScale110 main select,body.uiScale110 main button,body.uiScale110 main textarea{border-radius:7.7px;}
+body.uiScale110 main input,body.uiScale110 main select,body.uiScale110 main textarea{padding:11px;}
+body.uiScale110 main select{margin-bottom:4.4px;}
+body.uiScale110 main button{padding:12.1px;}
+body.uiScale110 main .hint{margin:3.3px 0 5.5px;}
+body.uiScale110 main .instructions p{margin:3.3px 0;}
+body.uiScale110 main .primary{padding:14.3px;}
+body.uiScale110 main .previewLabel{margin-top:9.9px;}
+body.uiScale110 main #preview{min-height:159.5px;}
+body.uiScale110 main #status{min-height:24.2px;}
+body.uiScale110 main .roomIdea{min-height:94.6px;}
+body.uiScale110 main .modeCard{margin-top:8.8px;padding:19.8px;}
+body.uiScale110 main .modeCard strong{font-size:18.7px;margin:0 0 3.3px;}
+body.uiScale110 main .backButton{padding:2.2px 0 7.7px;}
+body.uiScale110 main .suggestionBar{margin-top:11px;}
+body.uiScale110 main .cloneCard h2{margin:0 0 6.6px;font-size:17.6px;}
+body.uiScale110 main .cloneCard .fixedOutfit{padding:11px;border-radius:7.7px;}
+body.uiScale110 main .cloneCard .resetButton{margin-top:6.6px;}
+body.uiScale110 main .cloneCard .hint{margin-top:2.2px;}
+body.uiScale110 main #multiPreview{min-height:181.5px;}
+body.uiScale110 main #multiStatus{min-height:24.2px;}
+body.uiScale110 main .paletteSwatches{margin:2.2px 0 5.5px;}
+body.uiScale110 main .paletteSwatches span{height:19.8px;border-radius:5.5px;}
+body.uiScale110 main #surrealPreview{min-height:181.5px;}
+body.uiScale110 main #surrealStatus{min-height:24.2px;}
+body.uiScale110 main .dashboard{padding:4.4px 0 0;}
+body.uiScale110 main .dashboardHeader{padding:0 6.6px;}
+body.uiScale110 main .dashboardBrand{max-width:374px;margin:0 auto 8.8px;}
+body.uiScale110 main .ownershipNotice{font-size:14.3px;margin:0 auto 11px;}
+body.uiScale110 main .dashboardHeading{border-radius:33px;padding:11px 24.2px;font-size:18.7px;}
+body.uiScale110 main .dashboardDivider{height:1.1px;margin:14.3px 0;}
+body.uiScale110 main .dashboardRoutes{padding:0 8.8px;}
+body.uiScale110 main .dashboardRoute{min-height:68.2px;margin:0 0 11px;padding:18.7px 13.2px;border-radius:44px;font-size:22px;}
+body.uiScale110 main .dashboardVersion{margin:12.1px 0 0;font-size:12.1px;}
+body.uiScale110 main .ratioPicker{padding:5.5px;border-radius:13.2px;}
+body.uiScale110 main .ratioChoice{min-height:60.5px;padding:7.7px 1.1px;border-radius:9.9px;font-size:13.2px;}
+body.uiScale110 main .ratioIcon{border-radius:2.2px;margin:0 0 3.3px;}
+body.uiScale110 main .ratio916{width:9.9px;height:17.6px;}
+body.uiScale110 main .ratio34{width:13.2px;height:17.6px;}
+body.uiScale110 main .ratio11{width:16.5px;height:16.5px;}
+body.uiScale110 main .ratio43{width:19.8px;height:14.3px;}
+body.uiScale110 main .ratio169{width:23.1px;height:13.2px;}
+body.uiScale110 main .teacherIdea{min-height:165px;}
+body.uiScale110 main #teacherPreview{min-height:187px;}
+body.uiScale110 main #teacherStatus{min-height:24.2px;}
+body.uiScale110 main .teacherCharacterCard{margin-top:8.8px;padding:13.2px;border-radius:9.9px;}
+body.uiScale110 main .teacherCharacterCard h2{font-size:16.5px;margin:0 0 6.6px;}
+body.uiScale110 main .referenceRow{margin:4.4px 0;padding:5.5px 9.9px;border-radius:7.7px;}
+body.uiScale110 main .teacherModelNotice{margin:7.7px 0;padding:7.7px 14.3px;border-radius:9.9px;}
+body.uiScale110 main .teacherModelNotice strong{margin:0 0 4.4px;font-size:22px;}
+body.uiScale110 main .retouchDetails{margin-top:5.5px;padding:6.6px 13.2px;border-radius:9.9px;}
+body.uiScale110 main .retouchDetails p{margin:4.4px 0;}
+body.uiScale110 main .retouchCheck input{width:19.8px;height:19.8px;margin-left:9.9px;}
+body.uiScale110 main #retouchStatus{min-height:26.4px;}
+body.uiScale110 main .contactCard{margin:14.3px 8.8px 0;padding:9.9px 15.4px 6.6px;border-radius:16.5px;}
+body.uiScale110 main .contactCard h2{margin:0 0 3.3px;font-size:18.7px;}
+body.uiScale110 main .contactCaption{margin:0 0 8.8px;font-size:13.2px;}
+body.uiScale110 main .contactLink{min-height:48.4px;margin:5.5px 0;padding:13.2px;border-radius:9.9px;font-size:15.4px;}
+body.uiScale110 main .contactPhone{margin:9.9px 0 3.3px;font-size:22px;letter-spacing:1.1px;}
+body.uiScale110 main .contactCopy{padding:8.8px;border-radius:7.7px;font-size:13.2px;}
+body.uiScale110 main .contactStatus{min-height:19.8px;margin:4.4px 0 0;font-size:13.2px;}
+body.uiScale110 main .cinematicSection h2{margin:0 0 5.5px;font-size:18.7px;}
+body.uiScale110 main .startupError{padding:13.2px;border-radius:8.8px;}
+body.uiScale110 main .compatibilityNotice{margin:0 0 8.8px;padding:6.6px 13.2px;border-radius:11px;font-size:13.2px;}
+body.uiScale110 main p{margin:6.6px 0;}
+body.uiScale110 main h2{margin:0 0 6.6px;}
+body.uiScale110 main .startupError{padding:6.6px 13.2px;}
+body.uiScale110 main .cloneCard .fixedOutfit{padding:5.5px 11px;}
+body.uiScale120{font-size:15.6px;}
+body.uiScale120 main{padding:10.8px 18px 15.6px;}
+body.uiScale120 main header{padding-bottom:7.2px;}
+body.uiScale120 main .brand{font-size:15.6px;letter-spacing:2.4px;}
+body.uiScale120 main h1{margin:2.4px 0 4.8px;font-size:27.6px;}
+body.uiScale120 main section{padding:8.4px 16.8px;margin:8.4px 0;border-radius:12px;}
+body.uiScale120 main label,body.uiScale120 main strong{margin:2.4px 0 4.8px;}
+body.uiScale120 main label:not(:first-child){margin-top:12px;}
+body.uiScale120 main input,body.uiScale120 main select,body.uiScale120 main button,body.uiScale120 main textarea{border-radius:8.4px;}
+body.uiScale120 main input,body.uiScale120 main select,body.uiScale120 main textarea{padding:12px;}
+body.uiScale120 main select{margin-bottom:4.8px;}
+body.uiScale120 main button{padding:13.2px;}
+body.uiScale120 main .hint{margin:3.6px 0 6px;}
+body.uiScale120 main .instructions p{margin:3.6px 0;}
+body.uiScale120 main .primary{padding:15.6px;}
+body.uiScale120 main .previewLabel{margin-top:10.8px;}
+body.uiScale120 main #preview{min-height:174px;}
+body.uiScale120 main #status{min-height:26.4px;}
+body.uiScale120 main .roomIdea{min-height:103.2px;}
+body.uiScale120 main .modeCard{margin-top:9.6px;padding:21.6px;}
+body.uiScale120 main .modeCard strong{font-size:20.4px;margin:0 0 3.6px;}
+body.uiScale120 main .backButton{padding:2.4px 0 8.4px;}
+body.uiScale120 main .suggestionBar{margin-top:12px;}
+body.uiScale120 main .cloneCard h2{margin:0 0 7.2px;font-size:19.2px;}
+body.uiScale120 main .cloneCard .fixedOutfit{padding:12px;border-radius:8.4px;}
+body.uiScale120 main .cloneCard .resetButton{margin-top:7.2px;}
+body.uiScale120 main .cloneCard .hint{margin-top:2.4px;}
+body.uiScale120 main #multiPreview{min-height:198px;}
+body.uiScale120 main #multiStatus{min-height:26.4px;}
+body.uiScale120 main .paletteSwatches{margin:2.4px 0 6px;}
+body.uiScale120 main .paletteSwatches span{height:21.6px;border-radius:6px;}
+body.uiScale120 main #surrealPreview{min-height:198px;}
+body.uiScale120 main #surrealStatus{min-height:26.4px;}
+body.uiScale120 main .dashboard{padding:4.8px 0 0;}
+body.uiScale120 main .dashboardHeader{padding:0 7.2px;}
+body.uiScale120 main .dashboardBrand{max-width:408px;margin:0 auto 9.6px;}
+body.uiScale120 main .ownershipNotice{font-size:15.6px;margin:0 auto 12px;}
+body.uiScale120 main .dashboardHeading{border-radius:36px;padding:12px 26.4px;font-size:20.4px;}
+body.uiScale120 main .dashboardDivider{height:1.2px;margin:15.6px 0;}
+body.uiScale120 main .dashboardRoutes{padding:0 9.6px;}
+body.uiScale120 main .dashboardRoute{min-height:74.4px;margin:0 0 12px;padding:20.4px 14.4px;border-radius:48px;font-size:24px;}
+body.uiScale120 main .dashboardVersion{margin:13.2px 0 0;font-size:13.2px;}
+body.uiScale120 main .ratioPicker{padding:6px;border-radius:14.4px;}
+body.uiScale120 main .ratioChoice{min-height:66px;padding:8.4px 1.2px;border-radius:10.8px;font-size:14.4px;}
+body.uiScale120 main .ratioIcon{border-radius:2.4px;margin:0 0 3.6px;}
+body.uiScale120 main .ratio916{width:10.8px;height:19.2px;}
+body.uiScale120 main .ratio34{width:14.4px;height:19.2px;}
+body.uiScale120 main .ratio11{width:18px;height:18px;}
+body.uiScale120 main .ratio43{width:21.6px;height:15.6px;}
+body.uiScale120 main .ratio169{width:25.2px;height:14.4px;}
+body.uiScale120 main .teacherIdea{min-height:180px;}
+body.uiScale120 main #teacherPreview{min-height:204px;}
+body.uiScale120 main #teacherStatus{min-height:26.4px;}
+body.uiScale120 main .teacherCharacterCard{margin-top:9.6px;padding:14.4px;border-radius:10.8px;}
+body.uiScale120 main .teacherCharacterCard h2{font-size:18px;margin:0 0 7.2px;}
+body.uiScale120 main .referenceRow{margin:4.8px 0;padding:6px 10.8px;border-radius:8.4px;}
+body.uiScale120 main .teacherModelNotice{margin:8.4px 0;padding:8.4px 15.6px;border-radius:10.8px;}
+body.uiScale120 main .teacherModelNotice strong{margin:0 0 4.8px;font-size:24px;}
+body.uiScale120 main .retouchDetails{margin-top:6px;padding:7.2px 14.4px;border-radius:10.8px;}
+body.uiScale120 main .retouchDetails p{margin:4.8px 0;}
+body.uiScale120 main .retouchCheck input{width:21.6px;height:21.6px;margin-left:10.8px;}
+body.uiScale120 main #retouchStatus{min-height:28.8px;}
+body.uiScale120 main .contactCard{margin:15.6px 9.6px 0;padding:10.8px 16.8px 7.2px;border-radius:18px;}
+body.uiScale120 main .contactCard h2{margin:0 0 3.6px;font-size:20.4px;}
+body.uiScale120 main .contactCaption{margin:0 0 9.6px;font-size:14.4px;}
+body.uiScale120 main .contactLink{min-height:52.8px;margin:6px 0;padding:14.4px;border-radius:10.8px;font-size:16.8px;}
+body.uiScale120 main .contactPhone{margin:10.8px 0 3.6px;font-size:24px;letter-spacing:1.2px;}
+body.uiScale120 main .contactCopy{padding:9.6px;border-radius:8.4px;font-size:14.4px;}
+body.uiScale120 main .contactStatus{min-height:21.6px;margin:4.8px 0 0;font-size:14.4px;}
+body.uiScale120 main .cinematicSection h2{margin:0 0 6px;font-size:20.4px;}
+body.uiScale120 main .startupError{padding:14.4px;border-radius:9.6px;}
+body.uiScale120 main .compatibilityNotice{margin:0 0 9.6px;padding:7.2px 14.4px;border-radius:12px;font-size:14.4px;}
+body.uiScale120 main p{margin:7.2px 0;}
+body.uiScale120 main h2{margin:0 0 7.2px;}
+body.uiScale120 main .startupError{padding:7.2px 14.4px;}
+body.uiScale120 main .cloneCard .fixedOutfit{padding:6px 12px;}
+body.uiScale130{font-size:16.9px;}
+body.uiScale130 main{padding:11.7px 19.5px 16.9px;}
+body.uiScale130 main header{padding-bottom:7.8px;}
+body.uiScale130 main .brand{font-size:16.9px;letter-spacing:2.6px;}
+body.uiScale130 main h1{margin:2.6px 0 5.2px;font-size:29.9px;}
+body.uiScale130 main section{padding:9.1px 18.2px;margin:9.1px 0;border-radius:13px;}
+body.uiScale130 main label,body.uiScale130 main strong{margin:2.6px 0 5.2px;}
+body.uiScale130 main label:not(:first-child){margin-top:13px;}
+body.uiScale130 main input,body.uiScale130 main select,body.uiScale130 main button,body.uiScale130 main textarea{border-radius:9.1px;}
+body.uiScale130 main input,body.uiScale130 main select,body.uiScale130 main textarea{padding:13px;}
+body.uiScale130 main select{margin-bottom:5.2px;}
+body.uiScale130 main button{padding:14.3px;}
+body.uiScale130 main .hint{margin:3.9px 0 6.5px;}
+body.uiScale130 main .instructions p{margin:3.9px 0;}
+body.uiScale130 main .primary{padding:16.9px;}
+body.uiScale130 main .previewLabel{margin-top:11.7px;}
+body.uiScale130 main #preview{min-height:188.5px;}
+body.uiScale130 main #status{min-height:28.6px;}
+body.uiScale130 main .roomIdea{min-height:111.8px;}
+body.uiScale130 main .modeCard{margin-top:10.4px;padding:23.4px;}
+body.uiScale130 main .modeCard strong{font-size:22.1px;margin:0 0 3.9px;}
+body.uiScale130 main .backButton{padding:2.6px 0 9.1px;}
+body.uiScale130 main .suggestionBar{margin-top:13px;}
+body.uiScale130 main .cloneCard h2{margin:0 0 7.8px;font-size:20.8px;}
+body.uiScale130 main .cloneCard .fixedOutfit{padding:13px;border-radius:9.1px;}
+body.uiScale130 main .cloneCard .resetButton{margin-top:7.8px;}
+body.uiScale130 main .cloneCard .hint{margin-top:2.6px;}
+body.uiScale130 main #multiPreview{min-height:214.5px;}
+body.uiScale130 main #multiStatus{min-height:28.6px;}
+body.uiScale130 main .paletteSwatches{margin:2.6px 0 6.5px;}
+body.uiScale130 main .paletteSwatches span{height:23.4px;border-radius:6.5px;}
+body.uiScale130 main #surrealPreview{min-height:214.5px;}
+body.uiScale130 main #surrealStatus{min-height:28.6px;}
+body.uiScale130 main .dashboard{padding:5.2px 0 0;}
+body.uiScale130 main .dashboardHeader{padding:0 7.8px;}
+body.uiScale130 main .dashboardBrand{max-width:442px;margin:0 auto 10.4px;}
+body.uiScale130 main .ownershipNotice{font-size:16.9px;margin:0 auto 13px;}
+body.uiScale130 main .dashboardHeading{border-radius:39px;padding:13px 28.6px;font-size:22.1px;}
+body.uiScale130 main .dashboardDivider{height:1.3px;margin:16.9px 0;}
+body.uiScale130 main .dashboardRoutes{padding:0 10.4px;}
+body.uiScale130 main .dashboardRoute{min-height:80.6px;margin:0 0 13px;padding:22.1px 15.6px;border-radius:52px;font-size:26px;}
+body.uiScale130 main .dashboardVersion{margin:14.3px 0 0;font-size:14.3px;}
+body.uiScale130 main .ratioPicker{padding:6.5px;border-radius:15.6px;}
+body.uiScale130 main .ratioChoice{min-height:71.5px;padding:9.1px 1.3px;border-radius:11.7px;font-size:15.6px;}
+body.uiScale130 main .ratioIcon{border-radius:2.6px;margin:0 0 3.9px;}
+body.uiScale130 main .ratio916{width:11.7px;height:20.8px;}
+body.uiScale130 main .ratio34{width:15.6px;height:20.8px;}
+body.uiScale130 main .ratio11{width:19.5px;height:19.5px;}
+body.uiScale130 main .ratio43{width:23.4px;height:16.9px;}
+body.uiScale130 main .ratio169{width:27.3px;height:15.6px;}
+body.uiScale130 main .teacherIdea{min-height:195px;}
+body.uiScale130 main #teacherPreview{min-height:221px;}
+body.uiScale130 main #teacherStatus{min-height:28.6px;}
+body.uiScale130 main .teacherCharacterCard{margin-top:10.4px;padding:15.6px;border-radius:11.7px;}
+body.uiScale130 main .teacherCharacterCard h2{font-size:19.5px;margin:0 0 7.8px;}
+body.uiScale130 main .referenceRow{margin:5.2px 0;padding:6.5px 11.7px;border-radius:9.1px;}
+body.uiScale130 main .teacherModelNotice{margin:9.1px 0;padding:9.1px 16.9px;border-radius:11.7px;}
+body.uiScale130 main .teacherModelNotice strong{margin:0 0 5.2px;font-size:26px;}
+body.uiScale130 main .retouchDetails{margin-top:6.5px;padding:7.8px 15.6px;border-radius:11.7px;}
+body.uiScale130 main .retouchDetails p{margin:5.2px 0;}
+body.uiScale130 main .retouchCheck input{width:23.4px;height:23.4px;margin-left:11.7px;}
+body.uiScale130 main #retouchStatus{min-height:31.2px;}
+body.uiScale130 main .contactCard{margin:16.9px 10.4px 0;padding:11.7px 18.2px 7.8px;border-radius:19.5px;}
+body.uiScale130 main .contactCard h2{margin:0 0 3.9px;font-size:22.1px;}
+body.uiScale130 main .contactCaption{margin:0 0 10.4px;font-size:15.6px;}
+body.uiScale130 main .contactLink{min-height:57.2px;margin:6.5px 0;padding:15.6px;border-radius:11.7px;font-size:18.2px;}
+body.uiScale130 main .contactPhone{margin:11.7px 0 3.9px;font-size:26px;letter-spacing:1.3px;}
+body.uiScale130 main .contactCopy{padding:10.4px;border-radius:9.1px;font-size:15.6px;}
+body.uiScale130 main .contactStatus{min-height:23.4px;margin:5.2px 0 0;font-size:15.6px;}
+body.uiScale130 main .cinematicSection h2{margin:0 0 6.5px;font-size:22.1px;}
+body.uiScale130 main .startupError{padding:15.6px;border-radius:10.4px;}
+body.uiScale130 main .compatibilityNotice{margin:0 0 10.4px;padding:7.8px 15.6px;border-radius:13px;font-size:15.6px;}
+body.uiScale130 main p{margin:7.8px 0;}
+body.uiScale130 main h2{margin:0 0 7.8px;}
+body.uiScale130 main .startupError{padding:7.8px 15.6px;}
+body.uiScale130 main .cloneCard .fixedOutfit{padding:6.5px 13px;}
+body.uiScale140{font-size:18.2px;}
+body.uiScale140 main{padding:12.6px 21px 18.2px;}
+body.uiScale140 main header{padding-bottom:8.4px;}
+body.uiScale140 main .brand{font-size:18.2px;letter-spacing:2.8px;}
+body.uiScale140 main h1{margin:2.8px 0 5.6px;font-size:32.2px;}
+body.uiScale140 main section{padding:9.8px 19.6px;margin:9.8px 0;border-radius:14px;}
+body.uiScale140 main label,body.uiScale140 main strong{margin:2.8px 0 5.6px;}
+body.uiScale140 main label:not(:first-child){margin-top:14px;}
+body.uiScale140 main input,body.uiScale140 main select,body.uiScale140 main button,body.uiScale140 main textarea{border-radius:9.8px;}
+body.uiScale140 main input,body.uiScale140 main select,body.uiScale140 main textarea{padding:14px;}
+body.uiScale140 main select{margin-bottom:5.6px;}
+body.uiScale140 main button{padding:15.4px;}
+body.uiScale140 main .hint{margin:4.2px 0 7px;}
+body.uiScale140 main .instructions p{margin:4.2px 0;}
+body.uiScale140 main .primary{padding:18.2px;}
+body.uiScale140 main .previewLabel{margin-top:12.6px;}
+body.uiScale140 main #preview{min-height:203px;}
+body.uiScale140 main #status{min-height:30.8px;}
+body.uiScale140 main .roomIdea{min-height:120.4px;}
+body.uiScale140 main .modeCard{margin-top:11.2px;padding:25.2px;}
+body.uiScale140 main .modeCard strong{font-size:23.8px;margin:0 0 4.2px;}
+body.uiScale140 main .backButton{padding:2.8px 0 9.8px;}
+body.uiScale140 main .suggestionBar{margin-top:14px;}
+body.uiScale140 main .cloneCard h2{margin:0 0 8.4px;font-size:22.4px;}
+body.uiScale140 main .cloneCard .fixedOutfit{padding:14px;border-radius:9.8px;}
+body.uiScale140 main .cloneCard .resetButton{margin-top:8.4px;}
+body.uiScale140 main .cloneCard .hint{margin-top:2.8px;}
+body.uiScale140 main #multiPreview{min-height:231px;}
+body.uiScale140 main #multiStatus{min-height:30.8px;}
+body.uiScale140 main .paletteSwatches{margin:2.8px 0 7px;}
+body.uiScale140 main .paletteSwatches span{height:25.2px;border-radius:7px;}
+body.uiScale140 main #surrealPreview{min-height:231px;}
+body.uiScale140 main #surrealStatus{min-height:30.8px;}
+body.uiScale140 main .dashboard{padding:5.6px 0 0;}
+body.uiScale140 main .dashboardHeader{padding:0 8.4px;}
+body.uiScale140 main .dashboardBrand{max-width:476px;margin:0 auto 11.2px;}
+body.uiScale140 main .ownershipNotice{font-size:18.2px;margin:0 auto 14px;}
+body.uiScale140 main .dashboardHeading{border-radius:42px;padding:14px 30.8px;font-size:23.8px;}
+body.uiScale140 main .dashboardDivider{height:1.4px;margin:18.2px 0;}
+body.uiScale140 main .dashboardRoutes{padding:0 11.2px;}
+body.uiScale140 main .dashboardRoute{min-height:86.8px;margin:0 0 14px;padding:23.8px 16.8px;border-radius:56px;font-size:28px;}
+body.uiScale140 main .dashboardVersion{margin:15.4px 0 0;font-size:15.4px;}
+body.uiScale140 main .ratioPicker{padding:7px;border-radius:16.8px;}
+body.uiScale140 main .ratioChoice{min-height:77px;padding:9.8px 1.4px;border-radius:12.6px;font-size:16.8px;}
+body.uiScale140 main .ratioIcon{border-radius:2.8px;margin:0 0 4.2px;}
+body.uiScale140 main .ratio916{width:12.6px;height:22.4px;}
+body.uiScale140 main .ratio34{width:16.8px;height:22.4px;}
+body.uiScale140 main .ratio11{width:21px;height:21px;}
+body.uiScale140 main .ratio43{width:25.2px;height:18.2px;}
+body.uiScale140 main .ratio169{width:29.4px;height:16.8px;}
+body.uiScale140 main .teacherIdea{min-height:210px;}
+body.uiScale140 main #teacherPreview{min-height:238px;}
+body.uiScale140 main #teacherStatus{min-height:30.8px;}
+body.uiScale140 main .teacherCharacterCard{margin-top:11.2px;padding:16.8px;border-radius:12.6px;}
+body.uiScale140 main .teacherCharacterCard h2{font-size:21px;margin:0 0 8.4px;}
+body.uiScale140 main .referenceRow{margin:5.6px 0;padding:7px 12.6px;border-radius:9.8px;}
+body.uiScale140 main .teacherModelNotice{margin:9.8px 0;padding:9.8px 18.2px;border-radius:12.6px;}
+body.uiScale140 main .teacherModelNotice strong{margin:0 0 5.6px;font-size:28px;}
+body.uiScale140 main .retouchDetails{margin-top:7px;padding:8.4px 16.8px;border-radius:12.6px;}
+body.uiScale140 main .retouchDetails p{margin:5.6px 0;}
+body.uiScale140 main .retouchCheck input{width:25.2px;height:25.2px;margin-left:12.6px;}
+body.uiScale140 main #retouchStatus{min-height:33.6px;}
+body.uiScale140 main .contactCard{margin:18.2px 11.2px 0;padding:12.6px 19.6px 8.4px;border-radius:21px;}
+body.uiScale140 main .contactCard h2{margin:0 0 4.2px;font-size:23.8px;}
+body.uiScale140 main .contactCaption{margin:0 0 11.2px;font-size:16.8px;}
+body.uiScale140 main .contactLink{min-height:61.6px;margin:7px 0;padding:16.8px;border-radius:12.6px;font-size:19.6px;}
+body.uiScale140 main .contactPhone{margin:12.6px 0 4.2px;font-size:28px;letter-spacing:1.4px;}
+body.uiScale140 main .contactCopy{padding:11.2px;border-radius:9.8px;font-size:16.8px;}
+body.uiScale140 main .contactStatus{min-height:25.2px;margin:5.6px 0 0;font-size:16.8px;}
+body.uiScale140 main .cinematicSection h2{margin:0 0 7px;font-size:23.8px;}
+body.uiScale140 main .startupError{padding:16.8px;border-radius:11.2px;}
+body.uiScale140 main .compatibilityNotice{margin:0 0 11.2px;padding:8.4px 16.8px;border-radius:14px;font-size:16.8px;}
+body.uiScale140 main p{margin:8.4px 0;}
+body.uiScale140 main h2{margin:0 0 8.4px;}
+body.uiScale140 main .startupError{padding:8.4px 16.8px;}
+body.uiScale140 main .cloneCard .fixedOutfit{padding:7px 14px;}
+body.uiScale150{font-size:19.5px;}
+body.uiScale150 main{padding:13.5px 22.5px 19.5px;}
+body.uiScale150 main header{padding-bottom:9px;}
+body.uiScale150 main .brand{font-size:19.5px;letter-spacing:3px;}
+body.uiScale150 main h1{margin:3px 0 6px;font-size:34.5px;}
+body.uiScale150 main section{padding:10.5px 21px;margin:10.5px 0;border-radius:15px;}
+body.uiScale150 main label,body.uiScale150 main strong{margin:3px 0 6px;}
+body.uiScale150 main label:not(:first-child){margin-top:15px;}
+body.uiScale150 main input,body.uiScale150 main select,body.uiScale150 main button,body.uiScale150 main textarea{border-radius:10.5px;}
+body.uiScale150 main input,body.uiScale150 main select,body.uiScale150 main textarea{padding:15px;}
+body.uiScale150 main select{margin-bottom:6px;}
+body.uiScale150 main button{padding:16.5px;}
+body.uiScale150 main .hint{margin:4.5px 0 7.5px;}
+body.uiScale150 main .instructions p{margin:4.5px 0;}
+body.uiScale150 main .primary{padding:19.5px;}
+body.uiScale150 main .previewLabel{margin-top:13.5px;}
+body.uiScale150 main #preview{min-height:217.5px;}
+body.uiScale150 main #status{min-height:33px;}
+body.uiScale150 main .roomIdea{min-height:129px;}
+body.uiScale150 main .modeCard{margin-top:12px;padding:27px;}
+body.uiScale150 main .modeCard strong{font-size:25.5px;margin:0 0 4.5px;}
+body.uiScale150 main .backButton{padding:3px 0 10.5px;}
+body.uiScale150 main .suggestionBar{margin-top:15px;}
+body.uiScale150 main .cloneCard h2{margin:0 0 9px;font-size:24px;}
+body.uiScale150 main .cloneCard .fixedOutfit{padding:15px;border-radius:10.5px;}
+body.uiScale150 main .cloneCard .resetButton{margin-top:9px;}
+body.uiScale150 main .cloneCard .hint{margin-top:3px;}
+body.uiScale150 main #multiPreview{min-height:247.5px;}
+body.uiScale150 main #multiStatus{min-height:33px;}
+body.uiScale150 main .paletteSwatches{margin:3px 0 7.5px;}
+body.uiScale150 main .paletteSwatches span{height:27px;border-radius:7.5px;}
+body.uiScale150 main #surrealPreview{min-height:247.5px;}
+body.uiScale150 main #surrealStatus{min-height:33px;}
+body.uiScale150 main .dashboard{padding:6px 0 0;}
+body.uiScale150 main .dashboardHeader{padding:0 9px;}
+body.uiScale150 main .dashboardBrand{max-width:510px;margin:0 auto 12px;}
+body.uiScale150 main .ownershipNotice{font-size:19.5px;margin:0 auto 15px;}
+body.uiScale150 main .dashboardHeading{border-radius:45px;padding:15px 33px;font-size:25.5px;}
+body.uiScale150 main .dashboardDivider{height:1.5px;margin:19.5px 0;}
+body.uiScale150 main .dashboardRoutes{padding:0 12px;}
+body.uiScale150 main .dashboardRoute{min-height:93px;margin:0 0 15px;padding:25.5px 18px;border-radius:60px;font-size:30px;}
+body.uiScale150 main .dashboardVersion{margin:16.5px 0 0;font-size:16.5px;}
+body.uiScale150 main .ratioPicker{padding:7.5px;border-radius:18px;}
+body.uiScale150 main .ratioChoice{min-height:82.5px;padding:10.5px 1.5px;border-radius:13.5px;font-size:18px;}
+body.uiScale150 main .ratioIcon{border-radius:3px;margin:0 0 4.5px;}
+body.uiScale150 main .ratio916{width:13.5px;height:24px;}
+body.uiScale150 main .ratio34{width:18px;height:24px;}
+body.uiScale150 main .ratio11{width:22.5px;height:22.5px;}
+body.uiScale150 main .ratio43{width:27px;height:19.5px;}
+body.uiScale150 main .ratio169{width:31.5px;height:18px;}
+body.uiScale150 main .teacherIdea{min-height:225px;}
+body.uiScale150 main #teacherPreview{min-height:255px;}
+body.uiScale150 main #teacherStatus{min-height:33px;}
+body.uiScale150 main .teacherCharacterCard{margin-top:12px;padding:18px;border-radius:13.5px;}
+body.uiScale150 main .teacherCharacterCard h2{font-size:22.5px;margin:0 0 9px;}
+body.uiScale150 main .referenceRow{margin:6px 0;padding:7.5px 13.5px;border-radius:10.5px;}
+body.uiScale150 main .teacherModelNotice{margin:10.5px 0;padding:10.5px 19.5px;border-radius:13.5px;}
+body.uiScale150 main .teacherModelNotice strong{margin:0 0 6px;font-size:30px;}
+body.uiScale150 main .retouchDetails{margin-top:7.5px;padding:9px 18px;border-radius:13.5px;}
+body.uiScale150 main .retouchDetails p{margin:6px 0;}
+body.uiScale150 main .retouchCheck input{width:27px;height:27px;margin-left:13.5px;}
+body.uiScale150 main #retouchStatus{min-height:36px;}
+body.uiScale150 main .contactCard{margin:19.5px 12px 0;padding:13.5px 21px 9px;border-radius:22.5px;}
+body.uiScale150 main .contactCard h2{margin:0 0 4.5px;font-size:25.5px;}
+body.uiScale150 main .contactCaption{margin:0 0 12px;font-size:18px;}
+body.uiScale150 main .contactLink{min-height:66px;margin:7.5px 0;padding:18px;border-radius:13.5px;font-size:21px;}
+body.uiScale150 main .contactPhone{margin:13.5px 0 4.5px;font-size:30px;letter-spacing:1.5px;}
+body.uiScale150 main .contactCopy{padding:12px;border-radius:10.5px;font-size:18px;}
+body.uiScale150 main .contactStatus{min-height:27px;margin:6px 0 0;font-size:18px;}
+body.uiScale150 main .cinematicSection h2{margin:0 0 7.5px;font-size:25.5px;}
+body.uiScale150 main .startupError{padding:18px;border-radius:12px;}
+body.uiScale150 main .compatibilityNotice{margin:0 0 12px;padding:9px 18px;border-radius:15px;font-size:18px;}
+body.uiScale150 main p{margin:9px 0;}
+body.uiScale150 main h2{margin:0 0 9px;}
+body.uiScale150 main .startupError{padding:9px 18px;}
+body.uiScale150 main .cloneCard .fixedOutfit{padding:7.5px 15px;}
+.uiScaleBar { display:flex; flex-direction:row; align-items:center; justify-content:space-between; flex-shrink:0; min-height:44px; padding:5px 12px; box-sizing:border-box; background:#22242d; border-bottom:1px solid #424653; font-size:12px; line-height:1.4; }
+.uiScaleControls { display:flex; flex-direction:row; align-items:center; }
+.uiScaleControls button { box-sizing:border-box; height:32px; min-width:34px; padding:3px 8px; margin:0 2px; border:1px solid #566273; border-radius:7px; background:#303744; color:#f5f7fa; font-size:20px; line-height:1.2; }
+.uiScaleControls button:hover { background:#414c5d; }
+.uiScaleControls button:focus { border-color:#88c8fa; }
+.uiScaleControls button:disabled { opacity:0.45; }
+.uiScaleControls #uiScaleReset { min-width:58px; font-size:12px; font-weight:bold; }
+.uiScaleNotice { flex-shrink:0; margin:0; padding:4px 12px; font-size:11px; line-height:1.4; color:#ffe1aa; background:#302719; }
+
+/* Keep the title/control gap identical for all field types at each UI scale. */
+body.uiScale80 main .qayemField{margin:6.4px 0 0;}
+body.uiScale80 main .qayemField:first-child{margin-top:0;}
+body.uiScale80 main .qayemField .qayemFieldLabel{margin:0;padding:0;}
+body.uiScale80 main .qayemField .qayemFieldControl{margin:6.4px 0 0;}
+body.uiScale90 main .qayemField{margin:7.2px 0 0;}
+body.uiScale90 main .qayemField:first-child{margin-top:0;}
+body.uiScale90 main .qayemField .qayemFieldLabel{margin:0;padding:0;}
+body.uiScale90 main .qayemField .qayemFieldControl{margin:7.2px 0 0;}
+body.uiScale110 main .qayemField{margin:8.8px 0 0;}
+body.uiScale110 main .qayemField:first-child{margin-top:0;}
+body.uiScale110 main .qayemField .qayemFieldLabel{margin:0;padding:0;}
+body.uiScale110 main .qayemField .qayemFieldControl{margin:8.8px 0 0;}
+body.uiScale120 main .qayemField{margin:9.6px 0 0;}
+body.uiScale120 main .qayemField:first-child{margin-top:0;}
+body.uiScale120 main .qayemField .qayemFieldLabel{margin:0;padding:0;}
+body.uiScale120 main .qayemField .qayemFieldControl{margin:9.6px 0 0;}
+body.uiScale130 main .qayemField{margin:10.4px 0 0;}
+body.uiScale130 main .qayemField:first-child{margin-top:0;}
+body.uiScale130 main .qayemField .qayemFieldLabel{margin:0;padding:0;}
+body.uiScale130 main .qayemField .qayemFieldControl{margin:10.4px 0 0;}
+body.uiScale140 main .qayemField{margin:11.2px 0 0;}
+body.uiScale140 main .qayemField:first-child{margin-top:0;}
+body.uiScale140 main .qayemField .qayemFieldLabel{margin:0;padding:0;}
+body.uiScale140 main .qayemField .qayemFieldControl{margin:11.2px 0 0;}
+body.uiScale150 main .qayemField{margin:12px 0 0;}
+body.uiScale150 main .qayemField:first-child{margin-top:0;}
+body.uiScale150 main .qayemField .qayemFieldLabel{margin:0;padding:0;}
+body.uiScale150 main .qayemField .qayemFieldControl{margin:12px 0 0;}

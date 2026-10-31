@@ -1,0 +1,18 @@
+﻿/* Plain divs avoid the host's native horizontal header layout. */
+body main .qayemScreenHeader {
+  display:flex; flex-direction:column; align-items:stretch;
+  box-sizing:border-box; width:100%; height:auto; min-height:0;
+  flex-shrink:0; margin:0 0 10px; padding:8px 0 12px;
+  border-bottom:1px solid #39424d; text-align:inherit;
+}
+body main .qayemScreenHeader .brand,
+body main .qayemScreenHeader h1,
+body main .qayemScreenHeader .hint {
+  display:block; box-sizing:border-box; width:100%; max-width:100%;
+  height:auto; min-height:0; min-width:0; flex-shrink:0;
+  white-space:normal; overflow-wrap:break-word; word-wrap:break-word;
+}
+body main .qayemScreenHeader .brand { margin:0; padding:0; line-height:1.6; }
+body main .qayemScreenHeader h1 { margin:5px 0 0; padding:0; line-height:1.6; }
+body main .qayemScreenHeader .hint { margin:7px 0 0; padding:0; line-height:1.8; }
+body main .qayemScreenHeader .qayemScreenVersion { color:#9caec0; text-align:start; }

@@ -1,0 +1,29 @@
+QAYEM_OWNER_PASSWORD_REQUIRED — المالك محمد قيم. التعديل والحذف يتطلبان التحقق حسب AGENTS.md.
+
+QAYEM Style Studio 1.24.18 — نطاق التوافق Photoshop 18 إلى 27
+
+إضافة Photoshop 18.x (CC 2017) إلى نسخة CEP:
+• تعريف CEP يستهدف PHXS/PHSP من [18.0,28.0)، وRequiredRuntime هو CSXS 7.0.
+• واجهة CEP تحمل ملفات compat المحلية بصيغة ES5 بدل الكود الحديث. التحويل يشمل async/await والأسهم والتفكيك وconst/let والقوالب النصية. لا يوجد تنزيل أو تحويل عند تشغيل البلاجن.
+• طبقة JavaScript محلية للدوال الغائبة في Chromium 41 مثل Array.from/find/includes وObject.assign/values. لا تقرأ أو تكتب ملفات الجهاز ولا تتصل بالإنترنت.
+• Windows يراجع PlayerDebugMode كـREG_SZ 1 في CSXS.7–12 وعرضي Registry عند وجودهما، مع الاحتفاظ بالقيم الأخرى. Mac يجهز CSXS.7–12.
+• المثبت ودليل التشخيص والواجهة يشملون Photoshop 18. اسم مجلد CEP الجديد qayem_style_studio_cep_ps18_to_27. أسماء المشغلات القديمة تظل تعمل للتوافق.
+• ملفات CCX تبقى خاصة بـUXP في Photoshop 22 فأحدث. مسارا 22–23.2 و23.3 فأحدث موجودان كما سبق.
+• تثبيت وتحديث البلاجن لا ينسخان أو يسجلان أو يعدلان أو يحذفان أي خط من الجهاز. مثبتات الخطوط القديمة معطلة. ملفات PSD والأكشنات والصور والخطوط الداخلية بقيت دون تعديل.
+
+Windows / Photoshop 18.x إلى 21.x:
+1. احفظ عملك وأغلق Photoshop. فك ZIP كله في مجلد جديد.
+2. افتح Install_PS18-21_Windows.cmd، أو Setup_QAYEM_Windows.exe واختار Photoshop 18 حتى 21. لا تختار UXP/CCX لهذه الإصدارات.
+3. افتح Photoshop. تأكد أن Edit > Preferences > Plug-ins > Load Extension Panels مفعّل، ثم أعد التشغيل إن غيرت الاختيار.
+4. افتح Window > Extensions > QAYEM Style Studio. في النسخ الأحدث اسمها Extensions (Legacy).
+5. إذا لم تظهر اللوحة: افتح Diagnose_CEP_Windows.cmd وأرسل CEP_DIAGNOSTICS.txt الذي يفتحه. التشخيص يكتب تقريرًا فقط ولا يصلح أو يحذف شيئًا.
+
+Photoshop 22–27: المثبت الرئيسي يختار UXP مع Creative Cloud؛ مسار CEP المباشر يستهدف 18–27 عند توفر CEP في Photoshop ونظام التشغيل. Mac: Mac/Setup_QAYEM_Mac.command. Apple Silicon: UXP للتشغيل الأصلي، وCEP يحتاج Rosetta عندما يتيح Photoshop ذلك. لا يثبت المثبت Rosetta أو برامج إضافية.
+اعتمد رقم Help > About Photoshop: 18.x هو CC 2017، و19.x هو CC 2018، و20.x هو CC 2019، و21.x هو 2020. تظهر 1.24.18 في الرئيسية.
+
+التحقق:
+ملف CEP اجتاز مخطط Adobe 7.0. كل الملفات المحولة اجتازت تحليل ES5، كما اختُبر تشغيل الجسور غير المتزامنة وحراسة التزامن واسترجاع الخطأ مع نص عربي على V8 4.1 عبر io.js 1.2.0 (نفس جيل محرك CEP 7)، مع محاكاة Photoshop. اختُبرت الواجهة كاملة بمحاكاة DOM والدوال الغائبة، واختبارات إدراج PSD السابقة والإغلاق والتثبيت والنسخ والنسخة الاحتياطية وحماية الخطوط. لم يتوفر Photoshop 18–27 أو Windows/Mac فعلي هنا، ولا يُعد نجاح الاختبارات ضمانًا لتحميله على كل جهاز.
+
+للتطوير: المصادر الأصلية بجانب مجلد compat. اقرأ Tools/README_AR.txt لإعادة البناء بعد التعديل المعتمد. تشغيل الحزمة النهائية لا يحتاج Node أو npm أو Python.
+مرجع Adobe:
+https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_9.x/Documentation/CEP%209.0%20HTML%20Extension%20Cookbook.md

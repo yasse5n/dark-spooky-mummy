@@ -1,0 +1,19 @@
+﻿.textTemplatePicker { display:flex; flex-wrap:wrap; }
+.textTemplateCard { width:45%; margin:5px; padding:9px; box-sizing:border-box; background:#24262e; border:2px solid #4b4f5b; border-radius:10px; cursor:pointer; text-align:center; }
+.textTemplateCard.selected { border-color:#ef484b; background:#34262b; }
+.textTemplateCard:focus { border-color:#fff; }
+.textTemplateCard img { width:100%; height:95px; object-fit:contain; }
+.textTemplateCard span { display:block; margin-top:7px; font-size:13px; line-height:1.7; }
+.textTemplateCard[aria-disabled="true"] { opacity:0.65; }
+.textTemplatePreviewCanvas { position:relative; margin:12px auto; background:#393d49; border:1px solid #707683; overflow:hidden; }
+.textTemplatePreviewImage { position:absolute; object-fit:contain; }
+.textTemplatePreviewSafe { position:absolute; box-sizing:border-box; border:1px dashed #aaa; }
+#textTemplateDocument { font-weight:bold; line-height:1.8; overflow-wrap:break-word; }
+#textTemplateStatus { min-height:30px; line-height:1.8; }
+
+.textHubCard { display:flex; flex-direction:column; width:100%; text-align:right; padding:20px 18px; margin:12px 0; border:1px solid #4b4f5b; border-radius:12px; background:#24262e; color:#f4f4f5; }
+.textHubCard strong { display:block; font-size:19px; line-height:1.7; }
+.textHubCard span { display:block; margin-top:5px; font-size:13px; line-height:1.8; color:#b5bdc9; }
+.textHubCard:hover, .textHubCard:focus { border-color:#ef484b; background:#34262b; }
+.textPromptOutput { min-height:240px; max-height:520px; overflow-y:auto; text-align:left; white-space:pre-wrap; }
+#textPromptStatus, #textEffectStatus { min-height:26px; line-height:1.8; }

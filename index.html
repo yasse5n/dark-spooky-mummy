@@ -1,0 +1,840 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <script src="updater-node.js?v=1.24.52"></script>
+  <link rel="stylesheet" href="updater.css?v=1.24.52">
+  <meta charset="UTF-8">
+  <style id="qayemStartupStyles">
+    #qayemStartup { position:absolute; top:0; right:0; bottom:0; left:0; width:100%; height:100%; z-index:100000; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; background:#18171f; color:#ffffff; font-family:Arial,sans-serif; text-align:center; }
+    #qayemStartup[hidden] { display:none; }
+    #qayemStartupLogo { display:block; width:76%; max-width:250px; height:auto; margin:0 auto; }
+    .qayemStartupLine { position:relative; display:block; width:120px; height:3px; overflow:hidden; background:#34313b; border-radius:3px; margin:26px auto 18px; }
+    #qayemStartupSweep { position:absolute; top:0; left:0; width:28%; height:3px; border-radius:3px; background:#e44848; }
+    .qayemStartupLabel { margin:0; font-size:13px; line-height:20px; color:#b9b6c5; }
+    .qayemStartupDots { display:flex; flex-direction:row; justify-content:center; margin:13px auto 0; }
+    .qayemStartupDot { display:block; width:5px; height:5px; margin:0 4px; border-radius:50%; background:#e44848; opacity:0.28; }
+    #qayemStartupDot0 { opacity:1; }
+  </style>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ui-scale.css">
+  <link rel="stylesheet" href="ui-text.css">
+  <link rel="stylesheet" href="ui-choices.css">
+  <link rel="stylesheet" href="ui-camera.css">
+  <link rel="stylesheet" href="ui-fonts.css">
+  <link rel="stylesheet" href="ui-heading.css">
+  <link rel="stylesheet" href="text-templates.css">
+  <link rel="stylesheet" href="ui-studio.css">
+  <link rel="stylesheet" href="ui-dropdowns.css?v=1.24.52">
+  <link rel="stylesheet" href="community.css?v=1.24.52">
+  <link rel="stylesheet" href="trial.css?v=1.24.52">
+  <link rel="stylesheet" href="auth.css?v=1.24.52">
+  <link rel="stylesheet" href="trends.css?v=1.24.52">
+  <link rel="stylesheet" href="category-cards.css?v=1.24.52">
+  <link rel="stylesheet" href="studio-tools.css?v=1.24.52">
+<body>
+  <div id="qayemStartup" role="status" aria-label="جاري تحميل QAYEM Style Studio" aria-live="polite" data-qayem-no-translate>
+    <img id="qayemStartupLogo" src="assets/qayem-brand-studio.png" alt="QAYEM STYLE STUDIO">
+    <div class="qayemStartupLine" aria-hidden="true"><span id="qayemStartupSweep"></span></div>
+    <p class="qayemStartupLabel">جاري التحميل…</p>
+    <div class="qayemStartupDots" aria-hidden="true"><span id="qayemStartupDot0" class="qayemStartupDot"></span><span id="qayemStartupDot1" class="qayemStartupDot"></span><span id="qayemStartupDot2" class="qayemStartupDot"></span></div>
+  </div>
+  <script src="compat/startup.js?v=1.24.52"></script>
+  <p id="uiScaleNotice" class="uiScaleNotice" role="status" hidden style="display:none"></p>
+
+  <p id="uiDraftNotice" class="uiScaleNotice" role="status" hidden style="display:none"></p>
+  <main>
+      <div class="studioHomeHeader">
+        <div class="studioHomeBrand"><img src="assets/qayem-brand-studio.png" alt="QAYEM STYLE STUDIO"><span class="studioVersion" dir="ltr">v1.24.52</span></div>
+        <div class="studioHomeActions"><button id="homeLanguage" aria-controls="studioSettingsPanel" aria-expanded="false" type="button" aria-label="اللغة"><img src="icons/studio/globe.png" alt=""></button><button id="homeFont" aria-controls="studioSettingsPanel" aria-expanded="false" type="button" aria-label="حجم الخط">Tt</button><button id="homeUpdate" aria-controls="studioSettingsPanel" aria-expanded="false" type="button" data-qayem-no-translate aria-label="تحديث البلاجن">تحديث</button><button id="homeSettings" aria-controls="studioSettingsPanel" aria-expanded="false" type="button" aria-label="الإعدادات"><img src="icons/studio/settings.png" alt=""></button><span class="studioReady" data-qayem-no-translate><span class="studioReadyDot" aria-hidden="true"></span><span data-studio-ar="جاهز للعمل" data-studio-en="Ready to work">جاهز للعمل</span></span></div>
+      </div>
+    <section id="studioSettingsPanel" class="studioSettingsPanel" hidden style="display:none" data-studio-static="true">
+  <div id="uiScaleBar" class="uiScaleBar studioToolbar" role="toolbar" aria-label="إعدادات الواجهة">
+    <span class="studioToolbarBrand" dir="ltr">QAYEM</span>
+    <button id="studioToggleAll" class="studioToolbarButton" type="button" data-qayem-no-translate>فتح / طي الخانات</button>
+    <button id="studioSettingsToggle" class="studioSettingsToggle" type="button" aria-controls="studioSettingsPanel" aria-expanded="false" aria-label="إعدادات الواجهة"><img src="icons/studio/settings.png" alt=""></button>
+  </div>
+      <div id="qayemUpdateCard" data-qayem-no-translate>
+        <div class="qayemUpdateHead"><span>تحديث البلاجن</span><span id="qayemUpdateVersion" dir="ltr">1.24.52</span></div>
+        <p id="qayemUpdateStatus" role="status" aria-live="polite">جاري تجهيز التحديث…</p>
+        <p id="qayemUpdateNotes" hidden></p>
+        <progress id="qayemUpdateProgress" max="100" value="0" aria-label="تنزيل التحديث" hidden></progress>
+        <div class="qayemUpdateActions"><button id="qayemUpdateCheck" type="button">تحقق من التحديث</button><button id="qayemUpdateInstall" type="button" hidden disabled>تحديث</button></div>
+        <div id="qayemUpdateRecovery" class="qayemUpdateActions" hidden><button id="qayemUpdateDownload" type="button">تحميل المثبّت من الموقع</button><button id="qayemUpdateDetails" type="button">تفاصيل المشكلة للدعم</button></div>
+        <textarea id="qayemUpdateReport" rows="6" dir="ltr" readonly hidden aria-label="تفاصيل مشكلة التحديث للدعم" data-ui-transient="true"></textarea>
+      </div>
+
+
+      <div id="uiLanguageSection"><label for="uiLanguage">لغة القوائم</label><select id="uiLanguage" aria-label="لغة القوائم"><option value="ar" data-qayem-no-translate>العربية</option><option value="en" data-qayem-no-translate>English</option></select><p id="uiLanguageStatus" class="hint" role="status" aria-live="polite"></p></div>
+    <div class="uiScaleControls" dir="ltr">
+      <button id="uiScaleSmaller" type="button" aria-label="تصغير الواجهة" title="تصغير الواجهة">−</button>
+      <button id="uiScaleReset" type="button" aria-label="الرجوع إلى الحجم الطبيعي 100 بالمئة" title="الرجوع إلى 100%" aria-live="polite">100%</button>
+      <button id="uiScaleLarger" type="button" aria-label="تكبير الواجهة" title="تكبير الواجهة">+</button>
+    </div>
+      <label class="studioMotionCheck"><input id="studioMotion" type="checkbox" checked><span id="studioMotionLabel" data-qayem-no-translate>حركة خفيفة في التنقلات</span></label>
+    </section>
+<button id="studioHomeBack" class="studioHomeBack" type="button" hidden style="display:none" data-qayem-no-translate><span aria-hidden="true">↩</span> الرجوع للرئيسية</button>
+
+
+    <div id="modeHome" class="screen dashboard studioHome">
+      <section class="studioHero" data-studio-static="true" data-qayem-no-translate>
+        <div class="studioHeroText">
+          <h1 class="studioHeroTitle" data-studio-ar="حوّل فكرتك إلى تصميم" data-studio-en="Turn ideas into designs">حوّل فكرتك إلى تصميم</h1>
+          <p class="studioHeroHint" data-studio-ar="اختر الأداة وابدأ خلال ثوانٍ" data-studio-en="Choose a tool, set the details, and start.">اختر الأداة وابدأ خلال ثوانٍ</p>
+          <button id="studioNewDesign" class="primary studioHeroAction" type="button"><span data-studio-ar="ابدأ تصميم جديد" data-studio-en="Start a new design">ابدأ تصميم جديد</span><img src="icons/studio/arrow-white.png" alt=""></button>
+        </div>
+        <img class="studioHeroArt" src="icons/studio/focus.png" alt="" aria-hidden="true">
+      </section>
+      <div class="studioCommunityJoin" data-studio-static="true" data-qayem-no-translate>
+        <button id="contactWhatsAppGroup" class="studioWhatsAppGroup" type="button"><img src="icons/studio/whatsapp.png" alt="" aria-hidden="true"><span>انضم لجروب واتساب البلاجن</span><span class="studioJoinArrow" aria-hidden="true">↗</span></button>
+        <p id="studioWhatsAppStatus" class="hint studioLinkStatus" role="status" aria-live="polite"></p>
+      </div>
+      <div class="studioToolsHeading" data-qayem-no-translate><h2 data-studio-ar="أدوات سريعة" data-studio-en="Quick tools">أدوات سريعة</h2><span data-studio-ar="كل ما تحتاجه في مكان واحد" data-studio-en="Your tools in one place">كل ما تحتاجه في مكان واحد</span></div>
+      <p id="clipboardCompatibilityNotice" class="compatibilityNotice" role="status" hidden style="display:none"></p>
+      <div class="dashboardRoutes studioHomeRoutes" data-qayem-no-translate>
+        <button id="openDesign" class="dashboardRoute studioToolCard" type="button"><img class="studioToolIcon" src="icons/studio/scene.png" alt=""><strong data-studio-ar="صمّم الآن" data-studio-en="Design now">صمّم الآن</strong><span class="studioToolHint" data-studio-ar="من صورة أو فكرة" data-studio-en="Prompts for ideas">من صورة أو فكرة</span><img class="studioToolArrow" src="icons/studio/arrow.png" alt=""></button>
+        <button id="openRetouch" class="dashboardRoute studioToolCard" type="button"><img class="studioToolIcon" src="icons/studio/brush.png" alt=""><strong data-studio-ar="الريتتش" data-studio-en="Retouch">الريتتش</strong><span class="studioToolHint" data-studio-ar="تحسين وتعديل" data-studio-en="Refine portraits">تحسين وتعديل</span><img class="studioToolArrow" src="icons/studio/arrow.png" alt=""></button>
+        <button id="openTextTemplates" class="dashboardRoute studioToolCard" type="button"><img class="studioToolIcon" src="icons/studio/type.png" alt=""><strong data-studio-ar="إضافة كتابة" data-studio-en="Add text">إضافة كتابة</strong><span class="studioToolHint" data-studio-ar="نصوص احترافية" data-studio-en="Templates and styles">نصوص احترافية</span><img class="studioToolArrow" src="icons/studio/arrow.png" alt=""></button>
+<button id="openTrends" class="dashboardRoute studioToolCard" type="button"><svg class="studioToolVector" viewBox="0 0 48 48" fill="none" stroke="#F4F1F5" stroke-width="2" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="6"/><path stroke="#FF405B" d="m11 31 9-9 8 7 10-16M29 13h9v9"/></svg><strong data-studio-ar="الترندات والإلهام" data-studio-en="Trends and inspiration">الترندات والإلهام</strong><span class="studioToolHint" data-studio-ar="نشرة أسبوعية وأفكار لشغلك" data-studio-en="Weekly ideas for your work">نشرة أسبوعية وأفكار لشغلك</span><img class="studioToolArrow" src="icons/studio/arrow.png" alt=""></button>
+<button id="openGrid" class="dashboardRoute studioToolCard" type="button"><svg class="studioToolVector" viewBox="0 0 48 48" fill="none" stroke="#F4F1F5" stroke-width="2" aria-hidden="true"><rect x="5" y="5" width="38" height="38" rx="5"/><path stroke="#FF405B" d="M18 5v38M30 5v38M5 18h38M5 30h38"/></svg><strong>Grid System</strong><span class="studioToolHint">شبكات وتكوين التصميم</span><img class="studioToolArrow" src="icons/studio/arrow.png" alt=""></button>
+        <button id="openCredits" class="dashboardRoute studioToolCard" type="button"><svg class="studioToolVector" viewBox="0 0 48 48" fill="none" stroke="#F4F1F5" stroke-width="2" aria-hidden="true"><rect x="5" y="7" width="29" height="32" rx="5"/><circle cx="14" cy="16" r="3"/><path stroke="#FF405B" d="m6 31 10-10 9 9 8-7M39 14v15M35 18h8M35 25h8M11 44h29"/></svg><strong>أدوات بالكريدتس</strong><span class="studioToolHint">صورة إلى برومبت · محفظتك وشحن الرصيد</span><img class="studioToolArrow" src="icons/studio/arrow.png" alt=""></button>
+        <button id="openPricing" class="dashboardRoute studioToolCard" type="button"><svg class="studioToolVector" viewBox="0 0 48 48" fill="none" stroke="#F4F1F5" stroke-width="2" aria-hidden="true"><rect x="8" y="4" width="32" height="40" rx="6"/><path stroke="#FF405B" d="M14 11h20v8H14zM14 26h5M14 34h5M27 26h7M27 34h7"/></svg><strong>سعّر شغلك</strong><span class="studioToolHint">احسب تكلفة تصميمك وسعر بيعه</span><img class="studioToolArrow" src="icons/studio/arrow.png" alt=""></button>
+        <button id="openOverlays" class="dashboardRoute studioToolCard" type="button"><svg class="studioToolVector" viewBox="0 0 48 48" fill="none" stroke="#F4F1F5" stroke-width="2" aria-hidden="true"><path stroke="#FF405B" d="M4 34l20 11 20-11"/><path d="m24 5 20 11-20 11L4 16 24 5Zm-20 20 20 11 20-11"/></svg><strong>مكتبة Overlays</strong><span class="studioToolHint">إضاءات وخامات بمعاينات حقيقية</span><img class="studioToolArrow" src="icons/studio/arrow.png" alt=""></button>
+            </div>
+      <section class="qCommunitySavedHome" data-studio-static="true" data-qayem-no-translate>
+        <div><strong>إعداداتي المحفوظة</strong><p>إعدادات جاهزة لكل مدرس أو عميل، ترجع لها بضغطة.</p></div><button id="qCommunityOpenPresets" type="button">فتح إعداداتي</button>
+      </section>
+      <section class="qCommunityWeekly" data-studio-static="true" data-qayem-no-translate aria-labelledby="qCommunityWeeklyTitle">
+        <div class="qCommunityHeading"><span class="qCommunityEyebrow">إبداع من مجتمع قيم</span><span class="qCommunityTrophy" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3h8v7a4 4 0 0 1-8 0zM8 5H4v3a4 4 0 0 0 4 4M16 5h4v3a4 4 0 0 1-4 4M12 14v7M8 21h8"/></svg></span></div>
+        <h2 id="qCommunityWeeklyTitle">تصميم الأسبوع</h2>
+        <p class="qCommunityIntro">انشر تصميمك المصنوع بالبلاجن على فيسبوك بهاشتاج <b>#بلاجن_قيم</b>. كل أسبوع محمد قيم بيختار أفضل تصميم لعرضه هنا باسم صاحبه.</p>
+        <div id="qCommunityWinner" hidden></div><p id="qCommunityWinnerStatus" role="status">جاري تحميل تصميم الأسبوع…</p>
+        <button id="qCommunityWeeklyRefresh" type="button" class="qCommunityQuiet">تحديث تصميم الأسبوع</button>
+      </section>
+      <section class="qCommunitySuggestion" data-studio-static="true" data-qayem-no-translate>
+        <button id="qCommunitySuggestionToggle" type="button" class="qCommunityDisclosure" aria-expanded="false" aria-controls="qCommunitySuggestionBody"><span><strong>اقتراحاتك لتطوير البلاجن</strong><small>عندك فكرة أو تعديل؟ ابعته لمحمد قيم.</small></span><span aria-hidden="true">+</span></button>
+        <div id="qCommunitySuggestionBody" hidden>
+          <label for="qCommunitySuggestionText">اقتراحك أو فكرتك</label><textarea id="qCommunitySuggestionText" dir="auto" rows="4" maxlength="3000" placeholder="احكي لنا الفكرة أو التعديل اللي هيساعدك في شغلك…"></textarea>
+          <div class="qCommunityHeading"><span id="qCommunitySuggestionCount">0 / 3000</span><button id="qCommunitySendSuggestion" type="button">إرسال الاقتراح</button></div>
+          <p id="qCommunitySuggestionStatus" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+      <section class="contactCard studioContact" aria-labelledby="contactHeading" data-studio-static="true">
+        <button id="studioContactToggle" class="studioDisclosure" type="button" aria-controls="studioContactBody" aria-expanded="true" data-qayem-no-translate><span id="contactHeading" data-studio-ar="الدعم والتواصل" data-studio-en="Support and contact">الدعم والتواصل</span><img src="icons/studio/chevron.png" alt=""></button>
+        <div id="studioContactBody"><p class="contactCaption">حساباتي ورقم التواصل</p>
+          <div class="studioSocialRow"><button id="contactFacebook" class="contactLink contactFacebook" type="button" aria-label="فيسبوك"><img src="icons/studio/facebook.svg" alt=""></button><button id="contactYouTube" class="contactLink contactYouTube" type="button" aria-label="يوتيوب"><img src="icons/studio/youtube.svg" alt=""></button><button id="contactWhatsApp" class="contactLink contactWhatsApp" type="button" aria-label="واتساب"><img src="icons/studio/whatsapp.svg" alt=""></button><button id="copyContactPhone" class="contactCopy" type="button" aria-label="نسخ رقم التواصل"><img src="icons/studio/copy.png" alt=""></button></div>
+          <p id="contactPhone" class="contactPhone" dir="ltr">01200107845</p><p id="contactStatus" class="contactStatus" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+      <section class="studioPolicy" data-studio-static="true"><button id="studioPolicyToggle" class="studioDisclosure" type="button" aria-controls="studioPolicyBody" aria-expanded="false" data-qayem-no-translate><span data-studio-ar="الشروط والاستخدام" data-studio-en="Usage rights">الشروط والاستخدام</span><img src="icons/studio/chevron.png" alt=""></button><div id="studioPolicyBody" hidden style="display:none"><p class="ownershipNotice">غير مصرح تماما تداول البلاجن بدون علم المالك محمد قيم<br>و في حالة تداولها تطبق الشروط و الاحكام</p></div></section>
+      <p class="dashboardVersion" dir="ltr">QAYEM · 1.24.52</p>
+    </div>
+
+    <div id="designMenuView" class="screen" hidden style="display:none">
+      <button id="backDesign" hidden style="display:none" class="backButton" type="button">← الرجوع للرئيسية</button>
+      <div class="qayemScreenHeader"><span class="brand">QAYEM</span><h1>صمّم الآن</h1><p class="hint">اختار نوع التصميم وابدأ تجهيز فكرتك.</p></div>
+      <div class="dashboardRoutes qCategoryList" data-qayem-no-translate>
+<button id="openTeacher" class="qCategoryCard qCategoryFeatured" type="button"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-5 9 5-9 5-9-5Zm4 3v5c3 3 7 3 10 0v-5M21 9v7"/></svg></span><span class="qCategoryCopy"><strong>تصميم لمدرّس</strong><small>بوسترات وصور مصغّرة تعليمية</small></span><svg class="qCategoryArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+<button id="openDoctor" class="qCategoryCard" type="button"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v5a5 5 0 0 0 10 0V3M4 3h4M14 3h4M11 13v3a5 5 0 0 0 10 0v-2"/><circle cx="21" cy="11" r="2"/></svg></span><span class="qCategoryCopy"><strong>أطباء وعيادات</strong><small>تصميمات طبية احترافية</small></span><svg class="qCategoryArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+<button id="openCosmetics" class="qCategoryCard" type="button"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="7" height="13" rx="2"/><path d="M5 8V4h3v4M15 9V4h5v5"/><rect x="13" y="9" width="9" height="12" rx="2"/></svg></span><span class="qCategoryCopy"><strong>كوزماتيكس للفتيات والمنتجات</strong><small>برومبتات وإعلانات الجمال والعناية</small></span><svg class="qCategoryArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+<button id="qSoonProducts" class="qCategoryCard qCategorySoon" type="button" disabled aria-disabled="true" data-qayem-coming-soon="true"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="7" height="13" rx="2"/><path d="M5 8V4h3v4M15 9V4h5v5"/><rect x="13" y="9" width="9" height="12" rx="2"/></svg></span><span class="qCategoryCopy"><strong>تصاميم المنتجات</strong><small>خانة جديدة بنجهّزها لك</small></span><span class="qSoonBadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>قريبًا</span></button>
+<button id="qSoonNewYear" class="qCategoryCard qCategorySoon" type="button" disabled aria-disabled="true" data-qayem-coming-soon="true"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.5 6 6.5 1-5 4.5 1.5 6.5-5.5-3.5L6.5 21 8 14.5 3 10l6.5-1L12 3Z"/></svg></span><span class="qCategoryCopy"><strong>تصاميم السنة الجديدة</strong><small>خانة جديدة بنجهّزها لك</small></span><span class="qSoonBadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>قريبًا</span></button>
+<button id="qSoonRestaurants" class="qCategoryCard qCategorySoon" type="button" disabled aria-disabled="true" data-qayem-coming-soon="true"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v7M2 3v4a3 3 0 0 0 6 0V3M5 10v11M16 3v18M16 3c7 3 7 10 0 10"/></svg></span><span class="qCategoryCopy"><strong>تصاميم المطاعم والكافيهات</strong><small>خانة جديدة بنجهّزها لك</small></span><span class="qSoonBadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>قريبًا</span></button>
+<button id="qSoonSalla" class="qCategoryCard qCategorySoon" type="button" disabled aria-disabled="true" data-qayem-coming-soon="true"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 3-2 6h22l-2-6H3ZM3 10v11h18V10M8 21v-7h8v7M6 3v6M12 3v6M18 3v6"/></svg></span><span class="qCategoryCopy"><strong>تصاميم متاجر سلة</strong><small>خانة جديدة بنجهّزها لك</small></span><span class="qSoonBadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>قريبًا</span></button>
+<button id="qSoonNationalDay" class="qCategoryCard qCategorySoon" type="button" disabled aria-disabled="true" data-qayem-coming-soon="true"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22V3m0 1c5-5 9 5 15 0v11c-6 5-10-5-15 0"/></svg></span><span class="qCategoryCopy"><strong>تصاميم اليوم الوطني</strong><small>خانة جديدة بنجهّزها لك</small></span><span class="qSoonBadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>قريبًا</span></button>
+<button id="qSoonHolidays" class="qCategoryCard qCategorySoon" type="button" disabled aria-disabled="true" data-qayem-coming-soon="true"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M12 9v12M2 9h20V6H2v3ZM12 6C3 6 4 0 8 2l4 4Zm0 0c9 0 8-6 4-4l-4 4Z"/></svg></span><span class="qCategoryCopy"><strong>تصاميم الأعياد</strong><small>خانة جديدة بنجهّزها لك</small></span><span class="qSoonBadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>قريبًا</span></button>
+<button id="qSoonFootball" class="qCategoryCard qCategorySoon" type="button" disabled aria-disabled="true" data-qayem-coming-soon="true"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m12 7 5 4-2 6H9l-2-6 5-4ZM12 2v5M2 9l5 2M5 20l4-3M19 20l-4-3M22 9l-5 2"/></svg></span><span class="qCategoryCopy"><strong>تصاميم كرة قدم</strong><small>خانة جديدة بنجهّزها لك</small></span><span class="qSoonBadge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>قريبًا</span></button>
+<button id="openSingle" class="dashboardRoute qayemArchivedEntry" type="button" hidden style="display:none" aria-hidden="true" tabindex="-1">تصميم لشخص واحد</button>
+<button id="openMulti" class="dashboardRoute qayemArchivedEntry" type="button" hidden style="display:none" aria-hidden="true" tabindex="-1">تصميم لأشخاص متعددة</button>
+<button id="openSurreal" class="dashboardRoute qayemArchivedEntry" type="button" hidden style="display:none" aria-hidden="true" tabindex="-1">تصميم صور مصغرة سريالية</button>
+      </div>
+    </div>
+
+    <div id="singleView" class="screen" hidden>
+    <button id="backSingle" class="backButton" type="button">← الرجوع لأقسام التصميم</button>
+    <div class="qayemScreenHeader">
+      <span class="brand">QAYEM</span>
+      <h1>Style Studio</h1>
+      <p class="hint">جهّز برومبت الشخص والملابس، وانسخه لأداة الصور اللي بتستخدمها.</p>
+    </div>
+
+    <section class="instructions">
+      <strong>ترتيب الصور عند الاستخدام</strong>
+      <p>أرفق صورتين فقط مع البرومبت: <b>١ — صورة الشخص</b> للحفاظ على ملامحه، ثم <b>٢ — صورة الملابس</b> لاستخدام ملابسها فقط.</p>
+      <p class="hint">الكادر 3:4 ثابت. الخلفية وإضافات الإضاءة تتغير حسب النوع؛ التلاشي السفلي يظهر مع السماء السينمائية فقط.</p>
+    </section>
+
+    <section>
+      <label for="cameraDistance">١ · بعد الشخص عن الكاميرا</label>
+      <select id="cameraDistance">
+        <option value="normal">البعد الطبيعي — الافتراضي</option>
+        <option value="close">قريب</option>
+        <option value="veryClose">قريب جدًا</option>
+        <option value="farther">أبعد قليلًا</option>
+      </select>
+      <p class="hint">الطبيعي هو نفس حجم وكادر النسخة المعتمدة. القرب والبعد يغيروا حجم الشخص والكادر، من غير تغيير زاوية الكاميرا أو الحركة.</p>
+    </section>
+
+    <section>
+      <label for="perspectivePreset">٢ · منظور التصميم (الكاميرا)</label>
+      <select id="perspectivePreset" aria-label="اختيارات منظور التصميم"></select>
+      <input id="perspective" type="text" placeholder="اكتب هنا منظور الكاميرا" dir="auto" aria-label="منظور الكاميرا يدويًا">
+      <p class="hint">الافتراضي مستوى العين. المنظور يحدد موضع الكاميرا فقط، من غير ما يغير وقفة الشخص أو اتجاه نظره.</p>
+    </section>
+
+    <section>
+      <label for="anglePreset">٣ · زاوية الجسم</label>
+      <select id="anglePreset" aria-label="اختيارات زاوية الجسم"></select>
+      <input id="angle" type="text" placeholder="اكتب هنا زاوية الجسم" dir="auto" aria-label="زاوية الجسم يدويًا">
+      <p class="hint">لو كتبت زاوية بنفسك، هتتستخدم بدل الاختيار الجاهز.</p>
+    </section>
+
+    <section>
+      <label for="gazePreset">٤ · اتجاه الوجه والنظرة</label>
+      <select id="gazePreset" aria-label="اختيارات اتجاه الوجه والنظرة"></select>
+      <input id="gaze" type="text" placeholder="اكتب هنا اتجاه الوجه والنظرة" dir="auto" aria-label="اتجاه الوجه والنظرة يدويًا">
+      <p class="hint">يمين وشمال هنا يقصد بيهم يمين الشخص وشماله، مش الكادر.</p>
+    </section>
+
+    <section>
+      <label for="expressionPreset">٥ · تعبير الوجه</label>
+      <select id="expressionPreset" aria-label="اختيارات تعبير الوجه"></select>
+      <input id="expression" type="text" placeholder="اكتب هنا تعبير الوجه" dir="auto" aria-label="تعبير الوجه يدويًا">
+      <p class="hint">الافتراضي هو نفس تعبير صورة الشخص الأصلية.</p>
+    </section>
+
+    <section>
+      <label for="handPreset">٦ · حركة اليد</label>
+      <select id="handPreset" aria-label="اختيارات حركة اليد"></select>
+      <input id="hand" type="text" placeholder="اكتب هنا حركة اليد" dir="auto" aria-label="حركة اليد يدويًا">
+      <p class="hint">لو كتبت حركة بنفسك، هتتستخدم بدل الاختيار الجاهز.</p>
+    </section>
+
+    <section>
+      <label for="backgroundType">٧ · نوع الخلفية</label>
+      <select id="backgroundType">
+        <option value="studio">لون سادة / جردينت</option>
+        <option value="room">غرفة بديكور حديث</option>
+        <option value="sky">سماء سينمائية · مبانٍ وغروب</option>
+      </select>
+      <div id="studioBackgroundFields">
+        <label for="backgroundPreset">الخلفية وألوانها</label>
+        <select id="backgroundPreset" aria-label="اختيارات الخلفية"></select>
+        <input id="background" type="text" placeholder="اكتب هنا لون أو وصف الخلفية والجردينت" dir="auto" aria-label="الخلفية يدويًا">
+        <p class="hint">الافتراضي أبيض سادة. لو وصفت خلفية بنفسك، هتستخدم بدل الاختيار الجاهز، والإضاءة هتتأثر بألوانها.</p>
+      </div>
+      <div id="skyBackgroundFields" hidden>
+        <label for="skyTone">لون السماء</label>
+        <select id="skyTone">
+          <option value="auto">تلقائي · متباين مع الملابس</option>
+          <option value="navy">كحلي راقٍ</option>
+          <option value="lightBlue">أزرق فاتح</option>
+        </select>
+        <p class="hint">السماء ثلثين الكادر والأرض ثلثه. ضوء الشمس خلف الرقبة ومبانٍ على الجانبين. تلاشي أقوى يبدأ من أسفل البطن ويخفي أسفل الملابس داخل الأرضية؛ الوجه واليدين يفضلوا واضحين. التأثير لخلفية السماء فقط.</p>
+      </div>
+      <div id="roomBackgroundFields" hidden>
+        <label for="roomColor">لون الغرفة</label>
+        <input id="roomColor" type="text" dir="auto" placeholder="مثال: كحلي، بيج دافئ، أخضر زيتوني" aria-label="لون الغرفة">
+        <label for="roomIdea">فكرة الغرفة / مجال الشخص (اختياري)</label>
+        <textarea id="roomIdea" class="roomIdea" rows="3" dir="auto" placeholder="مثال: كيمياء — براويز جزيئات ورف عليه أدوات معمل. أو أحياء — براويز سريالية وهيكل عظمي في الخلفية." aria-label="فكرة الغرفة أو مجال الشخص"></textarea>
+        <p class="hint">اكتب مجال الشخص أو فكرة الديكور؛ البرومبت هيكيّف البراويز والعناصر معاها مع الحفاظ على لون الغرفة. لو سيبتها فاضية، هتستخدم ديكور الغرفة المعتاد. التركيز يفضل على الشخص والديكور أنعم وأهدى في الخلفية.</p>
+      </div>
+    </section>
+
+    <button id="copyPrompt" class="primary">تجهيز ونسخ البرومبت</button>
+    <label for="preview" class="previewLabel">معاينة البرومبت</label>
+    <textarea id="preview" dir="ltr" placeholder="اختار زاوية الجسم واتجاه الوجه وحركة اليد؛ المنظور والتعبير والخلفية ليهم اختيارات افتراضية. بعد كده اضغط تجهيز ونسخ البرومبت."></textarea>
+    <p id="status" role="status"></p>
+    </div>
+
+    <div id="multiView" class="screen" hidden>
+      <button id="backMulti" class="backButton" type="button">← الرجوع لأقسام التصميم</button>
+      <div class="qayemScreenHeader">
+        <span class="brand">QAYEM</span>
+        <h1>نفس الشخص · لوكات متعددة</h1>
+        <p class="hint">برومبت لصورة واحدة فيها نسخ من نفس الشخص، وكل نسخة بحركة ولوك مختلف.</p>
+      </div>
+      <section class="instructions">
+        <strong>ترتيب الصور عند الاستخدام</strong>
+        <p>أرفق صورتين فقط: <b>١ — صورة الشخص</b> لكل النسخ، ثم <b>٢ — صورة اللبس</b>. النسخة الأولى تلبس نفس القطعة المرفقة بتفاصيلها؛ الباقي تنويعات من نفس عائلة ألوانها.</p>
+        <p class="hint">البلاجين بيقترح أنواع لبس وحركات من غير ما يشوف الصور. أداة الصور تحدد الدرجات الفعلية من الصورة الثانية، أو تقدر تكتب لون اللبس بنفسك.</p>
+      </section>
+      <section>
+        <label for="multiCameraDistance">بعد الشخص عن الكاميرا</label>
+        <select id="multiCameraDistance">
+          <option value="normal">البعد الطبيعي — الافتراضي</option>
+          <option value="close">قريب</option>
+          <option value="veryClose">قريب جدًا</option>
+          <option value="farther">أبعد قليلًا</option>
+        </select>
+        <p class="hint">البعد للمشهد كله. الطبيعي هو نفس البرومبت المعتمد؛ القرب يبرز الوجوه، والبعد يوسع الخلفية، مع الحفاظ على العدد والتوزيع.</p>
+      </section>
+
+      <section>
+        <label for="multiCount">عدد نسخ الشخص</label>
+        <select id="multiCount">
+          <option value="2">نسختان</option>
+          <option value="3" selected>٣ نسخ</option>
+          <option value="4">٤ نسخ</option>
+        </select>
+        <label for="multiLayout">توزيع النسخ</label>
+        <select id="multiLayout">
+          <option value="lineup">جنب بعض · جميع النسخ واضحة</option>
+          <option value="hero">نسخة رئيسية أكبر والباقي حولها</option>
+          <option value="staggered">تكوين متدرج بعمق خفيف</option>
+        </select>
+        <label for="multiPalette">اللون الأساسي للبس (اختياري)</label>
+        <input id="multiPalette" type="text" dir="auto" placeholder="مثال: بيج — أو سيبه فاضي ليستنتج اللون من صورة اللبس">
+      </section>
+      <section>
+        <label for="multiPerspectivePreset">منظور الكاميرا للصورة كلها</label>
+        <select id="multiPerspectivePreset"></select>
+        <input id="multiPerspective" type="text" dir="auto" placeholder="اكتب منظور مختلف لو حابب">
+        <label for="multiBackgroundType">نوع الخلفية</label>
+        <select id="multiBackgroundType">
+          <option value="studio">لون سادة / جردينت</option>
+          <option value="room">غرفة بديكور حديث</option>
+          <option value="sky">سماء سينمائية · مبانٍ وغروب</option>
+        </select>
+        <div id="multiStudioBackgroundFields">
+          <label for="multiBackgroundPreset">الخلفية وألوانها</label>
+          <select id="multiBackgroundPreset"></select>
+          <input id="multiBackground" type="text" dir="auto" placeholder="اكتب لون الخلفية أو الجردينت">
+        </div>
+        <div id="multiSkyBackgroundFields" hidden>
+          <label for="multiSkyTone">لون السماء</label>
+          <select id="multiSkyTone">
+            <option value="auto">تلقائي · متباين مع الملابس</option>
+            <option value="navy">كحلي راقٍ</option>
+            <option value="lightBlue">أزرق فاتح</option>
+          </select>
+          <p class="hint">السماء ثلثين الكادر والأرض ثلثه. ضوء الشمس خلف الرقبة ومبانٍ على الجانبين. تلاشي أقوى يبدأ من أسفل البطن ويخفي أسفل الملابس داخل الأرضية؛ الوجه واليدين يفضلوا واضحين. التأثير لخلفية السماء فقط.</p>
+        </div>
+        <div id="multiRoomBackgroundFields" hidden>
+          <label for="multiRoomColor">لون الغرفة</label>
+          <input id="multiRoomColor" type="text" dir="auto" placeholder="مثال: كحلي، بيج دافئ، أخضر زيتوني" aria-label="لون الغرفة للمجموعة">
+          <label for="multiRoomIdea">فكرة الغرفة / مجال الشخص (اختياري)</label>
+          <textarea id="multiRoomIdea" class="roomIdea" rows="3" dir="auto" placeholder="مثال: كيمياء — براويز جزيئات ورف عليه أدوات معمل. أو أحياء — براويز سريالية وهيكل عظمي في الخلفية." aria-label="فكرة الغرفة أو مجال الشخص للمجموعة"></textarea>
+          <p class="hint">اكتب مجال الشخص أو فكرة الديكور؛ البرومبت هيكيّف البراويز والعناصر معاها مع الحفاظ على لون الغرفة. لو سيبتها فاضية، هتستخدم ديكور الغرفة المعتاد. التركيز يفضل على الشخص والديكور أنعم وأهدى في الخلفية.</p>
+        </div>
+      </section>
+      <div class="suggestionBar">
+        <strong>حركة ولبس لكل نسخة</strong>
+        <button id="multiShuffle" type="button" class="secondary">اقترح حركات وملابس جديدة</button>
+        <p class="hint">الاختيارات اللي عدّلتها يدويًا هتفضل ثابتة. تقدر ترجّع نسخة للاقتراحات التلقائية من داخلها.</p>
+      </div>
+      <div id="multiClones"></div>
+      <button id="copyMultiPrompt" class="primary" type="button">تجهيز ونسخ برومبت المجموعة</button>
+      <label for="multiPreview" class="previewLabel">معاينة البرومبت</label>
+      <textarea id="multiPreview" dir="ltr" placeholder="حدد العدد والتوزيع، وعدّل اقتراحات كل نسخة لو حابب، ثم جهّز البرومبت."></textarea>
+      <p id="multiStatus" role="status"></p>
+    </div>
+    <div id="surrealView" class="screen" hidden>
+      <button id="backSurreal" class="backButton" type="button">← الرجوع لأقسام التصميم</button>
+      <div class="qayemScreenHeader"><span class="brand">QAYEM</span><h1>صور مصغرة سريالية</h1><p class="hint">مشهد غريب بعمق سينمائي، والشخص هو محور الصورة.</p></div>
+      <section class="instructions">
+        <strong>صورتين فقط مع البرومبت</strong>
+        <p><b>١ — صورة الشخص</b> للحفاظ على ملامحه، ثم <b>٢ — صورة الملابس</b> اللي هيرتديها.</p>
+        <p class="hint">أفقي 16:9 · 1920×1080. الشخص كبير وقريب، وتغيير مكانه لا يغيّر حجمه. البرومبت يجهّز الصورة بدون كتابة أو لوجوهات.</p>
+      </section>
+      <section>
+        <label for="surrealPosition">١ · مكان الشخص في الصورة</label>
+        <select id="surrealPosition"><option value="right">يمين الصورة</option><option value="left">يسار الصورة</option><option value="center">منتصف الصورة</option></select>
+        <p class="hint">يمين ويسار بالنسبة للمشاهد. حجم الرأس والكتفين ثابت، مع مساحة للمشهد حول الشخص.</p>
+      </section>
+      <section>
+        <label for="surrealPalette">٢ · ألوان التصميم</label>
+        <select id="surrealPalette"></select>
+        <div id="surrealSwatches" class="paletteSwatches" aria-hidden="true"></div>
+        <p class="hint">لون مسيطر للمشهد، لون متباين للعنصر الرئيسي، ولمسة إضاءة مساعدة. لون البشرة يفضل طبيعي.</p>
+      </section>
+      <section>
+        <label for="surrealReaction">٣ · ريأكشن الشخص</label><select id="surrealReaction"></select>
+        <div id="surrealReactionFields" hidden><label for="surrealReactionCustom">وصف الريأكشن</label><textarea id="surrealReactionCustom" class="roomIdea" dir="auto" placeholder="مثال: مندهش ورافع حاجب واحد، بابتسامة خفيفة"></textarea></div>
+        <p class="hint">تعبير واضح حتى في الصورة المصغرة، مع الحفاظ على ملامح الشخص.</p>
+      </section>
+      <section>
+        <label for="surrealHand">٤ · حركة اليد والتفاعل</label><select id="surrealHand"></select>
+        <div id="surrealHeldFields" hidden><label for="surrealHeldObject">إيه اللي الشخص ماسكه؟</label><textarea id="surrealHeldObject" class="roomIdea" dir="auto" placeholder="مثال: مفتاح ذهبي ضخم، أو كتاب مفتوح"></textarea></div>
+        <div id="surrealHandFields" hidden><label for="surrealHandCustom">حركة اليد المخصصة</label><textarea id="surrealHandCustom" class="roomIdea" dir="auto" placeholder="اوصف الحركة اللي عاوزها"></textarea></div>
+        <label for="surrealHandNote">ملاحظة إضافية للحركة (اختياري)</label><textarea id="surrealHandNote" class="roomIdea" dir="auto" placeholder="مثال: بإيده اليمين، ومقرب العنصر جدًا للعدسة من غير ما يغطي وشه"></textarea>
+      </section>
+      <section>
+        <label for="surrealSceneMode">٥ · عناصر أو معالم في المشهد</label><select id="surrealSceneMode"><option value="none">لا يوجد</option><option value="yes">يوجد — هكتب الوصف</option></select>
+        <div id="surrealSceneFields" hidden><label for="surrealSceneDescription">وصف العناصر أو المعالم</label><textarea id="surrealSceneDescription" class="roomIdea" dir="auto" placeholder="مثال: قلعة بعيدة خلف الشخص وناحية اليسار، بعمق سينمائي"></textarea><p class="hint">حدد العنصر، مكانه، حجمه، وهل الشخص بيتفاعل معاه.</p></div>
+      </section>
+      <section>
+        <label for="surrealForegroundMode">٦ · عناصر أمامية لزيادة العمق</label><select id="surrealForegroundMode"><option value="none">بدون</option><option value="flying">عناصر متطايرة</option><option value="near">عنصر قريب جدًا من العدسة</option><option value="both">الاتنين معًا</option></select>
+        <div id="surrealForegroundFields" hidden><label for="surrealForegroundDescription">وصف العنصر أو العناصر الأمامية</label><textarea id="surrealForegroundDescription" class="roomIdea" dir="auto" placeholder="مثال: ورق متطاير حول الشخص، وقلم ضخم قريب من العدسة أسفل اليسار"></textarea><p class="hint">حدد لكل عنصر حجمه ومكانه وقربه. العناصر توجّه العين للشخص، من غير ما تغطي الوش.</p></div>
+      </section>
+      <section>
+        <label for="surrealRecolor">٧ · تنسيق ألوان الملابس تلقائيًا مع التصميم؟</label><select id="surrealRecolor"><option value="no">لا — نفس ألوان الملابس الأصلية</option><option value="yes">نعم — ألوان متناسقة ومتباينة مع التصميم</option></select>
+        <p class="hint">نعم تغيّر لون الملابس فقط مع الحفاظ على قصّتها وخامتها وتفاصيلها. لا تحافظ على ألوان الصورة الثانية وتنسّق الخلفية والإضاءة حواليها.</p>
+      </section>
+      <button id="copySurrealPrompt" class="primary" type="button">تجهيز ونسخ البرومبت السريالي</button>
+      <label for="surrealPreview" class="previewLabel">معاينة البرومبت</label><textarea id="surrealPreview" dir="ltr" placeholder="اختار التفاصيل، ثم جهّز البرومبت وأرفق الصورتين في أداة الصور."></textarea>
+      <p id="surrealStatus" role="status"></p>
+    </div>
+<div id="teacherMenuView" class="screen" hidden style="display:none" data-qayem-no-translate><button id="backTeacherMenu" class="backButton" type="button">← الرجوع لأقسام التصميم</button><div class="qayemScreenHeader"><span class="brand">QAYEM</span><h1>تصميم لمدرّس</h1><p class="hint">اختار مجال التصميم اللي هتشتغل عليه.</p></div><div class="qCategoryList"><button id="openTeacherSocial" class="qCategoryCard qCategoryFeatured" type="button"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18v13H3zM8 21h8M12 17v4M6 13l4-4 3 3 3-5 3 6"/></svg></span><span class="qCategoryCopy"><strong>تصاميم سوشيال ميديا وصور مصغّرة</strong><small>عادي، سريالي وسينمائي · الأدوات المتاحة حاليًا</small></span><svg class="qCategoryArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><button id="qSoonTeacherPrint" class="qCategoryCard qCategorySoon" type="button" disabled aria-disabled="true" data-qayem-coming-soon="true"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8V3h12v5M6 17H3V8h18v9h-3M6 13h12v8H6z"/></svg></span><span class="qCategoryCopy"><strong>تصاميم المطبوعات</strong><small>كتب، مذكرات ومطبوعات تعليمية</small></span><span class="qSoonBadge">قريبًا</span></button><button id="qSoonTeacherBoard" class="qCategoryCard qCategorySoon" type="button" disabled aria-disabled="true" data-qayem-coming-soon="true"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h15v12H3zM7 19h7M10 15v4M18 9h5v12h-5z"/></svg></span><span class="qCategoryCopy"><strong>تصاميم سمارت بورد وتابلت</strong><small>محتوى تعليمي للشاشات والأجهزة</small></span><span class="qSoonBadge">قريبًا</span></button></div></div>
+    <div id="teacherView" class="screen" hidden>
+      <div class="qCommunityPresetBar" data-studio-static="true" data-qayem-no-translate><span>إعدادات جاهزة لشغلك</span><div><button type="button" data-qayem-save-scope="teacherView">حفظ الإعدادات</button><button type="button" data-qayem-list-presets="teacherView" class="qCommunityQuiet">إعداداتي</button></div></div>
+      <button id="backTeacher" class="backButton" type="button">← الرجوع لتصاميم المدرّس</button>
+      <div class="qayemScreenHeader"><span class="brand">QAYEM</span><h1>تصميم لمدرّس</h1><p class="hint">اختار نوع التصميم الأول، وبعده المادة وباقي التفاصيل علشان نجهّز البرومبت.</p></div>
+      <div class="teacherResetBar" data-qayem-no-translate><button id="teacherResetCurrent" type="button" disabled>حذف القيم الحالية</button><p id="teacherResetStatus" class="hint" role="status" aria-live="polite">ابدأ من جديد بإعدادات النوع المفتوح فقط.</p></div>
+      <section class="instructions">
+        <strong>ملامح المدرّس لها الأولوية</strong><p>كل وجه من مرجعه الخاص، وصورة المدرّس أولًا دائمًا. النظارة تظهر فقط لو موجودة في مرجع نفس الشخص أو طلبتها له. ترتيب المرفقات هيظهر تحت.</p>
+        <p class="hint">البلاجين يجهّز البرومبت. اختيار المقاس يحدد نسبة أبعاد التصميم.</p>
+      </section>
+      <section id="teacherDesignTypeSection"><label for="teacherDesignType">١ · نوع التصميم</label><select id="teacherDesignType"><option value="" selected>اختار نوع التصميم أولًا…</option><option value="normal">عادي — مشهد واقعي ومتزن</option><option value="surreal">سريالي — فكرة خيالية بمنظور وتفاعل غير معتاد</option><option value="cinematic">سينمائي — مشهد واقعي بإضاءة وعمق مدروسين</option></select><p class="hint">اختار النوع علشان تظهر مادة المدرّس والخيارات الخاصة بيه.</p></section>
+      <div id="teacherDesignOptions" hidden style="display:none">
+      <section id="teacherSubjectSection"><label for="teacherSubject">٢ · مادة المدرّس</label><select id="teacherSubject"></select></section>
+      <section id="teacherLegacyRatioSection">
+        <label id="teacherRatioLabel">٣ · مقاس التصميم</label>
+        <div id="teacherRatios" class="ratioPicker" role="radiogroup" aria-labelledby="teacherRatioLabel" dir="ltr">
+          <div class="ratioChoice" data-ratio="9:16" role="radio" aria-checked="false" tabindex="-1" aria-label="9:16 رأسي طويل"><span class="ratioIcon ratio916" aria-hidden="true"></span><span>9:16</span></div>
+          <div class="ratioChoice selected" data-ratio="3:4" role="radio" aria-checked="true" tabindex="0" aria-label="3:4 رأسي"><span class="ratioIcon ratio34" aria-hidden="true"></span><span>3:4</span></div>
+          <div class="ratioChoice" data-ratio="1:1" role="radio" aria-checked="false" tabindex="-1" aria-label="1:1 مربع"><span class="ratioIcon ratio11" aria-hidden="true"></span><span>1:1</span></div>
+          <div class="ratioChoice" data-ratio="4:3" role="radio" aria-checked="false" tabindex="-1" aria-label="4:3 أفقي"><span class="ratioIcon ratio43" aria-hidden="true"></span><span>4:3</span></div>
+          <div class="ratioChoice" data-ratio="16:9" role="radio" aria-checked="false" tabindex="-1" aria-label="16:9 أفقي عريض"><span class="ratioIcon ratio169" aria-hidden="true"></span><span>16:9</span></div>
+        </div>
+        <p id="teacherRatioHint" class="hint">رأسي · 3:4 — الافتراضي</p>
+      </section>
+      <div id="teacherNormalFields" hidden></div>
+      <div id="teacherCinematicFields" hidden>
+        <section class="cinematicSection" id="teacherCinematicGroup_camera">
+          <h2>١ · الكادر والكاميرا والمقدمة</h2><p class="hint">الكادر المختار ملزم حتى لو كتبت كادرًا مخالفًا في الفكرة؛ باقي التفاصيل تتكيف داخله. الملامح لها الأولوية.</p>
+        </section>
+        <section class="cinematicSection" id="teacherCinematicGroup_composition">
+          <h2>٢ · وضعية الشخص وتعبيره</h2><p class="hint">إعدادات السينمائي مستقلة؛ «حسب الفكرة» يستنتج الاختيار من الوصف.</p>
+        </section>
+        <section class="cinematicSection" id="teacherCinematicGroup_wardrobe">
+          <h2>٣ · الملابس والإكسسوارات</h2><p id="teacherCinematicWardrobeHint" class="hint"></p>
+        </section>
+        <section class="cinematicSection" id="teacherCinematicGroup_lighting">
+          <h2>٤ · الإضاءة والألوان والمعالجة</h2><p class="hint">الوصف الفاضي يعتمد على فكرتك. الحبيبات وتعتيم الأطراف اختياريان.</p>
+        </section>
+      </div>
+      <section id="teacherDistanceSection">
+        <label for="teacherCameraDistance">بُعد المدرّس عن عدسة الكاميرا</label>
+        <select id="teacherCameraDistance"></select>
+        <p class="hint">قريب: الرأس حتى الخصر. بعيد: الشخص أصغر ومساحة خلفية أكبر. قريب جدًا: اقتراب العدسة من الوجه مع السماح بقص الكتفين. بدون بنطلون في التلاتة، وبنفس ملامح الصورة الأصلية.</p>
+      </section>
+      <section id="teacherLegacyPositionSection"><label id="teacherPositionLabel" for="teacherPosition">٤ · مكان الشخص في الصورة</label><select id="teacherPosition"><option value="right">يمين الصورة</option><option value="left">يسار الصورة</option><option value="center">منتصف الصورة</option></select><p class="hint">مكانه بالنسبة للمشاهد، مستقل عن اتجاه وشه ونظرته.</p></section>
+      <section id="teacherLegacyExpressionSection"><label for="teacherExpression">٥ · تعبير الوجه</label><select id="teacherExpression"></select><div id="teacherExpressionFields" hidden><label for="teacherExpressionCustom">وصف تعبير الوجه</label><textarea id="teacherExpressionCustom" class="roomIdea" dir="auto" placeholder="اكتب التعبير اللي عاوزه"></textarea></div></section>
+      <section id="teacherFisheyeSection" data-qayem-no-translate><h2>تأثير عين السمكة</h2><label class="qToolCheck"><input id="teacherFisheyeEnabled" type="checkbox"><span id="teacherFisheyeLabel">تفعيل عين السمكة</span></label><p id="teacherFisheyeHint" class="hint">تأثير عدسة مستقل؛ يحتفظ بالمنظور السفلي أو العلوي أو مستوى العين المختار.</p><div id="teacherFisheyeFields" hidden><label id="teacherFisheyeScopeLabel" for="teacherFisheyeScope">تطبيق عين السمكة على</label><select id="teacherFisheyeScope"><option value="all">التصميم كله</option><option value="person">المدرّس فقط</option><option value="background">الخلفية فقط</option></select></div></section>
+      <section id="teacherComposition" class="teacherComposition" data-studio-static="true" data-qayem-no-translate><h2>معاينة التكوين النهائية</h2><div id="teacherCompositionStage" class="teacherCompositionStage"><img id="teacherCompositionImage" alt="معاينة توضيحية لتكوين المدرّس"></div><p id="teacherCompositionCaption" class="teacherCompositionCaption" aria-live="polite"></p><p class="teacherCompositionNote">معاينة توضيحية للمقاس والمنظور والمكان وبُعد الشخص</p></section>
+      <section id="teacherClothingSection" hidden>
+        <label id="teacherClothingLabel" for="teacherClothingMode">٩ · مصدر ملابس المدرّس</label>
+        <select id="teacherClothingMode"><option value="description">وصف الملابس في البرومبت</option><option value="image">صورة الملابس — آخر صورة مرفقة</option></select>
+        <div id="teacherClothingFields"><label for="teacherClothingDescription">وصف ملابس المدرّس</label><textarea id="teacherClothingDescription" class="roomIdea" dir="auto" placeholder="مثال: تريننج برتقالي وبيج، وكاب برتقالي"></textarea><p class="hint">دي الخانة المخصصة لوصف الملابس. لو فاضية، هنحتفظ بملابس صورة المدرّس؛ التفاصيل الإضافية لا تغيّرها.</p></div>
+      </section>
+      <section id="teacherIdeaSection"><label id="teacherIdeaLabel" for="teacherIdea">٦ · فكرة التصميم</label><textarea id="teacherIdea" class="teacherIdea" rows="6" dir="auto" placeholder="اوصف المشهد، وتفاعل المدرّس، والعناصر اللي حواليه"></textarea><p id="teacherIdeaHint" class="hint">اكتب فكرتك بحرية: المكان، الألوان، العناصر، حركة المدرّس وتفاعله معاها. المادة والنوع والمقاس والمكان والتعبير اللي اخترتهم هيتطبقوا على الفكرة.</p></section>
+      <section class="teacherCastSection" id="teacherCastSection">
+        <label id="teacherCastLabel" for="teacherCharacterCount">٧ · شخصيات خلف المدرّس أو بجانبه</label>
+        <select id="teacherCharacterCount" value="0"><option value="0" selected>بدون شخصيات إضافية</option><option value="1">شخصية إضافية واحدة</option><option value="2">شخصيتان إضافيتان</option><option value="3">٣ شخصيات إضافية</option></select>
+        <p id="teacherCastHint" class="hint">المدرّس لوحده: من الرأس كاملة حتى الخصر، بدون ظهور البنطلون. وصف الملابس في فكرة التصميم، والمرفق صورة المدرّس فقط.</p>
+        <div id="teacherModelNotice" class="teacherModelNotice" hidden>
+          <strong>استخدم موديل <span dir="ltr">Nano Banana 2</span></strong>
+          <p>الاختيار المعتمد لتجربتك مع تعدد الشخصيات. أرفق مراجع الشخصيات للحفاظ على ملامحها.</p>
+        </div>
+        <div id="teacherCharacterCards" hidden style="display:none"></div>
+        <div id="teacherOutfitFields" hidden>
+          <label for="teacherCastGarment">نوع ملابس الشخصيات — للتحديد الأدق</label><select id="teacherCastGarment"></select><p class="hint">اختار تريننج لتأكيده للجميع. النوع ده يخص الشخصيات الإضافية؛ ملابس المدرّس من مصدرها المحدد.</p><label for="teacherOutfitStrategy">ملابس الشخصيات الإضافية</label><select id="teacherOutfitStrategy"><option value="coordinated">متناسقة — بألوان مختلفة</option><option value="contrast">متباينة — ملابس وألوان مختلفة</option></select>
+          <p class="hint">في النوع التلقائي، بنطلب نفس فئة لبس المدرّس. لو حددت النوع هنا، هيتطبق على الشخصيات بألوان متناسقة أو متباينة حسب اختيارك. مراجع الشخصيات للملامح والقبعات فقط.</p><label for="teacherOutfitNotes">ملاحظات الملابس — اختياري</label><textarea id="teacherOutfitNotes" class="roomIdea" dir="auto" placeholder="مثال: كلهم تريننجات، مع الحفاظ على العمامة والطربوش للشخصيات"></textarea>
+        </div>
+
+      </section>
+      <section id="teacherReferenceSection" hidden>
+        <label id="teacherReferenceLabel" for="teacherReferenceMode">٨ · مصادر الصور المرجعية</label>
+        <select id="teacherReferenceMode"><option value="personOnly">المدرّس فقط — تخيّل الشخصيات</option><option value="withCharacters">المدرّس + مراجع الشخصيات</option></select>
+        <p class="hint">تخيّل الشخصيات يعتمد على معرفة أداة الصور. البلاجين لا يبحث عن صور ولا يرفقها. مرجع الملابس اختياري ومستقل.</p>
+      </section>
+
+      <section class="instructions"><strong>ترتيب المرفقات في أداة الصور</strong><div id="teacherReferenceOrder"></div><p class="hint">ارفع الصور بنفس الترتيب الظاهر. البلاجين ينسخ البرومبت، وإنت ترفق الصور في أداة التوليد.</p></section>
+      <button id="copyTeacherPrompt" class="primary" type="button">تجهيز ونسخ برومبت تصميم المدرّس</button>
+      <label for="teacherPreview" class="previewLabel">معاينة البرومبت</label><textarea id="teacherPreview" dir="ltr" placeholder="كمّل الخانات واكتب فكرتك، ثم جهّز البرومبت."></textarea>
+      <p id="teacherStatus" role="status"></p>
+      </div>
+    </div>
+    <div id="doctorView" class="screen" hidden>
+      <div class="qCommunityPresetBar" data-studio-static="true" data-qayem-no-translate><span>إعدادات جاهزة لشغلك</span><div><button type="button" data-qayem-save-scope="doctorView">حفظ الإعدادات</button><button type="button" data-qayem-list-presets="doctorView" class="qCommunityQuiet">إعداداتي</button></div></div>
+      <button id="backDoctor" class="backButton" type="button">← الرجوع لأقسام التصميم</button>
+      <div class="qayemScreenHeader"><span class="brand">QAYEM</span><h1>تصاميم الأطباء والعيادات</h1><p class="hint qayemScreenVersion" dir="ltr">1.24.31 · Doctors and clinics mode</p><p class="hint">اختار نوع التصميم الأول، وبعده التخصص وباقي التفاصيل علشان نجهّز البرومبت.</p></div>
+      <section class="instructions">
+        <strong>ملامح الدكتور لها الأولوية</strong><p>كل وجه من مرجعه الخاص، وصورة الدكتور أولًا دائمًا. النظارة تظهر فقط لو موجودة في مرجع نفس الشخص أو طلبتها له. ترتيب المرفقات هيظهر تحت.</p>
+        <p class="hint">البلاجين يجهّز البرومبت. اختيار المقاس يحدد نسبة أبعاد التصميم.</p>
+      </section>
+      <section id="doctorDesignTypeSection"><label for="doctorDesignType">١ · نوع التصميم</label><select id="doctorDesignType"><option value="" selected>اختار نوع التصميم أولًا…</option><option value="normal">عادي — مشهد واقعي ومتزن</option><option value="surreal">سريالي — فكرة خيالية بمنظور وتفاعل غير معتاد</option><option value="cinematic">سينمائي — مشهد واقعي بإضاءة وعمق مدروسين</option></select><p class="hint">اختار النوع علشان تظهر تخصص الدكتور والخيارات الخاصة بيه.</p></section>
+      <div id="doctorDesignOptions" hidden style="display:none">
+      <section id="doctorSubjectSection"><label for="doctorSubject">٢ · تخصص الدكتور</label><select id="doctorSubject"></select></section>
+      <section id="doctorLegacyRatioSection">
+        <label id="doctorRatioLabel">٣ · مقاس التصميم</label>
+        <div id="doctorRatios" class="ratioPicker" role="radiogroup" aria-labelledby="doctorRatioLabel" dir="ltr">
+          <div class="ratioChoice" data-ratio="9:16" role="radio" aria-checked="false" tabindex="-1" aria-label="9:16 رأسي طويل"><span class="ratioIcon ratio916" aria-hidden="true"></span><span>9:16</span></div>
+          <div class="ratioChoice selected" data-ratio="3:4" role="radio" aria-checked="true" tabindex="0" aria-label="3:4 رأسي"><span class="ratioIcon ratio34" aria-hidden="true"></span><span>3:4</span></div>
+          <div class="ratioChoice" data-ratio="1:1" role="radio" aria-checked="false" tabindex="-1" aria-label="1:1 مربع"><span class="ratioIcon ratio11" aria-hidden="true"></span><span>1:1</span></div>
+          <div class="ratioChoice" data-ratio="4:3" role="radio" aria-checked="false" tabindex="-1" aria-label="4:3 أفقي"><span class="ratioIcon ratio43" aria-hidden="true"></span><span>4:3</span></div>
+          <div class="ratioChoice" data-ratio="16:9" role="radio" aria-checked="false" tabindex="-1" aria-label="16:9 أفقي عريض"><span class="ratioIcon ratio169" aria-hidden="true"></span><span>16:9</span></div>
+        </div>
+        <p id="doctorRatioHint" class="hint">رأسي · 3:4 — الافتراضي</p>
+      </section>
+      <div id="doctorNormalFields" hidden></div>
+      <div id="doctorCinematicFields" hidden>
+        <section class="cinematicSection" id="doctorCinematicGroup_camera">
+          <h2>١ · الكادر والكاميرا والمقدمة</h2><p class="hint">الكادر المختار ملزم حتى لو كتبت كادرًا مخالفًا في الفكرة؛ باقي التفاصيل تتكيف داخله. الملامح لها الأولوية.</p>
+        </section>
+        <section class="cinematicSection" id="doctorCinematicGroup_composition">
+          <h2>٢ · وضعية الشخص وتعبيره</h2><p class="hint">إعدادات السينمائي مستقلة؛ «حسب الفكرة» يستنتج الاختيار من الوصف.</p>
+        </section>
+        <section class="cinematicSection" id="doctorCinematicGroup_wardrobe">
+          <h2>٣ · الملابس والإكسسوارات</h2><p id="doctorCinematicWardrobeHint" class="hint"></p>
+        </section>
+        <section class="cinematicSection" id="doctorCinematicGroup_lighting">
+          <h2>٤ · الإضاءة والألوان والمعالجة</h2><p class="hint">الوصف الفاضي يعتمد على فكرتك. الحبيبات وتعتيم الأطراف اختياريان.</p>
+        </section>
+      </div>
+      <section id="doctorDistanceSection">
+        <label for="doctorCameraDistance">بُعد الدكتور عن عدسة الكاميرا</label>
+        <select id="doctorCameraDistance"></select>
+        <p class="hint">قريب: الرأس حتى الخصر. بعيد: الشخص أصغر ومساحة خلفية أكبر. قريب جدًا: لقطة ضيقة للوجه والصدر. بدون بنطلون في التلاتة، وبنفس ملامح الصورة الأصلية.</p>
+      </section>
+      <section id="doctorLegacyPositionSection"><label id="doctorPositionLabel" for="doctorPosition">٤ · مكان الشخص في الصورة</label><select id="doctorPosition"><option value="right">يمين الصورة</option><option value="left">يسار الصورة</option><option value="center">منتصف الصورة</option></select><p class="hint">مكانه بالنسبة للمشاهد، مستقل عن اتجاه وشه ونظرته.</p></section>
+      <section id="doctorLegacyExpressionSection"><label for="doctorExpression">٥ · تعبير الوجه</label><select id="doctorExpression"></select><div id="doctorExpressionFields" hidden><label for="doctorExpressionCustom">وصف تعبير الوجه</label><textarea id="doctorExpressionCustom" class="roomIdea" dir="auto" placeholder="اكتب التعبير اللي عاوزه"></textarea></div></section>
+      <section><label id="doctorIdeaLabel" for="doctorIdea">٦ · فكرة التصميم</label><textarea id="doctorIdea" class="teacherIdea" rows="6" dir="auto" placeholder="اوصف المشهد، وتفاعل الدكتور، والعناصر اللي حواليه"></textarea><p id="doctorIdeaHint" class="hint">اكتب فكرتك بحرية: المكان، الألوان، العناصر، حركة الدكتور وتفاعله معاها. التخصص والنوع والمقاس والمكان والتعبير اللي اخترتهم هيتطبقوا على الفكرة.</p></section>
+      <section class="teacherCastSection">
+        <label id="doctorCastLabel" for="doctorCharacterCount">٧ · الفريق الطبي خلف الدكتور أو بجانبه</label>
+        <select id="doctorCharacterCount" value="0"><option value="0" selected>بدون شخصيات إضافية</option><option value="2">٢ شخصيات</option><option value="3">٣ شخصيات</option><option value="4">٤ شخصيات</option></select>
+        <p id="doctorCastHint" class="hint">الدكتور لوحده: من الرأس كاملة حتى الخصر، بدون ظهور البنطلون. وصف الملابس في فكرة التصميم، والمرفق صورة الدكتور فقط.</p>
+        <div id="doctorModelNotice" class="teacherModelNotice" hidden>
+          <strong>استخدم موديل <span dir="ltr">Nano Banana 2</span></strong>
+          <p>الاختيار المعتمد لتجربتك مع تعدد الشخصيات. أرفق مراجع الشخصيات للحفاظ على ملامحها.</p>
+        </div>
+        <div id="doctorCharacterCards" hidden style="display:none"></div>
+      </section>
+      <section id="doctorReferenceSection" hidden>
+        <label id="doctorReferenceLabel" for="doctorReferenceMode">٨ · مصادر الصور المرجعية</label>
+        <select id="doctorReferenceMode"><option value="personOnly">الدكتور فقط — تخيّل الشخصيات</option><option value="withCharacters">الدكتور + مراجع الشخصيات</option></select>
+        <p class="hint">تخيّل الشخصيات يعتمد على معرفة أداة الصور. البلاجين لا يبحث عن صور ولا يرفقها. مرجع الملابس اختياري ومستقل.</p>
+      </section>
+      <section id="doctorClothingSection" hidden>
+        <label id="doctorClothingLabel" for="doctorClothingMode">٩ · مصدر ملابس الدكتور</label>
+        <select id="doctorClothingMode"><option value="description">وصف الملابس في البرومبت</option><option value="image">صورة الملابس — آخر صورة مرفقة</option></select>
+        <div id="doctorClothingFields"><label for="doctorClothingDescription">وصف ملابس الدكتور</label><textarea id="doctorClothingDescription" class="roomIdea" dir="auto" placeholder="مثال: بالطو أبيض فوق سكراب كحلي"></textarea><p class="hint">ممكن تسيبها فاضية لو كتبت الملابس في فكرة التصميم. لو مفيش وصف، هنطلب نفس لبس صورة الدكتور.</p></div>
+        <div id="doctorOutfitFields" hidden>
+          <label for="doctorCastGarment">نوع ملابس الشخصيات — للتحديد الأدق</label><select id="doctorCastGarment"></select><p class="hint">اختار بالطو أو سكراب لتحديد ملابس الفريق. النوع ده يخص الشخصيات الإضافية؛ ملابس الدكتور من مصدرها المحدد.</p><label for="doctorOutfitStrategy">ملابس الشخصيات الإضافية</label><select id="doctorOutfitStrategy"><option value="coordinated">متناسقة — بألوان مختلفة</option><option value="contrast">متباينة — ملابس وألوان مختلفة</option></select>
+          <p class="hint">في النوع التلقائي، بنطلب نفس فئة لبس الدكتور. لو حددت النوع هنا، هيتطبق على الشخصيات بألوان متناسقة أو متباينة حسب اختيارك. مراجع الشخصيات للملامح والقبعات فقط.</p><label for="doctorOutfitNotes">ملاحظات الملابس — اختياري</label><textarea id="doctorOutfitNotes" class="roomIdea" dir="auto" placeholder="مثال: بالطو أبيض للأطباء وسكراب تركواز للتمريض"></textarea>
+        </div>
+      </section>
+      <section class="instructions"><strong>ترتيب المرفقات في أداة الصور</strong><div id="doctorReferenceOrder"></div><p class="hint">ارفع الصور بنفس الترتيب الظاهر. البلاجين ينسخ البرومبت، وإنت ترفق الصور في أداة التوليد.</p></section>
+      <button id="copyDoctorPrompt" class="primary" type="button">تجهيز ونسخ برومبت تصميم الدكتور</button>
+      <label for="doctorPreview" class="previewLabel">معاينة البرومبت</label><textarea id="doctorPreview" dir="ltr" placeholder="كمّل الخانات واكتب فكرتك، ثم جهّز البرومبت."></textarea>
+      <p id="doctorStatus" role="status"></p>
+      </div>
+    </div>
+    <div id="cosmeticsView" class="screen" hidden style="display:none">
+      <div class="qCommunityPresetBar" data-studio-static="true" data-qayem-no-translate><span>إعدادات جاهزة لشغلك</span><div><button type="button" data-qayem-save-scope="cosmeticsView">حفظ الإعدادات</button><button type="button" data-qayem-list-presets="cosmeticsView" class="qCommunityQuiet">إعداداتي</button></div></div>
+      <button id="backCosmetics" class="backButton" type="button">← الرجوع لأقسام التصميم</button>
+      <div class="qayemScreenHeader"><span class="brand">QAYEM</span><h1>تصاميم كوزماتيكس</h1><p class="hint">اختار فتاة فقط، منتج فقط، أو فتاة مع منتج، وبعدها حدد التفاصيل واكتب الفكرة.</p></div>
+      <section class="instructions"><strong>ملامح الفتاة وتفاصيل المنتج لها الأولوية</strong><p>مرجع الفتاة للهوية، ومرجع المنتج للعبوة وألوانها وشعارها. البلاجين يجهّز البروبت؛ الصور تُرفق مع النص في أداة التوليد.</p></section>
+      <section id="cosmeticsTypeSection"><label for="cosmeticsType">١ · نوع التصميم</label><select id="cosmeticsType"><option value="" selected>اختار نوع التصميم أولًا…</option><option value="girl">فتاة فقط</option><option value="product">منتج فقط</option><option value="both">فتاة مع منتج</option></select><p id="cosmeticsTypeHint" class="hint">اختار النوع علشان تظهر إعداداته.</p></section>
+      <div id="cosmeticsOptions" hidden style="display:none">
+        <section id="cosmeticsRatioSection" class="cosmeticsSection cosmeticsEven"><label id="cosmeticsRatioLabel">٢ · مقاس التصميم</label><div id="cosmeticsRatios" class="ratioPicker cosmeticsRatioPicker" role="radiogroup" aria-labelledby="cosmeticsRatioLabel" dir="ltr">
+          <div class="ratioChoice selected" data-ratio="3:4" role="radio" tabindex="0" aria-checked="true"><span class="ratioIcon ratio34"></span>3:4</div>
+          <div class="ratioChoice" data-ratio="4:5" role="radio" tabindex="-1" aria-checked="false"><span class="ratioIcon ratio45"></span>4:5</div>
+          <div class="ratioChoice" data-ratio="9:16" role="radio" tabindex="-1" aria-checked="false"><span class="ratioIcon ratio916"></span>9:16</div>
+          <div class="ratioChoice" data-ratio="1:1" role="radio" tabindex="-1" aria-checked="false"><span class="ratioIcon ratio11"></span>1:1</div>
+          <div class="ratioChoice" data-ratio="4:3" role="radio" tabindex="-1" aria-checked="false"><span class="ratioIcon ratio43"></span>4:3</div>
+          <div class="ratioChoice" data-ratio="16:9" role="radio" tabindex="-1" aria-checked="false"><span class="ratioIcon ratio169"></span>16:9</div>
+        </div></section>
+        <div id="cosmeticsFields"></div>
+        <section class="instructions"><strong>ترتيب الصور المرجعية</strong><div id="cosmeticsReferenceOrder"></div><p id="cosmeticsReferenceHint" class="hint"></p></section>
+        <button id="copyCosmeticsPrompt" class="primary" type="button">تجهيز ونسخ بروبت الكوزماتيكس</button>
+        <label for="cosmeticsPreview" class="previewLabel">معاينة البروبت</label><textarea id="cosmeticsPreview" dir="ltr" placeholder="كمّل الاختيارات واكتب فكرة التصميم، ثم جهّز البروبت."></textarea>
+        <p id="cosmeticsStatus" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+    <div id="retouchView" class="screen" hidden>
+      <button id="backRetouch" hidden style="display:none" class="backButton" type="button">← الرجوع للرئيسية</button>
+      <div class="qayemScreenHeader"><span class="brand">QAYEM</span><h1>الريتتش</h1><p class="hint">اختار أكشن وشغّله على الصورة المفتوحة في Photoshop.</p></div>
+      <section class="instructions retouchIntro">
+        <strong>أكشناتك في مكان واحد</strong>
+        <p>٧٢ اختيار للريتتش والألوان والحدة، بنفس خطوات ملف الأكشن الأصلي.</p>
+        <p>بعض الخيارات بتفتح إعدادات أو بتجهّز لايرات وماسكات تكملها بالفرشاة. اختار لاير الصورة المناسب قبل التشغيل، واتبع رسائل الأكشن.</p>
+      </section>
+      <section>
+        <label for="retouchCategory">نوع الريتتش</label><select id="retouchCategory"></select>
+        <label for="retouchSearch">ابحث عن أكشن</label><input id="retouchSearch" type="text" dir="auto" placeholder="بشرة، إضاءة، أسنان، tone…">
+        <p id="retouchResultCount" class="hint"></p>
+        <label for="retouchAction">اختار الأكشن</label><select id="retouchAction"></select>
+        <div class="retouchDetails"><strong id="retouchActionName" dir="auto"></strong><p id="retouchActionDescription"></p><p id="retouchActionNotes"></p></div>
+      </section>
+      <section>
+        <label class="retouchCheck" for="retouchDuplicate"><input id="retouchDuplicate" type="checkbox"><span>التطبيق على نسخة جديدة من الصورة — اختياري</span></label>
+        <p class="hint">الافتراضي: الأكشن يشتغل على نفس الملف المفتوح. فعّل الاختيار فقط لو عاوز نسخة مستقلة في مشروع جديد؛ النسخة تحتفظ باللايرات.</p>
+        <button id="retouchRun" class="primary" type="button">تشغيل الأكشن المختار</button>
+        <p id="retouchStatus" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+
+    <div id="textMenuView" class="screen" hidden style="display:none">
+      <button id="backTextMenu" hidden style="display:none" class="backButton" type="button">← الرجوع للرئيسية</button>
+      <div class="qayemScreenHeader"><span class="brand">QAYEM</span><h1>إضافة كتابة</h1><p class="hint">اختار الطريقة المناسبة لشغلك.</p></div>
+      <div class="qCategoryList" data-qayem-no-translate><button id="openTextShapes" class="qCategoryCard" type="button"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2"/><circle cx="17" cy="7" r="4"/><path d="m7 14 5 7H2l5-7ZM15 15h7v6h-7z"/></svg></span><span class="qCategoryCopy"><strong>الكتابة في أشكال هندسية</strong><small>قوالب ولايرات قابلة للتعديل داخل Photoshop</small></span><svg class="qCategoryArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+      <button id="openTypographyPrompts" class="qCategoryCard" type="button"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18M12 5v16M8 21h8M3 5v4M21 5v4"/></svg></span><span class="qCategoryCopy"><strong>الكتابة ببرومبت</strong><small>استايلات عربية وتكوينات جاهزة لأداة الصور</small></span><svg class="qCategoryArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+      <button id="openTextEffects" class="qCategoryCard" type="button"><span class="qCategoryIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 2-3 8H4l7 5-2 7 9-11h-6l1-9ZM20 2v5M18 4h5"/></svg></span><span class="qCategoryCopy"><strong>تأثيرات وتفاعل الكتابة</strong><small>نار، نباتات وتأثيرات مرتبطة بالمشهد</small></span><svg class="qCategoryArrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button></div>
+    </div>
+    <div id="typographyPromptsView" class="screen" hidden style="display:none">
+      <button id="backTypographyPrompts" class="backButton" type="button">← الرجوع لاختيارات الكتابة</button>
+      <div class="qayemScreenHeader"><span class="brand">QAYEM</span><h1>الكتابة ببرومبت</h1><p class="hint">اختار الاستايل واكتب النص. انسخ البرومبت واستخدمه في أداة توليد الصور.</p></div>
+      <section><label for="textPromptStyle">١ · استايل الكتابة</label><select id="textPromptStyle"></select><p id="textPromptStyleDescription" class="hint"></p></section>
+      <section><label for="textPromptText">٢ · النص المطلوب</label><textarea id="textPromptText" rows="3" maxlength="240" dir="auto" placeholder="اكتب الجملة بالعربية، في سطر أو سطرين"></textarea><p class="hint">حتى ٢٤٠ حرفًا. الاستايلات مبنية على الحروف العربية؛ الأرقام والكلمات الأخرى داخل الجملة محفوظة.</p></section>
+      <section><button id="textPromptCopy" class="primary" type="button">تجهيز ونسخ البرومبت</button><p id="textPromptStatus" role="status" aria-live="polite"></p><label for="textPromptPreview">البرومبت — تقدر تعدّله أو تنسخه يدويًا</label><textarea id="textPromptPreview" class="textPromptOutput" rows="12" dir="ltr" placeholder="البرومبت الكامل هيظهر هنا بعد التجهيز"></textarea><p class="hint">راجع صحة الكلمات والنقط في نتيجة أداة الصور.</p></section>
+    </div>
+    <div id="textEffectsView" class="screen" hidden style="display:none">
+      <button id="backTextEffects" class="backButton" type="button">← الرجوع لاختيارات الكتابة</button>
+      <div class="qayemScreenHeader"><span class="brand">QAYEM</span><h1>إضافة استايل وتفاعل على الكتابة</h1><p class="hint">صدّر تصميمك بعد كتابة النص في Photoshop. انسخ البرومبت وأرفقه مع الصورة في أداة تعديل الصور.</p></div>
+      <section><label for="textEffectKind">١ · التأثير على الكتابة</label><select id="textEffectKind"></select><label for="textEffectInteraction">٢ · تفاعل الشخص</label><select id="textEffectInteraction"><option value="none">بدون تفاعل — الحفاظ على وضع اليدين</option><option value="hold">الشخص يمسك الكتابة بإيد واحدة</option></select><p class="hint">تقدر تختار الإمساك وحده مع «بدون تأثير إضافي»، أو تجمعه مع تأثير.</p></section>
+      <section><label for="textEffectScope">٣ · مكان تطبيق التأثير</label><select id="textEffectScope"><option value="main">الكتابة الرئيسية فقط</option><option value="banners">الكتابة الرئيسية والشرائط المرتبطة بيها</option></select><label for="textEffectIntensity">٤ · قوة التأثير</label><select id="textEffectIntensity"><option value="light">خفيف</option><option value="balanced" selected>متوازن</option><option value="strong">قوي مع الحفاظ على وضوح الكتابة</option></select><label for="textEffectTarget">الكتابة المستهدفة — اختياري</label><input id="textEffectTarget" type="text" maxlength="240" dir="auto" placeholder="اكتب جزءًا من العنوان لو التصميم فيه أكثر من كتابة"><p class="hint">النص لتحديد الكتابة الموجودة في الصورة، وليس لإضافة نص جديد. الشعارات وبيانات التصميم محفوظة.</p></section>
+      <section><button id="textEffectCopy" class="primary" type="button">تجهيز ونسخ برومبت التعديل</button><p id="textEffectStatus" role="status" aria-live="polite"></p><label for="textEffectPreview">برومبت تعديل الصورة — تقدر تعدّله أو تنسخه يدويًا</label><textarea id="textEffectPreview" class="textPromptOutput" rows="12" dir="ltr" placeholder="البرومبت هيظهر هنا؛ أرفقه مع صورة التصميم في أداة التعديل"></textarea><p class="hint">البرومبت بيطلب الحفاظ على التصميم والملامح والكتابة. راجع النتيجة، خصوصًا الحروف والأصابع.</p></section>
+    </div>
+
+    <div id="textTemplatesView" class="screen" hidden style="display:none">
+      <button id="backTextTemplates" class="backButton" type="button">← الرجوع لاختيارات الكتابة</button>
+      <div class="qayemScreenHeader"><span class="brand">QAYEM</span><h1>الكتابة والقوالب العربية التفاعلية</h1><p class="hint">اختار القالب أو استورد أي ملف PSD، واضبط أبعاد ومحاذاة الكتابة لمقاسات السوشيال ميديا تلقائيًا.</p></div>
+      <section>
+        <strong>المشروع المفتوح</strong><p id="textTemplateDocument">افتح مشروعًا في Photoshop لقراءة مقاسه.</p>
+        <p id="textTemplateAutoRefresh" class="hint">بيانات المشروع بتتحدّث تلقائيًا. الإضافة بتستخدم المشروع المفتوح وقت الضغط.</p>
+      </section>
+      <section>
+        <strong>١ · قوالب الكتابة واستيراد ملفات PSD</strong>
+        <div class="qToolRow qToolSecondary" style="margin: 8px 0;">
+          <button id="textTemplateImport" type="button" class="secondary" style="font-weight:600;">📂 استيراد قالب PSD مخصص</button>
+          <input id="textTemplateFileInput" type="file" accept=".psd" hidden>
+          <button id="textTemplateReload" type="button" class="secondary">تحديث القوالب</button>
+        </div>
+        <p id="textTemplateLibraryStatus" class="hint" role="status">قوالب الكتابة المتاحة</p>
+        <div id="textTemplatePicker" class="textTemplatePicker" role="radiogroup" aria-label="قوالب الكتابة"></div>
+      </section>
+      <section>
+        <div class="qToolRow">
+          <label for="textTemplateSocialRatio">مقاس السوشيال ميديا
+            <select id="textTemplateSocialRatio">
+              <option value="auto">تلقائي (حسب أبعاد المشروع)</option>
+              <option value="1:1">1:1 مربع (Instagram / Facebook)</option>
+              <option value="4:5">4:5 طولي (Instagram Feed Portrait)</option>
+              <option value="9:16">9:16 ستوري (Reels / TikTok / Story)</option>
+              <option value="16:9">16:9 لاندسكيب (YouTube / Landscape)</option>
+            </select>
+          </label>
+          <label for="textTemplateAlignment">مكان ومحاذاة الكتابة
+            <select id="textTemplateAlignment">
+              <option value="center">وسط التصميم (Center)</option>
+              <option value="top">أعلى التصميم (Top)</option>
+              <option value="bottom">أسفل التصميم (Bottom)</option>
+            </select>
+          </label>
+        </div>
+        <label for="textTemplateLine1">٢ · السطر الأول</label><input id="textTemplateLine1" type="text" maxlength="120" dir="auto">
+        <label for="textTemplateLine2">٣ · السطر الثاني</label><input id="textTemplateLine2" type="text" maxlength="120" dir="auto">
+        <p class="hint">كل سطر لحد ١٢٠ حرفًا. النص بيتضبط حجمه ومكانه آليًا داخل التصميم.</p>
+        <label for="textTemplateFont">خط الكتابة</label><select id="textTemplateFont">
+          <option value="auto">خط القالب إن كان متاحًا — أو بديل موجود في Photoshop</option>
+          <option value="dinMedium">DIN متوسط إن كان متاحًا — أو بديل موجود</option><option value="dinBold">DIN عريض إن كان متاحًا — أو بديل موجود</option>
+        </select>
+        <p id="textTemplateSourceFonts" class="hint" dir="auto"></p><p id="textTemplateFontStatus" class="hint" dir="auto"></p>
+      </section>
+      <section><button id="textTemplateApply" class="primary" type="button" disabled>إضافة الكتابة للتصميم</button><p id="textTemplateStatus" role="status" aria-live="polite"></p><p class="hint">القالب بيتضاف بمحاذاة ذكية داخل مجموعة لايرات قابلة للتعديل والتحريك في Photoshop.</p></section>
+    </div>
+
+    <div id="gridView" class="screen studioToolView" hidden style="display:none" data-qayem-no-translate>
+      <div class="qToolIntro"><span class="qToolEyebrow">QAYEM COMPOSITION</span><h1>Grid System</h1><p>تكوين أوضح، ومساحات متوازنة لتصميمك.</p></div>
+      <section class="qToolPanel" data-studio-static="true">
+        <div class="qToolPanelHead"><strong>معاينة الشبكة</strong><button id="qGridRefresh" type="button">تحديث المشروع</button></div>
+        <div class="qGridFinder"><svg id="qGridPreview" viewBox="0 0 1080 1350" role="img" aria-label="معاينة شبكة التكوين"></svg></div>
+        <p id="qGridDocument" class="qToolCaption">افتح مشروعًا في Photoshop واضغط تحديث المشروع.</p>
+        <div id="qGridTypes" class="qGridTypes" role="group" aria-label="نوع الشبكة"></div>
+        <label class="qToolLabel" for="qGridType">نوع الشبكة</label><select id="qGridType"><option value="thirds">قاعدة الأثلاث</option><option value="golden">النسبة الذهبية</option><option value="columns">أعمدة</option><option value="modular">أعمدة وصفوف</option><option value="hierarchy">نسب مخصصة</option><option value="diagonal">تكوين قطري</option></select>
+        <div class="qToolRow"><label>تطبيق الشبكة على<select id="qGridFit"><option value="canvas">المشروع بالكامل</option><option value="selection">حدود التحديد الحالي</option></select></label><label>الإضافة كـ<select id="qGridOutput"><option value="layer">خطوط على لاير مستقل</option><option value="guides">أدلة Photoshop — Guides</option></select></label></div>
+        <div class="qToolRow"><label>الهامش (px)<input id="qGridMargin" type="number" min="0" max="100000" value="40"></label><label id="qGridGutterWrap">المسافة بين الخانات (px)<input id="qGridGutter" type="number" min="0" max="100000" value="20"></label></div>
+        <div class="qToolRow"><label id="qGridColumnsWrap">الأعمدة<input id="qGridColumns" type="number" min="1" max="24" value="3"></label><label id="qGridRowsWrap">الصفوف<input id="qGridRows" type="number" min="1" max="24" value="3"></label></div>
+        <label id="qGridRatiosWrap">نسب الأعمدة<input id="qGridRatios" value="1:2:1" dir="ltr" maxlength="150" placeholder="1:2:1"></label>
+        <details class="qToolDetails" open><summary>مظهر الخطوط</summary>
+          <div class="qToolRow"><div class="qGridColorWrap"><label for="qGridColor">لون الشبكة</label><div class="qGridColorField"><button id="qGridColorPick" type="button" aria-expanded="false" aria-controls="qGridColorPalette"><span id="qGridColorSwatch" aria-hidden="true"></span><span>اختيار اللون</span></button><input id="qGridColor" value="#FF2940" dir="ltr" maxlength="7" spellcheck="false" aria-label="كود لون الشبكة HEX"></div></div><label>الشفافية %<input id="qGridOpacity" type="number" min="1" max="100" value="60"></label><label>السمك (px)<input id="qGridThickness" type="number" min="0.5" max="20" step="0.5" value="1"></label></div>
+          <div id="qGridColorPalette" class="qGridColorPalette" role="group" aria-label="باليت اختيار لون الشبكة" hidden>
+            <div class="qGridPaletteHead"><strong>اختيار لون الشبكة</strong><span id="qGridColorSample" aria-hidden="true"></span><span id="qGridColorValueLabel" dir="ltr">#FF2940</span></div>
+            <div id="qGridColorMap" class="qGridColorMap" dir="ltr" tabindex="0" role="group" aria-label="اختيار التشبع والإضاءة بالسحب أو مفاتيح الأسهم"><span id="qGridColorMarker" aria-hidden="true"></span></div>
+            <label for="qGridColorHue">درجة اللون</label><input id="qGridColorHue" data-ui-transient="true" class="qGridHue" type="range" min="0" max="360" value="354" dir="ltr">
+            <div class="qToolRow"><label>التشبع <span id="qGridColorSaturationValue">100%</span><input id="qGridColorSaturation" data-ui-transient="true" type="range" min="0" max="100" value="100" dir="ltr"></label><label>الإضاءة <span id="qGridColorBrightnessValue">100%</span><input id="qGridColorValue" data-ui-transient="true" type="range" min="0" max="100" value="100" dir="ltr"></label></div>
+            <div class="qGridColorPresets" role="group" aria-label="ألوان جاهزة"><button type="button" data-grid-color="#FF2940" style="background-color:#FF2940" aria-label="أحمر"></button><button type="button" data-grid-color="#00BFFF" style="background-color:#00BFFF" aria-label="سماوي"></button><button type="button" data-grid-color="#22C55E" style="background-color:#22C55E" aria-label="أخضر"></button><button type="button" data-grid-color="#FFD600" style="background-color:#FFD600" aria-label="أصفر"></button><button type="button" data-grid-color="#A855F7" style="background-color:#A855F7" aria-label="بنفسجي"></button><button type="button" data-grid-color="#FFFFFF" style="background-color:#FFFFFF" aria-label="أبيض"></button><button type="button" data-grid-color="#000000" style="background-color:#000000" aria-label="أسود"></button></div>
+            <div class="qToolRow qToolSecondary"><button id="qGridColorDone" type="button">تم اختيار اللون</button><button id="qGridColorCancel" type="button">رجوع للون السابق</button></div>
+          </div>
+          <label class="qToolCheck"><input id="qGridBorder" type="checkbox" checked>إظهار إطار الهوامش</label>
+        </details>
+        <label class="qToolCheck"><input id="qGridClearFirst" type="checkbox">مسح أدلة المشروع الحالية قبل الإضافة</label>
+        <p id="qGridGuideNote" class="qToolCaption" hidden>لون وسمك Guides بيتحددوا من تفضيلات Photoshop. التكوين القطري متاح على لاير فقط.</p>
+        <button id="qGridGenerate" class="primary qToolPrimary" type="button">إضافة الشبكة للتصميم</button>
+        <div class="qToolRow qToolSecondary"><button id="qGridClearGuides" type="button">مسح الأدلة</button><button id="qGridClearLayers" type="button">إزالة لايرات Grid</button></div>
+        <p id="qGridStatus" class="qToolStatus" role="status" aria-live="polite"></p>
+      </section>
+      <section class="qToolPanel" data-studio-static="true"><h2>مشروع جديد بمقاس جاهز</h2><label>المقاس<select id="qGridPreset"><option value="1080x1080">Instagram Post · 1080 × 1080</option><option value="1080x1350">Instagram Portrait · 1080 × 1350</option><option value="1080x1920">Story / TikTok · 1080 × 1920</option><option value="1200x630">Facebook Post · 1200 × 630</option><option value="1920x1080">YouTube Thumbnail · 1920 × 1080</option><option value="1584x396">LinkedIn Banner · 1584 × 396</option><option value="1500x500">X Header · 1500 × 500</option><option value="custom">مقاس مخصص</option></select></label><div class="qToolRow"><label>العرض (px)<input id="qGridWidth" type="number" min="64" max="16000" value="1080"></label><label>الارتفاع (px)<input id="qGridHeight" type="number" min="64" max="16000" value="1080"></label></div><button id="qGridNewDocument" type="button">إنشاء مشروع جديد</button></section>
+    </div>
+<div id="pricingView" class="screen studioToolView" hidden style="display:none" data-qayem-no-translate>
+<div class="qToolIntro"><span class="qToolEyebrow">QAYEM · PRICING</span><h1>سعّر شغلك</h1><p>احسب سعر تصميمك على أساس واضح.</p></div>
+<form id="qPriceForm" class="qToolPanel" data-studio-static="true"><div class="qPriceFields">
+<label for="qPriceType">نوع الشغل<select id="qPriceType"><option>تصميم سوشيال ميديا</option><option>صورة مصغّرة</option><option>غلاف كتاب أو مذكرة</option><option>إعلان منتجات</option><option>هوية بصرية</option><option>مشروع آخر</option></select></label>
+<label for="qPriceCurrency">عملة الحساب<select id="qPriceCurrency"><option value="EGP">جنيه مصري</option><option value="USD">دولار أمريكي</option><option value="SAR">ريال سعودي</option><option value="AED">درهم إماراتي</option></select></label>
+<label for="qPriceRate">سعر ساعة شغلك<input id="qPriceRate" type="number" min="0.01" max="1000000" step="0.01" value="" inputmode="decimal" required></label>
+<label for="qPriceHours">ساعات التنفيذ لكل تصميم — شاملة التعديلات<input id="qPriceHours" type="number" min="0.05" max="1000" step="0.05" value="2" inputmode="decimal" required></label>
+<label for="qPriceQuantity">عدد التصميمات<input id="qPriceQuantity" type="number" min="1" max="10000" step="1" value="1" inputmode="decimal" required></label>
+<label for="qPriceRevisions">جولات التعديل المشمولة لكل تصميم<input id="qPriceRevisions" type="number" min="0" max="100" step="1" value="2" inputmode="decimal" required></label>
+<label for="qPriceRush">زيادة التسليم المستعجل %<input id="qPriceRush" type="number" min="0" max="300" step="1" value="0" inputmode="decimal" required></label>
+</div><p class="qToolCaption">اكتب إجمالي ساعات كل تصميم شامل جولات التعديل المحددة. السعر = سعر الساعة × الساعات × عدد التصميمات، مع زيادة المستعجل فقط لو اخترتها. عدد الجولات لتوضيح نطاق الشغل ولا يضيف رسومًا تلقائية. تغيير العملة يغيّر وحدة الحساب فقط؛ النتيجة حسب أرقامك وليست تسعيرة سوق.</p><button id="qPriceCalculate" class="primary" type="submit">احسب سعر المشروع</button><p id="qPriceError" role="status"></p></form>
+<section id="qPriceResult" class="qPriceResult" hidden data-studio-static="true" aria-live="polite"><span>سعر المشروع حسب بياناتك</span><strong id="qPriceTotal"></strong><p id="qPriceUnit"></p><dl class="qPriceBreakdown"><div><dt>وقت التنفيذ شامل التعديلات</dt><dd id="qPriceLabor"></dd></div><div><dt>التسليم المستعجل</dt><dd id="qPriceRushTotal"></dd></div></dl></section>
+<button id="qPriceCopy" type="button" disabled>نسخ عرض سعر للعميل</button><textarea id="qPriceQuote" dir="auto" readonly hidden data-ui-transient="true" aria-label="عرض السعر الجاهز للنسخ"></textarea><p id="qPriceStatus" role="status"></p></div>
+
+    <div id="trendsView" class="screen studioToolView" hidden style="display:none" data-qayem-no-translate><div class="qToolIntro"><span class="qToolEyebrow">QAYEM WEEKLY</span><h1>الترندات والإلهام</h1><p>اكتشف موضوعات الأسبوع واتجاهات بصرية تستلهم منها فكرة لتصميمك.</p><small id="qTrendUpdated"></small></div><div class="qTrendTabs"><button id="qTrendEgypt" type="button" aria-pressed="true">ترندات مصر</button><button id="qTrendSocial" type="button" aria-pressed="false">ترندات السوشيال</button><button id="qTrendDesign" type="button" aria-pressed="false">اتجاهات التصميم</button><button id="qTrendPinterest" type="button" aria-pressed="false">Pinterest · مصر</button></div><p class="qToolCaption">مصر: ترندات البحث وقت جمع النشرة. التصميم: أخبار وإلهام من المصادر المتخصصة. Pinterest: مختارات يضيفها محمد قيم أو نتائج بحث موجّهة لمصر وقت جمع النشرة؛ المصدر موضح لكل كارت. كل كارت موضح بمصدره وتاريخه، والأفكار المقترحة قابلة للتعديل.</p><p id="qTrendSocialIntro" class="qTrendSocialIntro" hidden style="display:none">أمثلة بصرية من مصادر التصميم، ومعاها أفكار وخطوات تنفيذ تقدر تطوّرها لهوية شغلك.</p><button id="qTrendReload" type="button">إعادة تحميل النشرة</button><p id="qTrendStatus" class="qToolStatus" role="status" aria-live="polite"></p><div id="qTrendItems" class="qTrendItems"></div></div>
+    <div id="creditsView" class="screen studioToolView" hidden style="display:none" data-qayem-no-translate>
+      <div class="qToolIntro"><span class="qToolEyebrow">QAYEM CREDITS</span><h1>أدوات بالكريدتس</h1><p>رصيدك للأدوات الذكية.</p></div>
+      <section class="qToolPanel" data-studio-static="true"><div class="qCreditBalance"><span>رصيدك المتاح</span><strong id="qCreditBalance">—</strong><small id="qCreditReserved"></small><p id="qCreditDaily">حتى 15 صورة يوميًا بتوقيت مصر</p></div><button id="openImagePrompt" class="primary qToolPrimary" type="button">صورة إلى برومبت</button><p id="qCreditCost" class="qToolCaption">الخصم بعد نجاح التحليل فقط؛ الشحن لا يعيد الحد اليومي.</p><button id="qCreditRefresh" type="button">تحديث الرصيد والطلبات</button><p id="qCreditStatus" class="qToolStatus" role="status"></p></section>
+      <section class="qToolPanel" data-studio-static="true"><h2>شحن رصيد الأداة</h2><div id="qCreditPackages" class="qCreditPackages"></div><div id="qCreditPayment" hidden><p id="qCreditSelected" class="qToolCaption"></p><div class="qCreditVodafone"><p>حوّل عبر فودافون كاش إلى</p><strong id="qCreditPhone" dir="ltr"></strong></div><p id="qCreditInstructions" class="qToolCaption"></p><button id="qCreditReceiptPick" type="button">اختيار صورة الإيصال</button><input id="qCreditReceiptFile" type="file" accept="image/png,image/jpeg,image/gif,image/webp" hidden><img id="qCreditReceiptPreview" class="qImagePreview" alt="إيصال شحن الكريدتس" hidden><p id="qCreditReceiptName" class="qToolCaption"></p><button id="qCreditSubmit" class="primary qToolPrimary" type="button" disabled>إرسال طلب الشحن للمراجعة</button></div><p class="qToolCaption">تُضاف الكريدتس بعد مراجعة الإيصال. الشحن يخص الأدوات الذكية.</p></section>
+      <section class="qToolPanel" data-studio-static="true"><h2>طلبات الشحن</h2><div id="qCreditOrders"></div><h2>حركة الرصيد</h2><div id="qCreditHistory"></div></section>
+    </div>
+    <div id="overlaysView" class="screen studioToolView" hidden style="display:none" data-qayem-no-translate>
+      <div class="qToolIntro"><span class="qToolEyebrow">QAYEM OVERLAYS & LUTS</span><h1>مكتبة الخامات والتلوين السينمائي</h1><p>خامات محلية عالية الدقة وتلوين سينمائي احترافي يعمل بالكامل بدون إنترنت (100% Offline).</p></div>
+      <section class="qToolPanel" data-studio-static="true"><label>التصنيف<select id="qOverlayCategory"><option value="all">كل الخامات والفلاتر</option><option value="light">إضاءات وتوهجات سينمائية (Light Leaks)</option><option value="dust">غبار وخدوش وحبيبات فيلم (Dust & Grain)</option><option value="smoke">دخان وضباب سينمائي (Smoke & Fog)</option><option value="glass">زجاج وبريزم وبوكيه (Glass & Bokeh)</option><option value="luts">تلوين وفلاتر سينمائية (Cinematic LUTs)</option></select></label><button id="qOverlayReload" class="secondary" type="button">تحديث القائمة</button><p id="qOverlayStatus" class="qToolStatus" role="status"></p><div id="qOverlayItems" class="qOverlayItems"></div><div class="qToolRow qToolSecondary"><button id="qOverlayPrev" type="button">السابق</button><span id="qOverlayPage"></span><button id="qOverlayNext" type="button">التالي</button></div></section>
+      <section id="qOverlayDetail" class="qToolPanel" data-studio-static="true" hidden><h2 id="qOverlayName"></h2><img id="qOverlayPreview" class="qOverlayPreview" alt="معاينة العنصر المختار"><p id="qOverlaySize" class="qToolCaption"></p><div class="qToolRow"><label>الدمج<select id="qOverlayBlend"><option value="auto">تلقائي مناسب للخامة / الفلتر</option><option value="normal">Normal</option><option value="screen">Screen — إخفاء الأسود</option><option value="softlight">Soft Light — نعومة سينمائية</option><option value="overlay">Overlay — تباين وتشبع</option><option value="multiply">Multiply — تعتيم</option><option value="color">Color — تلوين فقط</option></select></label><label>الشفافية %<input id="qOverlayOpacity" type="number" min="1" max="100" value="100"></label></div><div><label>ملاءمة المقاس<select id="qOverlayFit"><option value="cover">تغطية التصميم (Cover)</option><option value="contain">الخامة كاملة داخل التصميم (Contain)</option></select></label></div><button id="qOverlayApply" class="primary qToolPrimary" type="button">تطبيق في Photoshop بضغطة زر</button><p id="qOverlayApplyStatus" class="qToolStatus" role="status"></p><p class="qToolCaption">تُضاف الخامات كـ Smart Object عالي الدقة، وتُضاف الفلاتر كـ Adjustment Layer قابلة للتعديل والتحكم بكل حرية.</p></section>
+    </div>
+    <div id="imagePromptView" class="screen studioToolView" hidden style="display:none" data-qayem-no-translate>
+      <div class="qToolIntro"><span class="qToolEyebrow">QAYEM VISION</span><h1>صورة إلى برومبت</h1><p>حدد اللي عجبك في المرجع، واكتب فكرتك علشان يطلع برومبت واحد متكامل.</p><button id="qImageWallet" type="button">محفظتي وشحن الرصيد</button></div>
+      <section class="qToolPanel" data-studio-static="true">
+        <p id="qImageCreditSummary" class="qCreditInline">جاري قراءة الرصيد…</p>
+        <button id="qImagePick" class="qImageDrop" type="button"><svg class="studioToolVector" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="7" width="29" height="32" rx="5"/><circle cx="14" cy="16" r="3"/><path d="m6 31 10-10 9 9 8-7M39 14v15M35 18h8M35 25h8M11 44h29"/></svg><strong>اختار صورة التصميم</strong><span>PNG · JPEG · WEBP — حتى 5 MB</span></button><input id="qImageFile" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+        <img id="qImagePreview" class="qImagePreview" alt="الصورة المختارة للتحليل" hidden><p id="qImageName" class="qToolCaption"></p>
+        <label>هدف البرومبت<select id="qImageMode"><option value="describe">استخدام العناصر المختارة من المرجع</option><option value="improve">تطوير الفكرة بالعناصر المختارة</option><option value="continue">استكمال نفس التصميم بفكرتي</option></select></label>
+        <div class="qToolRow"><label>الحفاظ على المرجع<select id="qImageFidelity"><option value="close">قريب من المرجع</option><option value="free">تطوير بحرية</option></select></label><label>لغة البرومبت<select id="qImageLanguage"><option value="en">English</option><option value="ar">العربية</option></select></label></div>
+        <div class="qToolPanelHead"><strong>إيه اللي عجبك في التصميم؟</strong><span id="qImageAspectCount"></span></div><div class="qToolRow qToolSecondary"><button id="qImageSelectAll" type="button">تحديد الكل</button><button id="qImageSelectNone" type="button">مسح التحديد</button></div>
+        <div class="qImageAspects"><fieldset class="qImageAspectGroup"><legend>الكاميرا والتكوين</legend><label class="qToolCheck"><input id="qImageAspect_camera" data-image-aspect="camera" type="checkbox" checked>المنظور وزاوية الكاميرا</label><label class="qToolCheck"><input id="qImageAspect_framing" data-image-aspect="framing" type="checkbox" checked>الكادر والمسافة والقص</label><label class="qToolCheck"><input id="qImageAspect_placement" data-image-aspect="placement" type="checkbox" checked>مكان الشخص والعناصر</label></fieldset><fieldset class="qImageAspectGroup"><legend>الإخراج البصري</legend><label class="qToolCheck"><input id="qImageAspect_colors" data-image-aspect="colors" type="checkbox" checked>الألوان والمعالجة اللونية</label><label class="qToolCheck"><input id="qImageAspect_lighting" data-image-aspect="lighting" type="checkbox" checked>الإضاءة والظلال</label><label class="qToolCheck"><input id="qImageAspect_contrast" data-image-aspect="contrast" type="checkbox">التباين</label><label class="qToolCheck"><input id="qImageAspect_depth" data-image-aspect="depth" type="checkbox" checked>العمق السينمائي</label><label class="qToolCheck"><input id="qImageAspect_retouch" data-image-aspect="retouch" type="checkbox">الريتاتش وملمس البشرة</label></fieldset><fieldset class="qImageAspectGroup"><legend>الشخص</legend><label class="qToolCheck"><input id="qImageAspect_clothing" data-image-aspect="clothing" type="checkbox">الملابس والإكسسوارات</label><label class="qToolCheck"><input id="qImageAspect_pose" data-image-aspect="pose" type="checkbox">وضعية الجسم واليدين</label><label class="qToolCheck"><input id="qImageAspect_expression" data-image-aspect="expression" type="checkbox">تعبير الوجه</label></fieldset><fieldset class="qImageAspectGroup"><legend>المشهد والأسلوب</legend><label class="qToolCheck"><input id="qImageAspect_background" data-image-aspect="background" type="checkbox">الخلفية والديكور</label><label class="qToolCheck"><input id="qImageAspect_effects" data-image-aspect="effects" type="checkbox">العناصر والتأثيرات</label><label class="qToolCheck"><input id="qImageAspect_typography" data-image-aspect="typography" type="checkbox">الكتابة وتنسيقها</label><label class="qToolCheck"><input id="qImageAspect_style" data-image-aspect="style" type="checkbox" checked>الأسلوب العام للتصميم</label></fieldset></div>
+        <label class="qToolCheck"><input id="qImageIgnoreText" type="checkbox" checked>تجاهل الكتابة في التحليل</label><label class="qToolCheck"><input id="qImageNoText" type="checkbox">التصميم الناتج بدون كتابة</label>
+        <label>فكرتك أو التعديلات المطلوبة<textarea id="qImageNotes" rows="3" maxlength="2000" placeholder="مثال: استكمل نفس التصميم بمدرس كيمياء، أضف أدوات معمل وحافظ على الإضاءة والمنظور المختارين"></textarea></label><p id="qImageModeHint" class="qToolCaption">هيستخدم العناصر اللي حددتها فقط. التعديلات المكتوبة لها الأولوية عند التعارض.</p>
+        <p class="qToolCaption">كل الاختيارات تدخل في تحليل واحد وتكلفة واحدة. تُرسل الصورة إلى OpenAI عند الضغط على التحليل. النتيجة برومبت، وليست تعديلًا للصورة نفسها. للحفاظ على هوية شخص، استخدم مرجع هوية منفصل عند توليد الصورة.</p>
+        <button id="qImageAnalyze" class="primary qToolPrimary" type="button" disabled>تحليل الصورة وإنشاء البرومبت</button><button id="qImageRecover" type="button" hidden>استعادة نتيجة الطلب السابق بدون خصم جديد</button>
+        <p id="qImageStatus" class="qToolStatus" role="status" aria-live="polite"></p>
+        <label>البرومبت الناتج<textarea id="qImageResult" class="qImageResult" rows="10" dir="auto" placeholder="البرومبت هيظهر هنا بعد تحليل الصورة"></textarea></label>
+        <div class="qToolRow qToolSecondary"><button id="qImageCopy" type="button" disabled>نسخ البرومبت</button><button id="qImageClear" type="button">مسح الصورة والنتيجة</button></div>
+
+        <!-- In-App Image Generation System (التوليد الفوري داخل فوتوشوب) -->
+        <div class="qAiGenBox" style="margin-top:20px; padding:16px; background:#1c1a24; border:1px solid #3c374d; border-radius:10px;">
+          <div class="qToolIntro" style="margin-bottom:12px;"><span class="qToolEyebrow">IN-APP IMAGE GENERATION</span><h2 style="font-size:16px; margin:4px 0; color:#ffffff;">⚡ توليد فوري وإدراج في Photoshop</h2><p class="qToolCaption" style="margin:0;">توليد الصورة مباشرة من البرومبت وإدراجها كـ Smart Object داخل مشروعك المفتوح فورًا دون مغادرة البرنامج.</p></div>
+          <div class="qToolRow">
+            <label for="qAiEngine">محرك التوليد
+              <select id="qAiEngine">
+                <option value="fal-schnell">Fal.ai — Flux Schnell (أسرع توليد)</option>
+                <option value="fal-dev">Fal.ai — Flux Dev (أعلى جودة وتفاصيل)</option>
+                <option value="openai-dalle3">OpenAI — DALL-E 3</option>
+                <option value="stability-sd3">Stability AI — SD 3.5</option>
+                <option value="local-comfy">محرك محلي (ComfyUI / SD WebUI)</option>
+              </select>
+            </label>
+            <label for="qAiRatio">أبعاد التوليد
+              <select id="qAiRatio">
+                <option value="1:1">1:1 مربع (1024 × 1024)</option>
+                <option value="4:5">4:5 طولي انستجرام (896 × 1152)</option>
+                <option value="9:16">9:16 ستوري وتيك توك (768 × 1344)</option>
+                <option value="16:9">16:9 يوتيوب ولاندسكيب (1344 × 768)</option>
+              </select>
+            </label>
+          </div>
+          <details class="qToolDetails" style="margin:10px 0;">
+            <summary style="cursor:pointer; color:#b9b6c5; font-size:12px; padding:4px 0;">⚙️ إعدادات مفاتيح الربط والمحرك المحلي (API Keys & Host)</summary>
+            <div style="padding:10px 0; display:flex; flex-direction:column; gap:8px;">
+              <label id="qAiWrapFal">مفتاح Fal.ai API Key<input id="qAiKeyFal" type="password" dir="ltr" placeholder="fal_key_..."></label>
+              <label id="qAiWrapOpenai">مفتاح OpenAI API Key<input id="qAiKeyOpenai" type="password" dir="ltr" placeholder="sk-..."></label>
+              <label id="qAiWrapStability">مفتاح Stability API Key<input id="qAiKeyStability" type="password" dir="ltr" placeholder="sk-..."></label>
+              <label id="qAiWrapLocal">رابط المحرك المحلي Local URL<input id="qAiLocalUrl" type="text" dir="ltr" value="http://127.0.0.1:8188" placeholder="http://127.0.0.1:8188"></label>
+            </div>
+          </details>
+          <button id="qAiGenerateDirect" class="primary qToolPrimary" type="button" style="width:100%; margin-top:8px;">⚡ توليد فوري وإدراج في Photoshop كـ Smart Object</button>
+          <p id="qAiGenerateStatus" class="qToolStatus" role="status" aria-live="polite" style="margin-top:8px;"></p>
+          <img id="qAiGeneratePreview" class="qImagePreview" hidden alt="معاينة الصورة المولدة" style="max-height:160px; margin:10px auto 0; display:block; border-radius:6px;">
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="qCreditPortal" hidden data-qayem-no-translate><div class="qCreditPortalHead"><strong>QAYEM · أدوات بالكريدتس</strong><button id="qCreditPortalBack" type="button">المحفظة</button><button id="qCreditPortalClose" type="button">باقات البلاجن</button></div><div id="qCreditPortalBody"></div></div>
+  <script src="compat/cep-polyfills.js?v=1.24.52" defer></script>
+  <script src="compat/cep-bridge.js?v=1.24.52" defer></script>
+  <script src="compat/ui-compat.js?v=1.24.52" defer></script>
+  <script src="compat/ui-scale.js?v=1.24.52" defer></script>
+  <script src="compat/cep-lifecycle.js?v=1.24.52" defer></script>
+  <script src="compat/receipt-picker.js?v=1.24.52" defer></script>
+  <script src="compat/auth-config.js?v=1.24.52" defer></script>
+  <script src="compat/auth.js?v=1.24.52" defer></script>
+  <script src="compat/feature-catalog.js?v=1.24.52" defer></script>
+  <script src="compat/trial.js?v=1.24.52" defer></script>
+  <script src="compat/prompt-api.js?v=1.24.52" defer></script>
+  <script src="compat/clipboard.js?v=1.24.52" defer></script>
+  <script src="compat/hidden-design-sections.js?v=1.24.52" defer></script>
+  <script src="compat/navigation.js?v=1.24.52" defer></script>
+  <script src="compat/background.js?v=1.24.52" defer></script>
+  <script src="compat/distance.js?v=1.24.52" defer></script>
+  <script src="compat/prompt.js?v=1.24.52" defer></script>
+  <script src="compat/presets.js?v=1.24.52" defer></script>
+  <script src="compat/index.js?v=1.24.52" defer></script>
+  <script src="compat/multi-prompt.js?v=1.24.52" defer></script>
+  <script src="compat/multi.js?v=1.24.52" defer></script>
+  <script src="compat/surreal-prompt.js?v=1.24.52" defer></script>
+  <script src="compat/surreal.js?v=1.24.52" defer></script>
+  <script src="compat/teacher-characters.js?v=1.24.52" defer></script>
+  <script src="compat/teacher-cinematic-prompt.js?v=1.24.52" defer></script>
+  <script src="compat/teacher-normal-prompt.js?v=1.24.52" defer></script>
+  <script src="compat/teacher-prompt.js?v=1.24.52" defer></script>
+  <script src="compat/teacher-cinematic.js?v=1.24.52" defer></script>
+  <script src="compat/teacher-camera-presets.js?v=1.24.52" defer></script>
+  <script src="compat/teacher-normal.js?v=1.24.52" defer></script>
+  <script src="compat/teacher.js?v=1.24.52" defer></script>
+  <script src="compat/doctor-characters.js?v=1.24.52" defer></script>
+  <script src="compat/doctor-cinematic-prompt.js?v=1.24.52" defer></script>
+  <script src="compat/doctor-normal-prompt.js?v=1.24.52" defer></script>
+  <script src="compat/doctor-prompt.js?v=1.24.52" defer></script>
+  <script src="compat/doctor-cinematic.js?v=1.24.52" defer></script>
+  <script src="compat/doctor-normal.js?v=1.24.52" defer></script>
+  <script src="compat/doctor.js?v=1.24.52" defer></script>
+  <script src="compat/cosmetics-prompt.js?v=1.24.52" defer></script>
+  <script src="compat/cosmetics.js?v=1.24.52" defer></script>
+  <script src="compat/retouch-catalog.js?v=1.24.52" defer></script>
+  <script src="compat/retouch-engine.js?v=1.24.52" defer></script>
+  <script src="compat/retouch.js?v=1.24.52" defer></script>
+  <script src="compat/contact.js?v=1.24.52" defer></script>
+  <script src="compat/asset-cache.js?v=1.24.52" defer></script>
+  <script src="compat/text-template-catalog.js?v=1.24.52" defer></script>
+  <script src="compat/text-layout.js?v=1.24.52" defer></script>
+  <script src="compat/text-template-engine.js?v=1.24.52" defer></script>
+  <script src="compat/text-cep-bridge.js?v=1.24.52" defer></script>
+  <script src="compat/text-templates.js?v=1.24.52" defer></script>
+  <script src="compat/text-prompt-catalog.js?v=1.24.52" defer></script>
+  <script src="compat/text-prompt-builder.js?v=1.24.52" defer></script>
+  <script src="compat/text-prompt-ui.js?v=1.24.52" defer></script>
+  <script src="compat/grid-layout.js?v=1.24.52" defer></script>
+  <script src="compat/grid-color-picker.js?v=1.24.52" defer></script>
+  <script src="compat/pricing.js?v=1.24.52" defer></script>
+  <script src="compat/trends.js?v=1.24.52" defer></script>
+  <script src="compat/credits.js?v=1.24.52" defer></script>
+  <script src="compat/overlays.js?v=1.24.52" defer></script>
+  <script src="compat/studio-tools.js?v=1.24.52" defer></script>
+  <script src="compat/ui-state.js?v=1.24.52" defer></script>
+  <script src="compat/ui-fields.js?v=1.24.52" defer></script>
+  <script src="compat/ui-text.js?v=1.24.52" defer></script>
+  <script src="compat/ui-language-data.js?v=1.24.52" defer></script>
+  <script src="compat/ui-language.js?v=1.24.52" defer></script>
+  <script src="compat/ui-distance.js?v=1.24.52" defer></script>
+  <script src="compat/ui-choices.js?v=1.24.52" defer></script>
+  <script src="compat/ui-camera.js?v=1.24.52" defer></script>
+  <script src="compat/composition-preview.js?v=1.24.52" defer></script>
+  <script src="compat/ui-composition.js?v=1.24.52" defer></script>
+  <script src="compat/ui-studio.js?v=1.24.52" defer></script>
+  <script src="compat/ui-dropdowns.js?v=1.24.52" defer></script>
+  <script src="compat/startup-ready.js?v=1.24.52" defer></script>
+  <script src="compat/community.js?v=1.24.52" defer></script>
+  <script src="compat/auth-start.js?v=1.24.52" defer></script>
+  <script src="compat/updater.js?v=1.24.52" defer></script>
+</body>
+</html>

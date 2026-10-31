@@ -1,0 +1,6 @@
+QAYEM_OWNER_PASSWORD_REQUIRED — Owner: محمد قيم. Follow AGENTS.md before source edits.
+
+Facebook, WhatsApp and YouTube SVG path data: Simple Icons, CC0-1.0.
+Source: https://github.com/simple-icons/simple-icons
+Path data retrieved 2026-10-15; local colors and presentation set by QAYEM.
+Original packaged PNG assets are retained.

@@ -1,0 +1,160 @@
+﻿html, body { height: 100%; margin: 0; overflow: hidden; }
+body { background: #18171f; color: #f5f7fa; font: 13px Arial, sans-serif; }
+main { box-sizing: border-box; height: 100vh; padding: 9px 15px 13px; overflow-y: auto; overflow-x: hidden; }
+header { border-bottom: 1px solid #39424d; padding-bottom: 6px; }
+.brand { display: inline-block; color: #ff595e; font-size: 13px; font-weight: bold; letter-spacing: 2px; }
+h1 { margin: 2px 0 4px; color: #fff; font-size: 23px; }
+section { padding: 7px 14px; margin: 7px 0; background: #242b34; border: 1px solid #3b4654; border-radius: 10px; }
+label, strong { display: block; margin: 2px 0 4px; font-weight: bold; }
+label:not(:first-child) { margin-top: 10px; }
+input, select, button, textarea { box-sizing: border-box; font: inherit; border-radius: 7px; }
+input, select, textarea { width: 100%; padding: 10px; background: #171d25; color: #f6f8fa; border: 1px solid #566273; }
+select { margin-bottom: 4px; }
+input:focus, select:focus, textarea:focus { border-color: #67b7d4; outline: 0; }
+button { padding: 11px; color: #fff; background: #2c3236; border: 0; cursor: pointer; }
+button:disabled { opacity: .55; }
+.hint { margin: 3px 0 5px; color: #bac7d3; line-height: 1.55; }
+.instructions { border-right: 3px solid #e54853; }
+.instructions p { line-height: 1.6; margin: 3px 0; }
+.instructions b { color: #fff; }
+.primary { display: block; width: 100%; background: #c53440; padding: 13px; font-weight: bold; }
+.primary:hover { background: #dc424e; }
+.previewLabel { margin-top: 9px; }
+#preview { resize: vertical; min-height: 145px; line-height: 1.5; overflow-wrap: anywhere; }
+#status { min-height: 22px; line-height: 1.6; }
+.roomIdea { min-height: 86px; line-height: 1.6; resize: vertical; }
+[hidden] { display: none !important; }
+.modeCard { display: block; width: 100%; margin-top: 8px; padding: 18px; text-align: right; line-height: 1.6; background: #242b34; border: 1px solid #566273; }
+.modeCard:hover { border-color: #ff737b; background: #2c3540; }
+.modeCard strong { color: #fff; font-size: 17px; margin: 0 0 3px; }
+.modeCard span { color: #c9d4df; }
+.backButton { padding: 2px 0 7px; color: #a7d9eb; background: transparent; }
+.secondary { background: #435769; font-weight: bold; }
+.secondary:hover { background: #526b80; }
+.suggestionBar { margin-top: 10px; }
+.suggestionBar .secondary { width: 100%; }
+.cloneCard { border-right: 3px solid #e54853; }
+.cloneCard h2 { margin: 0 0 6px; font-size: 16px; }
+.cloneCard .fixedOutfit { padding: 10px; line-height: 1.55; background: #1b222b; border-radius: 7px; }
+.cloneCard .resetButton { margin-top: 6px; width: 100%; }
+.cloneCard .hint { margin-top: 2px; }
+#multiPreview { resize: vertical; min-height: 165px; line-height: 1.5; overflow-wrap: anywhere; }
+#multiStatus { min-height: 22px; line-height: 1.6; }
+
+.surrealCard { border-color: #9766cf; }
+.paletteSwatches { margin: 2px 0 5px; }
+.paletteSwatches span { display: inline-block; width: 30%; height: 18px; margin-left: 3%; border-radius: 5px; }
+#surrealPreview { resize: vertical; min-height: 165px; line-height: 1.5; overflow-wrap: anywhere; }
+#surrealStatus { min-height: 22px; line-height: 1.6; }
+
+/* PSD palette on native HTML buttons for reliable host activation. */
+.dashboard { width: 100%; padding: 4px 0 0; }
+.dashboardHeader { display: block; text-align: center; padding: 0 6px; }
+.dashboardBrand { display: block; width: 86%; max-width: 340px; height: auto; margin: 0 auto 8px; }
+.ownershipNotice { font-size: 13px; line-height: 1.8; color: #d7d5df; margin: 0 auto 10px; text-align: center; white-space: normal; }
+.dashboardHeading { display: inline-block; background: #48a0e4; color: white; border-radius: 30px; padding: 10px 22px; font-size: 17px; font-weight: bold; line-height: 1.5; text-align: center; }
+.dashboardDivider { height: 1px; background: #76747c; margin: 13px 0; }
+.dashboardRoutes { padding: 0 8px; }
+.dashboardRoute { box-sizing: border-box; display: block; width: 100%; min-height: 62px; margin: 0 0 10px; padding: 17px 12px; border: 2px solid #e44848; border-radius: 40px; background: #e44848; color: #fff; font-size: 20px; font-weight: bold; line-height: 1.4; text-align: center; white-space: normal; cursor: pointer; }
+.dashboardRoute:hover { background: #f05b5b; border-color: #f05b5b; }
+.dashboardRoute:focus { border-color: #88c8fa; }
+.dashboardVersion { margin: 11px 0 0; text-align: center; color: #9d99a7; font-size: 11px; }
+.ratioPicker { display: flex; flex-direction: row; justify-content: space-between; padding: 5px; border-radius: 12px; background: #171d25; }
+.ratioChoice { display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; width: 19%; min-height: 55px; padding: 7px 1px; border: 1px solid transparent; border-radius: 9px; cursor: pointer; text-align: center; font-size: 12px; font-weight: bold; }
+.ratioChoice.selected { background: #444953; }
+.ratioChoice:focus { border-color: #88c8fa; }
+.ratioIcon { display: block; box-sizing: border-box; border: 2px solid #f5f7fa; border-radius: 2px; margin: 0 0 3px; }
+.ratio916 { width: 9px; height: 16px; }
+.ratio34 { width: 12px; height: 16px; }
+.ratio11 { width: 15px; height: 15px; }
+.ratio43 { width: 18px; height: 13px; }
+.ratio169 { width: 21px; height: 12px; }
+.teacherIdea { min-height: 150px; resize: vertical; line-height: 1.7; }
+#teacherPreview { min-height: 170px; resize: vertical; line-height: 1.5; overflow-wrap: anywhere; }
+#teacherStatus { min-height: 22px; line-height: 1.6; }
+
+.teacherCharacterCard { margin-top: 8px; padding: 12px; border: 1px solid #566273; border-right: 3px solid #48a0e4; border-radius: 9px; background: #1b222b; }
+.teacherCharacterCard h2 { font-size: 15px; margin: 0 0 6px; color: #88c8fa; }
+.referenceRow { margin: 4px 0; padding: 5px 9px; line-height: 1.6; background: #171d25; border-radius: 7px; overflow-wrap: anywhere; }
+.teacherModelNotice { margin: 7px 0; padding: 7px 13px; border: 2px solid #48a0e4; border-radius: 9px; background: #17283a; }
+.teacherModelNotice strong { margin: 0 0 4px; font-size: 20px; line-height: 1.5; color: #fff; }
+.teacherModelNotice strong span { display: block; white-space: nowrap; }
+.teacherModelNotice p { margin: 0; line-height: 1.6; color: #c2d9ee; }
+.retouchIntro { border-right-color: #48a0e4; }
+.retouchDetails { margin-top: 5px; padding: 6px 12px; background: #171d25; border: 1px solid #435769; border-radius: 9px; }
+.retouchDetails strong { margin-top: 0; color: #88c8fa; overflow-wrap: anywhere; }
+.retouchDetails p { margin: 4px 0; line-height: 1.65; }
+#retouchActionNotes { color: #efc989; white-space: pre-wrap; overflow-wrap: anywhere; }
+.retouchCheck { display: flex; flex-direction: row; align-items: center; line-height: 1.6; }
+.retouchCheck input { width: 18px; height: 18px; flex-shrink: 0; margin-left: 9px; }
+#retouchStatus { min-height: 24px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Owner contact area on the dashboard. */
+.contactCard { margin: 13px 8px 0; padding: 9px 14px 6px; text-align: center; background: #22242d; border: 1px solid #424653; border-radius: 15px; }
+.contactCard h2 { margin: 0 0 3px; font-size: 17px; line-height: 1.5; color: #fff; }
+.contactCaption { margin: 0 0 8px; color: #b7bfce; font-size: 12px; }
+.contactLink { box-sizing: border-box; display: block; width: 100%; min-height: 44px; margin: 5px 0; padding: 12px; border: 1px solid transparent; border-radius: 9px; color: #fff; font-size: 14px; line-height: 1.4; font-weight: bold; cursor: pointer; }
+.contactFacebook { background: #2869b5; border-color: #4386cf; }
+.contactFacebook:hover { background: #337ac8; }
+.contactYouTube { background: #a83240; border-color: #d45361; }
+.contactYouTube:hover { background: #c04150; }
+.contactWhatsApp { background: #247652; border-color: #409a73; }
+.contactWhatsApp:hover { background: #2d8961; }
+.contactPhone { margin: 9px 0 3px; color: #f4f7fb; font-size: 20px; letter-spacing: 1px; font-weight: bold; user-select: text; }
+.contactCopy { display: block; margin: 0 auto; padding: 8px; color: #a9d6ff; border: 1px solid transparent; border-radius: 7px; line-height: 1.4; font-size: 12px; cursor: pointer; }
+.contactLink:focus, .contactCopy:focus { border-color: #c0e1ff; }
+.contactStatus { min-height: 18px; margin: 4px 0 0; color: #becad5; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+
+.cinematicSection { border-right: 3px solid #d8ae72; }
+.cinematicSection h2 { margin: 0 0 5px; font-size: 17px; color: #f2d6ae; line-height: 1.5; }
+.cinematicSection input:disabled { opacity: .65; }
+
+.startupError { padding: 12px; border: 1px solid #e44848; border-radius: 8px; color: #ffb2b2; line-height: 1.7; white-space: pre-wrap; }
+.contactCopy { background: transparent; }
+
+.primary[data-copy-state="copied"] { background: #247652; }
+
+.compatibilityNotice{margin:0 0 8px;padding:6px 12px;border:1px solid #976c36;border-radius:10px;background:#302719;color:#ffe1aa;font-size:12px;line-height:1.8;overflow-wrap:break-word;}
+
+
+/* Consistent compact spacing, including native host control margins. */
+p { margin: 6px 0; }
+h2 { margin: 0 0 6px; }
+input, select, textarea { margin-top: 0; }
+.startupError { padding: 6px 12px; }
+.cloneCard .fixedOutfit { padding: 5px 10px; }
+
+/* Explicit vertical fields: native controls and custom ratio tiles share one gap. */
+main .qayemField { display:flex; flex-direction:column; align-items:stretch; box-sizing:border-box; width:100%; margin:8px 0 0; padding:0; }
+main .qayemField:first-child { margin-top:0; }
+main .qayemField .qayemFieldLabel { display:block; flex-shrink:0; min-height:0; height:auto; margin:0; padding:0; font-weight:bold; line-height:1.45; }
+main .qayemField .qayemFieldControl { flex-shrink:0; box-sizing:border-box; width:100%; margin:8px 0 0; }
+main .qayemField input.qayemFieldControl, main .qayemField select.qayemFieldControl, main .qayemField textarea.qayemFieldControl { display:block; }
+
+/* Alternate only the numbered normal-teacher cards; leave controls high-contrast. */
+#teacherView section.teacherNormalEven { background:#35292f; border-color:#70515b; }
+
+/* Cosmetics mode uses the same compact fields and scaling as the other screens. */
+#cosmeticsView section.cosmeticsEven { background:#35292f; border-color:#70515b; }
+.cosmeticsRatioPicker { flex-wrap:wrap; }
+.cosmeticsRatioPicker .ratioChoice { width:32%; margin:2px 0; }
+.ratio45 { width:13px; height:16px; }
+#cosmeticsPreview { min-height:170px; resize:vertical; line-height:1.5; overflow-wrap:anywhere; }
+#cosmeticsStatus { min-height:22px; line-height:1.6; }
+
+/* Explicit flex centering works without native UXP inline-block text alignment. */
+.dashboardHeader { box-sizing:border-box; width:100%; }
+.dashboardHeadingRow { display:flex; flex-direction:row; justify-content:center; align-items:center; box-sizing:border-box; width:100%; }
+.dashboardHeadingRow .dashboardHeading { display:block; box-sizing:border-box; max-width:100%; flex-shrink:1; text-align:center; }
+
+.languageCard { margin:7px 8px; padding:7px 12px; }
+#uiLanguageStatus:empty { display:none; }
+html[dir="ltr"] .retouchCheck input { margin-left:0; margin-right:9px; }
+
+/* Doctor mode uses the same visual cards and independent form ids. */
+#doctorPreview { min-height:170px; resize:vertical; line-height:1.5; overflow-wrap:anywhere; }
+#doctorStatus { min-height:22px; line-height:1.6; }
+#doctorView section.teacherNormalEven { background:#35292f; border-color:#70515b; }
+
+/* Retained experimental routes stay hidden at every UI scale and language. */
+.qayemArchivedEntry { display:none !important; }

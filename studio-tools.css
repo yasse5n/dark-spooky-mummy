@@ -1,0 +1,76 @@
+﻿.qPasswordField{position:relative;display:flex;align-items:center;margin-bottom:13px}
+.qPasswordField input{width:100%;box-sizing:border-box;padding-left:48px!important;margin:0!important;min-height:44px}
+#qayemAuthGate .qPasswordToggle{position:absolute;left:5px;top:5px;width:35px;height:34px;min-height:0;margin:0;padding:7px;background:#30242c;color:#f5c9d0;border:1px solid #65404a;border-radius:7px;cursor:pointer}
+.qPasswordToggle svg{display:block;width:20px;height:20px}.qPasswordSlash{display:none}.qPasswordToggle[aria-pressed="true"] .qPasswordSlash{display:block}
+.qPasswordToggle:focus{outline:2px solid #ff7c8c;outline-offset:2px}
+body main>.studioHomeHeader{padding:7px 0 15px;border-bottom:1px solid #363b3e;margin-bottom:12px;min-height:55px;flex-wrap:wrap}
+body main>.studioHomeHeader .studioHomeBrand{width:29%;min-width:90px}
+body main>.studioHomeHeader .studioHomeActions{flex-wrap:wrap;gap:5px;justify-content:flex-end;max-width:70%}
+body main>.studioHomeHeader .studioReady{display:none}
+body main #studioHomeBack{display:flex;align-items:center;justify-content:center;gap:9px;width:auto;max-width:100%;padding:10px 17px;margin:3px 0 14px;min-height:42px;background:#48232c;border:1px solid #ff455d;border-radius:10px;color:#fff;font-size:14px;font-weight:bold}
+body main #studioHomeBack[hidden]{display:none!important}#studioHomeBack span{font-family:Arial;font-size:24px;line-height:1}
+body main .studioHeroAction{width:auto!important;max-width:100%;display:inline-flex!important;justify-content:space-between;gap:12px;min-width:0;padding:10px 14px!important}
+body main .qayemWelcomeOffer{padding:20px 18px;margin:0 0 16px;border:1px solid #a6374d;border-radius:15px;text-align:center;background:radial-gradient(ellipse at 50% 0,#8c263b 0,#3b1c29 55%,#211922 100%);box-shadow:0 8px 20px #0003}
+.qWelcomeEyebrow{display:inline-block;color:#ffd1d6;border:1px solid #b85265;border-radius:20px;padding:2px 12px;font-size:11px}
+body main .qayemWelcomeOffer .qayemWelcomeTitle{display:block;font-size:38px;font-size:clamp(30px,8vw,48px);line-height:1.5;color:#fff;font-weight:bold;margin-top:5px}
+.qWelcomeSubtitle{display:block;color:#f2bbc6;font-size:12px;line-height:1.6}.qWelcomeClock{background:#190f18;border:1px solid #62303f;border-radius:10px;margin:12px 0;padding:10px 4px}
+.qWelcomeClock>span{display:block;font-size:11px;color:#d1acb8}
+body main .qayemWelcomeRemaining{display:block;color:#fff;font-family:Arial,sans-serif;font-size:36px;font-size:clamp(26px,8vw,44px);font-weight:bold;line-height:1.35;letter-spacing:3px;text-align:center;margin:6px 0!important;font-variant-numeric:tabular-nums}
+body main .qayemWelcomeOffer small{font-size:10px;line-height:1.7;opacity:.85;margin-top:10px}
+body main #qayemWelcomeSubscribe{width:100%;min-height:43px;border:1px solid #ff6576;border-radius:9px;background:#f22d46;color:white;font-weight:bold;margin:4px 0}
+body main .studioHomeRoutes{display:flex;flex-wrap:wrap;justify-content:flex-start}
+body main #modeHome .studioHomeRoutes>.studioToolCard{box-sizing:border-box;flex:0 0 calc(33.333% - 8px);width:calc(33.333% - 8px);margin:4px;min-height:153px;padding:18px 4px 12px}
+.studioToolVector{display:block;width:48px;height:48px;margin:0 auto 10px;color:#ff5068;flex-shrink:0}
+.studioToolView{color:#f3f4f5}.qToolIntro{margin:10px 0 17px}.qToolEyebrow{font-family:Arial;font-size:10px;letter-spacing:2px;color:#ff768b}.qToolIntro h1{font-size:25px;margin:5px 0}.qToolIntro p{color:#aeb8be;font-size:12px;margin:0;line-height:1.7}
+body main .qToolPanel{padding:14px!important;background:#22272b!important;border:1px solid #43494e!important;border-radius:13px!important}
+.qToolPanel h2{font-size:16px;margin:0 0 10px}.qToolPanel label{display:block;font-size:12px;color:#d8cbd2;line-height:1.7;margin:8px 0}.qToolPanel select,.qToolPanel input,.qToolPanel textarea{box-sizing:border-box;display:block;width:100%;margin:5px 0 0;min-height:38px;border:1px solid #4d414b;border-radius:8px;padding:8px;background:#15191c;color:#f6f4f5;font:inherit}
+.qToolPanel textarea{resize:vertical;line-height:1.8;min-height:74px;overflow:auto}
+.qToolPanelHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.qToolPanelHead button{width:auto;margin:0;padding:6px 10px;font-size:11px}
+.qToolRow{display:flex;flex-wrap:wrap;margin:0 -4px}.qToolRow>label,.qToolRow>button{box-sizing:border-box;flex:1;min-width:80px;margin:5px 4px}
+.qToolCaption{color:#aeb5bc;font-size:11px;text-align:center;line-height:1.8;overflow-wrap:break-word}
+.qGridFinder{position:relative;display:flex;align-items:center;justify-content:center;min-height:180px;padding:13px;background:#121618;border:1px solid #40464b;border-radius:11px;overflow:hidden}
+.qGridFinder:before,.qGridFinder:after{content:'';position:absolute;top:6px;bottom:6px;width:12px;border-top:2px solid #ff5269;border-bottom:2px solid #ff5269;pointer-events:none}
+.qGridFinder:before{right:6px;border-right:2px solid #ff5269}.qGridFinder:after{left:6px;border-left:2px solid #ff5269}
+#qGridPreview{display:block;background:#f4f0f2;max-width:100%;width:142px;height:178px}
+.qGridTypes{display:flex;flex-wrap:wrap;margin:8px -3px}.qGridTypes button{box-sizing:border-box;width:calc(33.333% - 6px);margin:3px;padding:7px 3px;border-radius:8px;background:#161a1e;border:1px solid #48434a;color:#cfc5cc;font-size:10px;min-height:70px}
+.qGridTypes button[aria-pressed="true"]{border-color:#ff4b65;background:#482532;color:#fff;box-shadow:inset 0 0 0 1px #ff4b65}
+.qGridTypes svg{width:34px;height:38px;display:block;margin:0 auto 5px;background:#eee}
+.qToolDetails{border-top:1px solid #42454b;border-bottom:1px solid #42454b;margin:12px 0;padding:8px 0}.qToolDetails summary{color:#ff96a5;cursor:pointer;font-size:12px}
+.qToolRow>.qGridColorWrap{flex:2;min-width:145px;margin:5px 4px}.qGridColorWrap>label{margin:3px 0!important}
+.qGridColorField{display:flex;flex-wrap:wrap;align-items:center}.qGridColorField #qGridColor{flex:1;min-width:78px;width:80px;margin:0;font-family:Arial,sans-serif;font-size:12px}
+body main .qToolPanel #qGridColorPick{display:flex;flex:1;align-items:center;justify-content:center;min-width:110px;min-height:39px;margin:0 0 0 5px;padding:7px 8px;border:1px solid #985064;border-radius:8px;background:#3b2530;color:white;font-size:12px}
+#qGridColorSwatch,#qGridColorSample{display:inline-block;box-sizing:border-box;flex-shrink:0;width:22px;height:22px;border:1px solid #ffffffa6;border-radius:5px;background:#ff2940;margin-left:7px}
+.qGridColorPalette{border:1px solid #8e4459;background:#191e22;border-radius:10px;padding:12px;margin:8px 0 12px;box-shadow:0 5px 15px #0003}
+.qGridPaletteHead{display:flex;align-items:center;margin-bottom:10px;font-size:12px}.qGridPaletteHead strong{flex:1}.qGridPaletteHead #qGridColorValueLabel{font:12px Arial,sans-serif}
+.qGridColorMap{position:relative;height:145px;max-width:100%;border:1px solid #777;border-radius:7px;background-color:red;background-image:linear-gradient(to top,#000,transparent),linear-gradient(to right,#fff,rgba(255,255,255,0));cursor:crosshair;touch-action:none;user-select:none;-webkit-user-select:none;outline-offset:3px}
+#qGridColorMarker{position:absolute;width:12px;height:12px;box-sizing:border-box;border:2px solid white;border-radius:50%;box-shadow:0 0 0 1px #111;transform:translate(-50%,-50%);pointer-events:none}
+.qToolPanel .qGridColorPalette input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:16px;min-height:16px;margin:7px 0;padding:0;border:1px solid #68606a;border-radius:8px;background:#4a4e56;cursor:pointer}
+.qToolPanel .qGridColorPalette input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:22px;border:2px solid white;border-radius:5px;background:#282b32;box-shadow:0 0 2px #000}
+.qToolPanel .qGridColorPalette input.qGridHue{background:linear-gradient(to right,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)}
+.qGridColorPresets{display:flex;flex-wrap:wrap;margin:7px -3px}.qToolPanel .qGridColorPresets button{flex:1;min-width:25px;max-width:45px;height:28px;min-height:28px;border:1px solid #aaa;border-radius:5px;margin:3px;padding:0}
+.qGridColorMap:focus{outline:2px solid #ff92a4}
+.qToolCheck{display:flex!important;align-items:center;font-size:11px!important}.qToolCheck input{width:17px!important;height:17px;min-height:17px!important;flex-shrink:0;margin:0 0 0 7px!important;padding:0!important}
+body main .qToolPanel .qToolPrimary{display:block;width:100%;border:1px solid #ff5e74;border-radius:9px;background:#ed2f49;color:white;min-height:44px;font-weight:bold;margin:12px 0 5px;padding:10px}
+.qToolSecondary button{background:#30323a;border:1px solid #51434f;padding:8px 5px;border-radius:8px;color:#e0cbd5;font-size:11px;min-height:35px}
+.qToolStatus{font-size:12px;line-height:1.8;white-space:pre-wrap;color:#b2e5d0;margin:8px 0 0;overflow-wrap:break-word}.qToolStatus.is-error{color:#ffadba}
+body main .qToolPanel button:disabled{opacity:.45;cursor:default}.qToolPanel [hidden]{display:none!important}.qToolPanel button:focus{outline:2px solid #ff92a4;outline-offset:2px}
+body main .qToolPanel .qImageDrop{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-height:138px;background:#1b2024;border:1px dashed #a44960;border-radius:12px;color:#f5e4ec;padding:15px}
+.qImageDrop span{color:#bda2b1;font-size:11px;margin-top:7px}.qImageDrop .studioToolVector{width:40px;height:40px}
+.qImagePreview{display:block;max-width:100%;max-height:225px;object-fit:contain;margin:12px auto;border:1px solid #68515f;border-radius:9px}.qImageResult{min-height:190px!important;font-family:Arial,sans-serif!important;font-size:13px!important;user-select:text;-webkit-user-select:text}
+@media(max-width:370px){body main #modeHome .studioHomeRoutes>.studioToolCard{flex-basis:calc(50% - 8px);width:calc(50% - 8px)}body main>.studioHomeHeader .studioHomeActions{gap:3px}.studioHomeActions button{width:28px;height:29px;padding:4px}body main .qayemWelcomeRemaining{font-size:30px;letter-spacing:2px}}
+/* QAYEM 1.24.46: visible grid action, visual assets, selective vision and wallets. */
+body main .qToolPanel #qGridRefresh{background:#df243e!important;color:#fff!important;border:1px solid #ff6d83!important;font-weight:bold;min-height:32px;padding:6px 12px;opacity:1}
+body main .qToolPanel #qGridRefresh:disabled{background:#63333e!important;color:#ead5da!important;border-color:#80505c!important;opacity:1}
+.qImageAspectGroup{border:1px solid #494049;border-radius:9px;padding:8px;margin:8px 0}.qImageAspectGroup legend{font-size:12px;color:#ff9eaf;padding:0 5px}.qImageAspects .qToolCheck{display:inline-flex!important;box-sizing:border-box;width:49%;vertical-align:top;align-items:flex-start;min-height:31px;margin:5px 0}.qImageAspects input{accent-color:#f43550}.qImageAspects input:disabled+span{opacity:.5}
+.qCreditInline{background:#3c2530;border:1px solid #804657;color:#fff;padding:10px;border-radius:9px;font-size:12px;line-height:1.8;text-align:center}.qCreditBalance{text-align:center;padding:13px;background:linear-gradient(135deg,#502634,#1b2025);border:1px solid #8a4156;border-radius:10px}.qCreditBalance>span,.qCreditBalance>strong,.qCreditBalance>small{display:block}.qCreditBalance>strong{font:bold 42px Arial,sans-serif;margin:10px}.qCreditBalance p{font-size:12px;color:#f3ced9}.qCreditPackages{display:flex;flex-wrap:wrap}.qCreditPackages button{box-sizing:border-box;width:calc(50% - 8px);margin:4px;white-space:pre-line;border:1px solid #795060;background:#29212c;color:#fff;border-radius:10px;padding:12px 8px;line-height:1.8;font-size:12px}.qCreditPackages button[aria-pressed=true]{border-color:#ff687f;background:#532836}.qCreditHistoryRow{display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #45414a;font-size:11px}.qCreditHistoryRow span{flex:1}.qCreditHistoryRow button,#qCreditRefresh,#qImageRecover,#qImageWallet{background:#32242e;color:#ffc6d0;border:1px solid #805064;border-radius:7px;padding:7px;font-size:11px}#qCreditOrders p,#qCreditHistory p{font-size:12px;line-height:1.8}
+#qCreditPortal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:95000;overflow:auto;background:#181c20;padding:12px;box-sizing:border-box;font-family:inherit}#qCreditPortal[hidden]{display:none!important}.qCreditPortalHead{display:flex;flex-wrap:wrap;align-items:center;border-bottom:1px solid #5b3c4c;padding-bottom:12px}.qCreditPortalHead strong{flex:1;font-size:13px;color:#fff}.qCreditPortalHead button{background:#592838;color:white;border:1px solid #8a4055;border-radius:7px;padding:6px;margin:4px;font-size:11px}#qCreditPortalBody .screen{max-width:720px;margin:auto}#qCreditPortalBody .qToolPanel{padding:14px;background:#22272b;border:1px solid #43494e;border-radius:13px;margin-bottom:12px}#qCreditPortalBody .qToolPrimary{display:block;width:100%;border:1px solid #ff5e74;border-radius:9px;background:#ed2f49;color:white;min-height:44px;font-weight:bold;margin:12px 0 5px;padding:10px}#qCreditPortalBody .qImageDrop{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-height:130px;background:#1b2024;border:1px dashed #a44960;color:#f5e4ec;border-radius:12px;padding:15px}#qCreditPortalBody button:disabled{opacity:.5;cursor:default}
+.qOverlayItems{display:flex;flex-wrap:wrap;margin:10px -4px}.qOverlayItems button{position:relative;box-sizing:border-box;width:calc(33.333% - 8px);margin:4px;padding:4px;background:#13171c;border:1px solid #5e4451;border-radius:9px;color:#e9dbe2;font-size:10px}.qOverlayItems img{display:block;width:100%;height:87px;object-fit:contain;background:#0d1014;border-radius:6px}.qOverlayItems span{display:block;margin-top:5px}.qOverlayItems button[aria-pressed=true]{border:2px solid #ff4869;background:#432532}.qOverlayPreview{display:block;width:100%;max-height:330px;object-fit:contain;margin:8px auto;border:1px solid #73505d;border-radius:8px;background:#10141a}#qOverlayPage{font:12px Arial,sans-serif;align-self:center;padding:5px}#qOverlayApplyStatus{margin-top:10px}.qOverlayItems button:focus{outline:2px solid #ffa0b1}
+@media(max-width:360px){.qImageAspects .qToolCheck{width:100%}.qOverlayItems img{height:70px}.qCreditPackages button{width:calc(100% - 8px)}}
+
+/* QAYEM 1.24.50: scoped equally inside main and the relocated credits portal. */
+#qCreditReceiptPick{display:block;box-sizing:border-box;width:100%;min-height:42px;margin:12px 0 8px;padding:10px 12px;border:1px solid #ff7287;border-radius:9px;background:#cf233b;color:#fff;font-family:inherit;font-size:13px;font-weight:bold;cursor:pointer}
+#qCreditReceiptPick:hover,#qCreditReceiptPick:focus{background:#b51d34;outline:2px solid #ffa4b2;outline-offset:2px}
+#qCreditReceiptPick:disabled{background:#63333e;border-color:#80505c;color:#f4dde3;opacity:1;cursor:default}
+.qCreditVodafone{margin:12px 0;padding:12px 8px;border:1px solid #76505b;border-radius:10px;background:#191d21;text-align:center}
+.qCreditVodafone>p{margin:0 0 8px;font-size:12px;line-height:1.7;color:#e4d8de}
+#qCreditPhone{display:block;width:100%;box-sizing:border-box;margin:8px auto;text-align:center;direction:ltr;font-family:Arial,Tahoma,sans-serif;font-size:28px;line-height:1.35;font-weight:800;letter-spacing:1px;color:#fff;user-select:text;-webkit-user-select:text;overflow-wrap:break-word}

@@ -1,0 +1,26 @@
+QAYEM_OWNER_PASSWORD_REQUIRED — المالك محمد قيم. التعديل والحذف يتطلبان التحقق المحلي حسب AGENTS.md.
+
+QAYEM Style Studio 1.24.17 — إصلاح تحميل CEP في Photoshop 19 و20
+
+• تصحيح CSXS/manifest.xml: ترتيب Geometry هو Size ثم MaxSize ثم MinSize، وHeight قبل Width. الملف الحالي اجتاز مخطط Adobe الرسمي CEP 7/8.
+• إزالة object spread من أربعة ملفات واجهة، لأنه غير مدعوم بمحرك Chromium 57 في Photoshop 19. كل ملفات JavaScript الـ47 اجتازت تحليل ES2017.
+• مثبت Windows يفحص PlayerDebugMode كنص REG_SZ بالقيمة 1 في CSXS.8–12 وفي عرضي 32/64 عند وجودهما. لا يعيد إنشاء المفاتيح الموجودة ولا يمس باقي قيمها.
+• مشغلات CMD تستخدم Windows PowerShell الصحيح عبر Sysnative عند فتحها من عملية 32-bit؛ مشغل النسخ القديمة يرجع رمز الفشل الصحيح.
+• Diagnose_CEP_Windows.cmd يفحص الملفات وإعدادات CEP ونسخ QAYEM المكررة، ويكتب تقريرًا فقط. لا يصلح أو يحذف أي شيء، ولا يغير تفضيلات Photoshop.
+• إصلاحات الكتابة والإغلاق وفصل خطوط الجهاز في 1.24.16 باقية. جميع مثبتات الخطوط معطلة. لا ينسخ أو يسجل أو يعدل أو يحذف المثبت أي خط على الجهاز.
+
+التشغيل في Windows / Photoshop 19.x و20.x و21.x:
+1. فك ZIP بالكامل في مجلد جديد. احفظ العمل وأغلق Photoshop.
+2. افتح Install_PS19-21_Windows.cmd مباشرة. لا تختار CCX أو UXP لهذه النسخ.
+3. افتح Photoshop. من Edit > Preferences > Plug-ins فعّل Load Extension Panels إن كان غير مفعّل، ثم أعد تشغيل Photoshop.
+4. افتح Window > Extensions > QAYEM Style Studio. في الأحدث قد تسمى Extensions (Legacy).
+5. إذا لم تظهر اللوحة: شغّل Diagnose_CEP_Windows.cmd من نفس الحزمة، ثم أرسل التقرير CEP_DIAGNOSTICS.txt الذي يفتحه. يوجد تحت %APPDATA%\QAYEM\Installer. يحتوي مسارات تثبيت الجهاز، ولا يحتوي كلمات سر أو ملفات التصميم.
+
+Photoshop 2019 هو 20.x و2020 هو 21.x؛ اعتمد رقم Help > About Photoshop عند اختيار المسار. CCX/UXP متاح في الحزمة لإصدارات 22 فأحدث فقط.
+Windows: Setup_QAYEM_Windows.exe يعرض اختيار النسخ القديمة، أو استخدم CMD المباشر أعلاه. Mac: Mac/Setup_QAYEM_Mac.command. تظهر النسخة 1.24.17 في الرئيسية.
+
+التحقق: مخطط Adobe، تحليل جميع JS، محاكاة عرضي Registry وقيم DWORD/String مع حماية القيم الأخرى، اختبارات الكتابة والإغلاق، تشغيل مثبت CEP ونسخ/استعادة بملفات فعلية على Linux/PowerShell، واختبارات مسارات Mac بالمحاكاة. لم يتوفر Photoshop 19/20 فعلي أو Windows/Mac أصلي هنا؛ نجاح هذه الاختبارات لا يضمن أن إعدادات جهاز المستخدم تسمح بتحميل اللوحة.
+
+المراجع التقنية:
+https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_7.x/ExtensionManifest_v_7_0.xsd
+https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_8.x/Documentation/CEP%208.0%20HTML%20Extension%20Cookbook.md

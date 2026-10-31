@@ -1,0 +1,8 @@
+{
+  "protocol": 1,
+  "bundleId": "com.qayem.style-studio.legacy",
+  "version": "1.24.52",
+  "apiBase": "https://studio.qayem.art",
+  "minPS": 18,
+  "maxPS": 27
+}

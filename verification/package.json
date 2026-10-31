@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@babel/core": "7.28.5",
+    "@babel/preset-env": "7.28.5",
+    "acorn": "8.15.0"
+  },
+  "name": "qayem-cep-verification",
+  "version": "1.24.52",
+  "private": true,
+  "scripts": {
+    "build:compat": "node build-compat.cjs .."
+  }
+}

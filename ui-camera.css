@@ -1,0 +1,14 @@
+﻿main .qayemCamera { box-sizing:border-box; width:100%; padding:10px; background:#142233; border:1px solid #426582; border-radius:12px; flex-shrink:0; }
+main .qayemCameraTop { display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; }
+main .qayemCameraStatus { color:#9adeff; font-weight:700; padding:2px 4px; }
+main .qayemCamera button { padding:4px 10px; color:#dfeefa; border:1px solid #426582; background:#253d53; border-radius:7px; line-height:1.5; }
+main .qayemCamera button[aria-pressed="true"] { color:#fff; background:#245978; border-color:#66c8ff; }
+main .qayemCamera button:focus, main .qayemCameraStage:focus { outline:2px solid #e9c274; }
+main .qayemCameraStage { display:flex; align-items:center; justify-content:center; width:100%; height:190px; cursor:ns-resize; overflow:hidden; border-radius:8px; user-select:none; touch-action:none; }
+main .qayemCameraScene { display:block; width:100%; height:100%; pointer-events:none; }
+main .qayemCameraHelp { color:#b5cbdc; font-size:inherit; margin:3px 0 8px; }
+main .qayemCameraMove { display:flex; align-items:center; justify-content:center; margin-bottom:8px; }
+main .qayemCameraMove button { margin:0 4px; }
+main .qayemCameraRow { display:flex; flex-direction:column; margin:4px 0; }
+main .qayemCameraRow .qayemCameraLabel { margin:0 0 3px; font-size:inherit; font-weight:400; color:#c6dce9; }
+main .qayemCameraRow .qayemCameraRange { width:100%; min-height:24px; height:24px; padding:0; margin:0; flex-shrink:0; }
